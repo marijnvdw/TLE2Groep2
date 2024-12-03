@@ -7,7 +7,9 @@
         <div class="bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-6 w-[80vw] mx-auto overflow-hidden mb-8">
             <div class="text-center">
                 <h2 class="text-xl sm:text-2xl font-bold text-cream py-6 break-words">Een baan zonder sollicitatiegesprek</h2>
-                <x-button class="w-full sm:w-80 px-8 py-2 break-words" type="primary">Bekijk vacatures</x-button>
+                <form action="{{ route('application.index') }}" method="get">
+                    <x-button href="applications" type="submit" class="w-full sm:w-80 px-8 py-2 break-words" type="primary">Bekijk vacatures</x-button>
+                </form>
                 <h2 class="text-xl sm:text-2xl font-bold text-cream pt-6 pb-4 break-words">Zo werkt het:</h2>
             </div>
 
@@ -27,7 +29,7 @@
             </div>
         </div>
 
-        <div class="bg-cream rounded-[30px] shadow-lg shadow-gray p-6 w-[80vw] mx-auto overflow-hidden">
+        <div class="bg-cream rounded-[30px] shadow-lg shadow-medium-moss p-6 w-[80vw] mx-auto overflow-hidden">
             <div class="text-center">
                 <h2 class="text-xl sm:text-2xl font-bold text-dark-moss pt-6 pb-4 break-words">Disclaimer:</h2>
             </div>
