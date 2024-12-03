@@ -22,6 +22,7 @@ class ApplicationController extends Controller
     public function create()
     {
         //
+        return view('application.create');
     }
 
     /**
@@ -38,6 +39,7 @@ class ApplicationController extends Controller
     public function show(Application $application)
     {
         //
+        return view('application.show', compact('application'));
     }
 
     /**
@@ -46,6 +48,7 @@ class ApplicationController extends Controller
     public function edit(Application $application)
     {
         //
+        return view('application.edit', compact('application'));
     }
 
     /**
