@@ -43,7 +43,8 @@ module.exports = {
                 'gray': '#D6D6D6',
             },
             fontFamily: {
-                sans: ['Inter', 'sans-serif'], // Voeg je eigen lettertype toe als in Figma
+                sans: ['Radikal W01 Regular', 'sans-serif'],
+                bold: ['Radikal Bold', 'sans-serif'],
             },
             spacing: {
                 '128': '32rem',
