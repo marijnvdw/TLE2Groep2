@@ -19,3 +19,37 @@ export default {
 
     plugins: [forms],
 };
+
+const colors = require('tailwindcss/colors');
+
+module.exports = {
+    content: [
+        './resources/**/*.blade.php',
+        './resources/**/*.js',
+        './resources/**/*.vue',
+    ],
+    theme: {
+        extend: {
+            colors: {
+                'light-moss': '#E2ECC8',
+                'dark-moss': '#2E342A',
+                'medium-moss': '#92AA83',
+                'violet': '#AA0160',
+                'dark-violet': '#7C1A51',
+                'rose-brown': '#DA9F93',
+                'yellow': '#F8D44C',
+                'white': '#FFFFFF',
+                'cream': '#FBFCF6',
+                'gray': '#D6D6D6',
+            },
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'], // Voeg je eigen lettertype toe als in Figma
+            },
+            spacing: {
+                '128': '32rem',
+                '144': '36rem',
+            },
+        },
+    },
+    plugins: [],
+};
