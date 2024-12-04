@@ -54,11 +54,10 @@
     <div>
         <section>
 
-            <div class="p-5">
-                <form class="flex justify-center gap-10 " method="GET">
-                    <input class="flex-1" type="text" name="search" placeholder="Zoek vacatures">
-                    <button class="flex-1" type="button">filters</button>
-
+            <div class="px-5 pb-5" >
+                <form class="flex justify-center gap-10 pb-2 " method="GET">
+                    <input class="border flex-1 rounded-[30px] pl-2" type="text" name="search" placeholder="Zoek vacatures">
+                    <button class="border flex-1 bg-white rounded-[30px] " type="button">filters</button>
                 </form>
                 <p class="filter-description">active filters:</p>
 
