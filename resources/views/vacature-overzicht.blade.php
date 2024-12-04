@@ -198,27 +198,48 @@
                     <a href="">Meer informatie</a>
 
                 </div>
+                @foreach ($applications as $application)
                 <div class="carousel-cell
                 bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-4 w-[80vw] mx-auto overflow-hidden mb-8"
-                >1
+                >1  {{ $application->description }}
+                @endforeach
                 </div>
-                <div class="carousel-cell
-                bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-4 w-[80vw] mx-auto overflow-hidden mb-8"
-                >2
-                </div>
-                <div class="carousel-cell
-                bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-4 w-[80vw] mx-auto overflow-hidden mb-8"
-                >3
-                </div>
-                <div class="carousel-cell
-                bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-4 w-[80vw] mx-auto overflow-hidden mb-8"
-                >4
-                </div>
-
             </div>
 
         </section>
 
     </div>
+    @if ($applications->isEmpty())
+        <p>Er zijn momenteel geen vacatures beschikbaar.</p>
+    @else
+        <script>
+            // Log the data to console
+            console.log(@json($applications));
+        </script>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Bedrijf</th>
+                <th>Functie</th>
+                <th>Omschrijving</th>
+                <th>Datum Gepubliceerd</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($applications as $application)
+                <tr>
+                    <td>{{ $application->id }}</td>
+                    <td>{{ $application->company_name }}</td>
+                    <td>{{ $application->job_title }}</td>
+                    <td>{{ $application->description }}</td>
+{{--                    <td>{{ $application->created_at->format('d-m-Y') }}</td>--}}
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    @endif
+
 
 @endsection
