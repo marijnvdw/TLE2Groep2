@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aanmelding Bevestigen</title>
+    <title>Uw Aanmelding</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -64,18 +64,18 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>Maak uw aanmelding compleet!</h1>
+        <h1>Bedankt voor uw aanmelding!</h1>
     </div>
     <div class="content">
-        <p>Bedankt voor uw aanmelding als <strong>{{ $application->title }}</strong> bij <strong>{{ $company->name }}, {{ $company->city }} {{ $company->address }}</strong>.</p>
-        <p>Uw aanmelding is bijna klaar. Klik op de knop hieronder om deze af te ronden:</p>
-        <div style="text-align: center;">
-            <a href="http://127.0.0.1:8000/email/complete-registration?id={{ $application->id }}&email={{ $userEmail }}" class="button">
-                Aanmelding afronden
-            </a>
-        </div>
-        <p>Wat gebeurt er daarna? Wij laten u via e-mail weten of u bent geselecteerd voor de baan. Houd uw e-mail goed in de gaten!</p>
-        <p>U heeft 3 dagen om de aanmelding te voltooien!</p>
+        <p>Bedankt voor uw aanmelding! Uw reactie is succesvol ontvangen.</p>
+        <p>U staat momenteel op de <strong>3e plaats</strong> in de wachtlijst. Zodra het uw beurt is, ontvangt u van ons een e-mail met alle details om aan de slag te gaan.</p>
+        <p>Heeft u vragen? Neem gerust contact met ons op via openhiringofficial@gmail.com.</p>
+{{--        <p>Wilt u zich afmelden voor deze vacature? Klik dan op de knop hieronder om uw aanmelding te annuleren.</p>--}}
+{{--        <div style="text-align: center;">--}}
+{{--            <a href="http://127.0.0.1:8000/email/cancel-registration?id={{ $application->id }}&email={{ $userEmail }}" class="button">--}}
+{{--                Aanmelding annuleren--}}
+{{--            </a>--}}
+{{--        </div>--}}
         <p>Met vriendelijke groet,</p>
         <p><strong>Team OpenHiring</strong></p>
     </div>

@@ -13,7 +13,7 @@
                 </h1>
                 <button
                     onclick="history.back()"
-                    class="bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-red-500 hover:text-white transition-all duration-300 ease-in-out"
+                    class="bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-red-500 hover:text-white transition-all duration-300 ease-in-out min-w-[120px] text-center"
                 >
                     Terug X
                 </button>
