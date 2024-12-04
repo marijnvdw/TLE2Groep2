@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\ModalController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/vacature', [ModalController::class, 'showModal']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
