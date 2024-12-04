@@ -5,12 +5,18 @@
     <style>
         main {
             padding: 0;
-            margin: 0;
+            margin-bottom: 100px;
 
         }
 
+        .title1 {
+            color: #7C1A51;
+            font-weight: bold;
+            text-align: center;
+        }
+
         .container {
-            border: black solid 5px;
+            /*border: black solid 5px;*/
         }
 
         .logo-en-titel {
@@ -30,27 +36,42 @@
 
         form {
             display: flex;
-            justify-content: space-between;
-            padding: 5px;
-            gap: 5px;
+            justify-content: center;
+            align-content: center;
+            padding: 10px 20px 5px 20px;
+            gap: 20px;
+        }
+
+        form input {
+            border-radius: 30px;
+            text-align: center;
+            flex: 1;
+            border: 1px black solid;
+
         }
 
         form button {
             flex: 1;
             background-color: white;
+            border-radius: 30px;
+            color: #7C1A51;
+            border: 1px black solid;
+        }
 
+        .filter-description {
+            padding-left: 20px;
+            padding-bottom: 20px;
         }
 
         .carousel {
 
-
         }
 
         .carousel-cell {
+
             width: 66%;
             height: 50vh;
             margin-right: 10px;
-            border-radius: 5px;
             counter-increment: carousel-cell;
             display: flex;
             flex-direction: column;
@@ -58,6 +79,7 @@
             background: #92AA83;
             color: #FBFCF6;
             gap: 10px;
+
 
         }
 
@@ -85,7 +107,7 @@
             align-self: center;
             height: 150px;
             width: 100%; /* Ensures it spans the container width */
-            overflow: hidden; /* Prevents overflowing content */
+            /*overflow: hidden; !* Prevents overflowing content *!*/
             display: flex;
             justify-content: center;
             align-items: center;
@@ -101,8 +123,17 @@
 
         .carousel-cell p {
             flex: 4;
+            font-weight: normal;
             /*background-color: red;*/
 
+        }
+
+        .carousel-cell a {
+            text-align: center;
+            background-color: white;
+            color: #7C1A51;
+            font-weight: bold;
+            border-radius: 30px;
         }
 
         /* no circle */
@@ -140,49 +171,21 @@
 
     <div>
 
-        <article>
-            <h1 class="text-xl sm:text-2xl font-bold text-black  ">
-                Vind een vacature
-            </h1>
+        <section>
 
-            <form action="" method="GET">
-                <input type="text" name="search" placeholder="Search Products">
-                <button type="button">filters</button>
+            <div>
+                <form action="" method="GET">
+                    <input type="text" name="search" placeholder="Zoek vacatures">
+                    <button type="button">filters</button>
 
-            </form>
+                </form>
+                <p class="filter-description">active filters:</p>
 
+            </div>
 
             <!-- Flickity HTML init -->
             <div class="carousel"
-                 data-flickity='{ "wrapAround": true
-{{--                 ,"arrowShape": "--}}
-{{--                    M3.05 3.05 h17.9 a0.95 0.95 0 0 1 0.95 0.95 v17.9 a0.95 0.95 0 0 1 -0.95 0.95 h-17.9 a0.95 0.95 0 0 1 -0.95 -0.95 v-17.9 a0.95 0.95 0 0 1 0.95 -0.95 z--}}
-{{--    M2.05 4.05 h19.9 a0.95 0.95 0 0 1 0.95 0.95 v15.9 a0.95 0.95 0 0 1 -0.95 0.95 h-19.9 a0.95 0.95 0 0 1 -0.95 -0.95 v-15.9 a0.95 0.95 0 0 1 0.95 -0.95 z--}}
-{{--    M4.05 2.05 h15.9 a0.95 0.95 0 0 1 0.95 0.95 v19.9 a0.95 0.95 0 0 1 -0.95 0.95 h-15.9 a0.95 0.95 0 0 1 -0.95 -0.95 v-19.9 a0.95 0.95 0 0 1 0.95 -0.95 z--}}
-{{--    M12 2.05 a9.95 9.95 0 1 1 0 19.9 a9.95 9.95 0 1 1 0 -19.9 z--}}
-{{--    M12 6.05 a5.95 5.95 0 1 1 0 11.9 a5.95 5.95 0 1 1 0 -11.9 z--}}
-{{--    M12 8.05 a3.95 3.95 0 1 1 0 7.9 a3.95 3.95 0 1 1 0 -7.9 z--}}
-{{--    M0 8 h8 v4 h-8 z--}}
-{{--    M0 12 h8 v4 h-8 z--}}
-{{--    M16 8 h8 v4 h-8 z--}}
-{{--    M16 12 h8 v4 h-8 z--}}
-{{--    M8 0 v8 h4 v-8 z--}}
-{{--    M12 0 v8 h4 v-8 z--}}
-{{--    M8 16 v8 h4 v-8 z--}}
-{{--    M12 16 v8 h4 v-8 z--}}
-{{--    M8 8 h4 v4 h-4 z--}}
-{{--    M12 8 h4 v4 h-4 z--}}
-{{--    M8 12 h4 v4 h-4 z--}}
-{{--    M12 12 h4 v4 h-4 z--}}
-{{--    M0 16 h8 v8 h-8 z--}}
-{{--    M16 16 h8 v8 h-8 z--}}
-{{--    M16 0 h8 v8 h-8 z--}}
-{{--    M0 0 h8 v8 h-8 z--}}
-{{--    M5 12 h14--}}
-{{--    M12 5 l7 7 l-7 7--}}
-
-{{--                 "--}}
-                  }'>
+                 data-flickity='{ "wrapAround": true}'>
                 <div class="carousel-cell
                 bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-4 w-[80vw] mx-auto overflow-hidden mb-8"
                 >
@@ -228,7 +231,7 @@
 
             </div>
 
-        </article>
+        </section>
 
     </div>
 
