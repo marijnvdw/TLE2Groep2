@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,6 +12,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::get('/send-email', [EmailController::class, 'sendEmail'])->name('send-email');
+Route::get('/vacancy-register', [EmailController::class, 'registerEmail']);
 
 Route::resource('application', ApplicationController::class);
 
