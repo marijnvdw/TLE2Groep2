@@ -10,6 +10,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/vacature', [ModalController::class, 'showModal']);
+Route::get('vacature/filter', [ModalController::class, 'filterResults'])->name('filter.results');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
