@@ -12,8 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('applications', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id()->foreign('companies.id');
+            $table->date('creation_date');
+            $table->string('title');
+            $table->string('description');
+            $table->string('employment');
+            $table->smallInteger('drivers_licence');
+            $table->smallInteger('18_plus');
         });
     }
 
