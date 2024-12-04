@@ -50,7 +50,7 @@
 
         .carousel {
             margin-bottom: 200px;
-
+            z-index: -2;
         }
 
         .carousel-cell {
@@ -111,7 +111,7 @@
             flex: 4;
             font-weight: normal;
             /*background-color: red;*/
-
+            z-index: -2;
         }
 
         .carousel-cell a {
@@ -155,9 +155,9 @@
     </style>
 
 
-    <div>
+    <div >
 
-        <section>
+        <section >
 
             <div>
                 <form action="" method="GET">
@@ -170,7 +170,7 @@
             </div>
 
             <!-- Flickity HTML init -->
-            <div class="carousel"
+            <div class="carousel "
                  data-flickity='{ "wrapAround": true}'>
                 <div class="carousel-cell
                 bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-4 w-[80vw] mx-auto overflow-hidden mb-8"
