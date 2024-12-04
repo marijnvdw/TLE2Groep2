@@ -66,7 +66,7 @@
                 <!-- Popup -->
                 <div
                     id="infoPopup"
-                    class=" left-0 mt-3 p-4 bg-violet bg-opacity-80 rounded-lg shadow-lg shadow-dark-violet"
+                    class=" left-0 mt-3 p-4 bg-violet bg-opacity-80 rounded-lg shadow-lg shadow-dark-violet hidden"
                     onmouseover="keepPopupOpen()"
                     onmouseleave="hidePopup()"
                 >
