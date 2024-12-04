@@ -11,7 +11,7 @@
         <!-- Centered Logo -->
         <div class="flex-1 flex justify-center items-center" >
             <a href="{{ route('home') }}">
-                <img class="h-16 w-auto" src="img/logo-oh-trans.png" alt="Logo" >
+                <img class="h-16 w-auto" src="img/logo-oh-trans.png" alt="Logo open hiring" >
             </a>
 
         </div>

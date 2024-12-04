@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Applicant;
 use App\Models\Application;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 class EmailController extends Controller
 {
-    public function sendEmail(Request $request)
+    public function sendEmail(Request $request, Application $application)
     {
         $userEmail = $request->input('email');
         // Initialize PHPMailer
@@ -32,7 +34,7 @@ class EmailController extends Controller
             // Content
             $mail->isHTML(true);
             $mail->Subject = 'Maak uw aanmelding compleet!';
-            $mail->Body = view('emails.registration-email')->render();
+            $mail->Body = view('emails.registration-email', ['application' => $application, 'userEmail' => $userEmail])->render();
             $mail->AltBody = 'Bedankt voor uw aanmelding!';
 
             $mail->send();
@@ -43,5 +45,22 @@ class EmailController extends Controller
     }
     public function registerEmail(Application $application) {
         return view('emails.vacancy-register', compact('application'));
+    }
+
+    public function completeRegistration(Request $request)
+    {
+        $applicationId = $request->query('id');
+        $userEmail = $request->query('email');
+        $application = Application::find($applicationId);
+
+        if ($application) {
+            $applicant = new Applicant();
+            $applicant->email = $userEmail;
+            $applicant->status = 1;
+            $applicant->application_id = $applicationId;
+            $applicant->save();
+            return view('emails.complete-registration', compact('application', 'userEmail'));
+        } else {
+        }
     }
 }

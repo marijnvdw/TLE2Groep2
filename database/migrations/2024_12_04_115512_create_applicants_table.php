@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
             $table->string('email');
-            $table->dateTime('creation_date');
             $table->bigInteger('status');
             $table->bigInteger('application_id');
             $table->foreign('application_id')->references('id')->on('applications');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

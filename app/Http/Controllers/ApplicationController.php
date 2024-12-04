@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
@@ -38,8 +39,8 @@ class ApplicationController extends Controller
      */
     public function show(Application $application)
     {
-        //
-        return view('application.show', compact('application'));
+        $company = Company::find($application->companie_id);
+        return view('application.show', compact('application', 'company'));
     }
 
     /**
