@@ -21,13 +21,13 @@
 
         <!-- Social Media -->
         <div class="flex justify-center lg:justify-start items-center space-x-4">
-            <a href="#" class="block">
+            <a href="https://linkedin.com/company/open-hiring-nl/" class="block">
                 <img src="/img/linkedin.png" alt="LinkedIn" class="w-6 h-6 sm:w-8 sm:h-8 object-contain">
             </a>
-            <a href="#" class="block">
+            <a href="https://www.facebook.com/Openhiringnl" class="block">
                 <img src="/img/facebook.png" alt="Facebook" class="w-6 h-6 sm:w-8 sm:h-8 object-contain">
             </a>
-            <a href="#" class="block">
+            <a href="https://instagram.com/openhiring_nl/" class="block">
                 <img src="/img/instagram.png" alt="Instagram" class="w-6 h-6 sm:w-8 sm:h-8 object-contain">
             </a>
         </div>
