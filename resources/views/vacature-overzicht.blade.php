@@ -203,7 +203,7 @@
                 bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-4 w-[80vw] mx-auto overflow-hidden mb-8"
                 >1  {{ $application->description }}
                 @endforeach
-
+                </div>
             </div>
 
         </section>
