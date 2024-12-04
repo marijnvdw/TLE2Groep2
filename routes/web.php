@@ -14,8 +14,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::get('/send-email', [EmailController::class, 'sendEmail'])->name('send-email');
-Route::get('/vacancy-register', [EmailController::class, 'registerEmail']);
+Route::get('email/send', [EmailController::class, 'sendEmail'])->name('email.send');
+Route::get('email/register/{application}', [EmailController::class, 'registerEmail'])->name('email.register');
 
 Route::resource('application', ApplicationController::class);
 

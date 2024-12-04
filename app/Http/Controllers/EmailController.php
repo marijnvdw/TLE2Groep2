@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -40,7 +41,7 @@ class EmailController extends Controller
             return response()->json(['error' => $mail->ErrorInfo], 500);
         }
     }
-    public function registerEmail() {
-        return view('vacancy-register');
+    public function registerEmail(Application $application) {
+        return view('emails.vacancy-register', compact('application'));
     }
 }
