@@ -3,21 +3,6 @@
 @section('content')
 
     <style>
-        main {
-            padding: 0;
-            margin-bottom: 100px;
-
-        }
-
-        .title1 {
-            color: #7C1A51;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .container {
-            /*border: black solid 5px;*/
-        }
 
         .logo-en-titel {
             display: flex;
@@ -64,6 +49,7 @@
         }
 
         .carousel {
+            margin-bottom: 200px;
 
         }
 
@@ -206,8 +192,8 @@
                             alt="mcdonalds work">
                     </div>
                     <p>
-                        beschrijving pipikaka
-                        mcdonalds yummy yippee ich habe cola und fortnite skibidi
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, assumenda commodi consectetur
+                        cupiditate
                     </p>
                     <a href="">Meer informatie</a>
 
