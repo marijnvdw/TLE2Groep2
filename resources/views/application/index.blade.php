@@ -61,9 +61,9 @@
 
             <div class="px-5 pb-5" >
                 <form class="flex justify-center gap-10 pb-2 " method="GET">
-                    <input class="border flex-1 rounded-[30px] pl-2" type="text" name="search"
-                           placeholder="Zoek vacatures">
-                    <button class="border flex-1 bg-white rounded-[30px] " type="button">filters</button>
+{{--                    <input class="border flex-1 rounded-[30px] pl-2" type="text" name="search"--}}
+{{--                           placeholder="Zoek vacatures">--}}
+{{--                    <button class="border flex-1 bg-white rounded-[30px] " type="button">filters</button>--}}
                     <input class="border flex-1 rounded-[30px] pl-2" type="text" name="search" placeholder="Zoek vacatures">
                     <a href="{{ route('filter.results', ['show_modal' => true]) }} id="openModalButton" class="border flex-1 bg-white rounded-[30px] " type="button">filters</a>
                 </form>
