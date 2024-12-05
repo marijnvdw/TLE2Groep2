@@ -18,7 +18,7 @@
     </div>
 
     <!-- Overlay Menu -->
-    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden transition-opacity">
+    <div id="overlay" class="z-10 fixed inset-0 bg-black bg-opacity-50 hidden transition-opacity">
         <div class="absolute top-0 left-0 w-3/4 max-w-sm h-full bg-dark-moss shadow-lg p-6">
             <!-- Close Button -->
             <div class="absolute top-4 right-4 text-2xl text-cream cursor-pointer" onclick="toggleOverlay()">&times;</div>
