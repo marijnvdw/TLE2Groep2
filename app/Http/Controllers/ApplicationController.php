@@ -38,7 +38,29 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the incoming request
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'employment' => 'required|string|max:255',
+            'drivers_licence' => 'required|integer',
+            'adult' => 'required|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'details' => 'nullable|string',
+        ]);
+
+        // Handle the image upload if present
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        $validatedData['creation_date'] = now()->format('Y-m-d');
+
+        // Create a new application with the validated data
+        Application::create($validatedData);
+
+        // Redirect with a success message
+        return redirect()->route('application.index')->with('success', 'Vacature succesvol aangemaakt.');
     }
 
     /**
