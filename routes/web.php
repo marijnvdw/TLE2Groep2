@@ -9,8 +9,15 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/vacature', [ModalController::class, 'showModal']);
-Route::get('vacature/filter', [ModalController::class, 'filterResults'])->name('filter.results');
+//Route::get('/vacature-overzicht', function () {
+//    return view('ApplicationController');
+//})->name('vacatures');
+
+Route::resource('vacature-overzicht', ApplicationController::class);
+
+Route::get('/test', function () {
+    return view('test');
+})->name('test');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
