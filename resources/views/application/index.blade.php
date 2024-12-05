@@ -122,7 +122,9 @@
                             <div class="flex flex-col justify-center md:w-2/3 lg:w-3/4">
                                 <div class="flex justify-center gap-8 md:gap-12 lg:gap-16">
                                     <img
-                                        src="https://cdn.freebiesupply.com/logos/large/2x/mcdonalds-15-logo-png-transparent.png"
+                                        src="
+                                        https://cdn.freebiesupply.com/logos/large/2x/mcdonalds-15-logo-png-transparent.png
+                                        "
                                         alt="logo"
                                         class="h-12 md:h-16 lg:h-20">
                                     <div class="flex flex-col justify-center text-md md:text-lg lg:text-xl">
