@@ -39,12 +39,14 @@ class EmailController extends Controller
             $mail->AltBody = 'Bedankt voor uw aanmelding!';
 
             $mail->send();
-            return view('home');
+            return view('emails.registration-confirmation');
         } catch (Exception $e) {
             return response()->json(['error' => $mail->ErrorInfo], 500);
         }
     }
-    public function registerEmail(Application $application) {
+
+    public function registerEmail(Application $application)
+    {
         return view('emails.vacancy-register', compact('application'));
     }
 

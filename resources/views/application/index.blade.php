@@ -47,7 +47,9 @@
             display: none;
         }
 
-        .flickity-button:focus {    background-color: transparent;}
+        .flickity-button:focus {
+            background-color: transparent;
+        }
 
     </style>
 
@@ -146,7 +148,8 @@
                                     </p>
 
 
-                                    <a href="" class="block mt-4 text-center">
+                                    <a href="{{route('application.show', $application)}}"
+                                       class="block mt-4 text-center">
                                         <x-button type=":">Meer informatie</x-button>
                                     </a>
                                 </div>
@@ -162,17 +165,11 @@
 
                     </div>
 
-
-
                 @endforeach
-
 
 
             </div>
         </section>
     </div>
-
-
-
 
 @endsection
