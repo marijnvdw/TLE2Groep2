@@ -174,7 +174,9 @@
 
 
             </div>
+            </div>
         </section>
+
     </div>
 
 @endsection
