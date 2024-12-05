@@ -17,18 +17,18 @@
             </div>
 
             <div class="flex items-start pb-2">
-                <img src="/img/check.png" alt="check" class="mr-2 mt-2 w-4 h-4 align-middle">
+                <img src="/img/checkWhite.png" alt="1" class="mr-2 mt-2 w-4 h-4 align-middle">
                 <p class="text-lg sm:text-xl text-cream break-words">Direct reageren. Zonder sollicitatiegesprek, vragen
                     of (voor)oordelen. Een eerlijke kans.</p>
             </div>
 
             <div class="flex items-start pb-2">
-                <img src="/img/check.png" alt="check" class="mr-2 mt-2 w-4 h-4">
+                <img src="/img/checkWhite.png" alt="2" class="mr-2 mt-2 w-4 h-4">
                 <p class="text-lg sm:text-xl text-cream break-words">Jij bepaalt of je het kunt.</p>
             </div>
 
             <div class="flex items-start pb-2">
-                <img src="/img/check.png" alt="check" class="mr-2 mt-2 w-4 h-4">
+                <img src="/img/checkWhite.png" alt="3" class="mr-2 mt-2 w-4 h-4">
                 <p class="text-lg sm:text-xl text-cream break-words">Snel aan de slag. Met een normaal contract, vanaf
                     dag 1 betaald.</p>
             </div>
@@ -40,40 +40,38 @@
             </div>
 
             <div class="flex items-start pb-2">
-                <img src="/img/check.png" alt="check" class="mr-2 mt-2 w-4 h-4">
+                <img src="/img/check.png" alt="1" class="mr-2 mt-2 w-4 h-4">
                 <p class="text-lg sm:text-xl text-dark-moss break-words">Je bent volledig anoniem, want de werkgever
                     krijgt niet jouw gegevens tijdens het wachten.</p>
             </div>
 
             <div class="flex items-start pb-2">
-                <img src="/img/check.png" alt="check" class="mr-2 mt-2 w-4 h-4 align-middle">
+                <img src="/img/check.png" alt="2" class="mr-2 mt-2 w-4 h-4 align-middle">
                 <p class="text-lg sm:text-xl text-dark-moss break-words">Wij als open hiring zijn een tussenpersoon voor
                     jou
                     en de werkgever.</p>
             </div>
 
             <div class="flex items-start pb-2">
-                <img src="/img/check.png" alt="check" class="mr-2 mt-2 w-4 h-4">
+                <img src="/img/check.png" alt="3" class="mr-2 mt-2 w-4 h-4">
                 <p class="text-lg sm:text-xl text-dark-moss break-words">Open hiring werkt doormiddel van een
                     wachtrij!</p>
                 <div
-
                     id="infoIcon"
-                    class="flex items-center justify-center w-12 h-12 border-solid border-2 border-dark-moss rounded-full cursor-pointer"
-                    onclick="togglePopup()"
-                    onmouseover="showPopup()"
-                    onmouseleave="hidePopup()">
-                !</div><br>
+                    class="flex items-center justify-center w-6 h-6 ml-2 mt-0.5 cursor-pointer"
+                    onclick="togglePopup()">
+                    <img src="/img/information-button.png">
+                </div><br>
             </div>
                 <!-- Popup -->
                 <div
                     id="infoPopup"
-                    class=" left-0 mt-2 w-64 p-4 bg-white rounded-lg shadow-lg hidden"
+                    class=" left-0 mt-3 p-4 bg-violet bg-opacity-80 rounded-lg shadow-lg shadow-dark-violet hidden"
                     onmouseover="keepPopupOpen()"
                     onmouseleave="hidePopup()"
                 >
-                    <h3 class="text-xl sm:text-2xl font-bold text-dark-moss pt-6 pb-4 break-words">Hoe werkt de wachtrij?</h3>
-                    <p class="text-lg sm:text-xl text-dark-moss break-words">
+                    <h3 class="text-xl sm:text-2xl font-bold text-cream pt-6 pb-4 break-words">Hoe werkt de wachtrij?</h3>
+                    <p class="text-lg sm:text-xl text-cream break-words">
 
                         Als je je aanmeldt, krijg je meteen een plek in de wachtrij. Hoe eerder je je aanmeldt, hoe sneller je kans maakt om gekozen te worden door de werkgever. De werkgever selecteert kandidaten van bovenaan de lijst, dus vroeg aanmelden vergroot je kansen om snel aan de slag te gaan. Door je nu aan te melden, zet je de eerste stap richting jouw nieuwe baan!
                     </p>

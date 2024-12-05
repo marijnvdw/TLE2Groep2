@@ -9,6 +9,16 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+//Route::get('/vacature-overzicht', function () {
+//    return view('ApplicationController');
+//})->name('vacatures');
+
+Route::resource('vacature-overzicht', ApplicationController::class);
+
+Route::get('/test', function () {
+    return view('test');
+})->name('test');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
