@@ -1,5 +1,5 @@
 <div class="text-center space-y-4">
-    <div id="filterModal" style="position: fixed; display: flex; justify-content: center; align-items: center; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4);">
+    <div id="filterModal" style="position: fixed; display: flex; justify-content: center; align-items: center; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 9999;">
         <div class="modalContent" style="background-color: #2E342A; padding: 4vw; border-radius: 20px; width: 70%; max-width: 800px; text-align: center;">
             <span class="close-btn" style="font-size: 7vw; color: #6d6d6d; cursor: pointer; display: flex; justify-content: end; padding: 0 2vw;">&times;</span>
             <form action="{{ route('filter.results') }}" method="get" class="filters" style="color: #DA9F93;">
@@ -77,27 +77,29 @@
 
             const modal = document.getElementById('filterModal');
             const closeBtn = document.getElementsByClassName('close-btn')[0];
-            const submitBtn = document.getElementById('filterSubmit');
-            let isModalClosed = false;
+            const body = document.querySelector('body');
+
+            modal.style.display = 'flex';
+
+            body.style.overflow = 'hidden';
 
             closeBtn.addEventListener('click', function () {
                 modal.style.display = 'none';
-                isModalClosed = true;
+                body.style.overflow = 'auto';
             });
 
             window.addEventListener('click', function (event) {
                 if (event.target === modal) {
                     modal.style.display = 'none';
-                    isModalClosed = true;
+                    body.style.overflow = 'auto';
                 }
             });
 
-            submitBtn.addEventListener('click', function () {
+            const form = modal.querySelector('form');
+            form.addEventListener('submit', function () {
                 modal.style.display = 'none';
-                isModalClosed = true;
+                body.style.overflow = 'auto';
             });
-
-
         });
 
         function handleFocusBlur(elementId) {

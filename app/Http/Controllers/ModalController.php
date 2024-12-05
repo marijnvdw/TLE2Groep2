@@ -11,7 +11,9 @@ class ModalController extends Controller
     {
         /** @return \Illuminate\View\View */
 
-        return view('vacature-overzicht');
+        $applications = Application::all();
+
+        return view('application.index', compact('applications'));
     }
 
     public function filterResults(Request $request)
@@ -44,6 +46,6 @@ class ModalController extends Controller
 
         $applications = $applications->get();
 
-        return view('vacature-overzicht', [ 'applications' => $applications ]);
+        return view('application.index', [ 'applications' => $applications ]);
     }
 }
