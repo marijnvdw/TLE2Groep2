@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ModalController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,10 @@ Route::get('/test', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/application', [ModalController::class, 'showModal'])->name('application.index');
+Route::get('/application/filter', [ModalController::class, 'filterResults'])->name('filter.results');
+
 
 
 Route::get('email/send/{application}', [EmailController::class, 'sendEmail'])->name('email.send');

@@ -57,10 +57,15 @@
         <section>
 
             <div class="px-5 pb-5">
+            <x-modal-filter></x-modal-filter>
+
+            <div class="px-5 pb-5" >
                 <form class="flex justify-center gap-10 pb-2 " method="GET">
                     <input class="border flex-1 rounded-[30px] pl-2" type="text" name="search"
                            placeholder="Zoek vacatures">
                     <button class="border flex-1 bg-white rounded-[30px] " type="button">filters</button>
+                    <input class="border flex-1 rounded-[30px] pl-2" type="text" name="search" placeholder="Zoek vacatures">
+                    <a href="{{ route('filter.results', ['show_modal' => true]) }} id="openModalButton" class="border flex-1 bg-white rounded-[30px] " type="button">filters</a>
                 </form>
 
 {{--                <p class="filter-description">active filters:</p>--}}
@@ -126,7 +131,7 @@
                             <div class="flex flex-col justify-center md:w-2/3 lg:w-3/4">
                                 <div class="flex justify-center gap-8 md:gap-12 lg:gap-16">
                                     <img
-                                        src="{{ $application->details}}"
+                                        src="https://cdn.freebiesupply.com/logos/large/2x/mcdonalds-15-logo-png-transparent.png"
                                         alt="logo"
                                         class="h-12 md:h-16 lg:h-20">
                                     <div class="flex flex-col justify-center text-md md:text-lg lg:text-xl">
@@ -145,12 +150,11 @@
                                 <!-- Description and button -->
                                 <div class="mt-4">
                                     <p class="text-sm md:text-base lg:text-lg">
-                                        {{ $application->description }}
+                                        >1 {{ $application->description }}
                                     </p>
 
 
-                                    <a href="{{route('application.show', $application)}}"
-                                       class="block mt-4 text-center">
+                                    <a href="" class="block mt-4 text-center">
                                         <x-button type=":">Meer informatie</x-button>
                                     </a>
                                 </div>
