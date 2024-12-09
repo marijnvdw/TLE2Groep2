@@ -6,20 +6,21 @@ use App\Models\Admin;
 use App\Models\Application;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $admin = Admin::all();
-
-
-        return view('admin.index', compact('admin'));
-
-
+        // Check if user is an admin
+        if (Auth::user()->is_admin) {
+            // Get all companies and show them on the dashboard
+            $companies = Company::all();
+            return view('dashboard', compact('companies'));
+        } else {
+            // if user is not an admin redirect to home
+            return redirect('/');
+        }
     }
 
 
