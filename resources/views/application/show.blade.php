@@ -26,16 +26,32 @@
                 <p><strong>Rijbewijs nodig?</strong> {{$application->drivers_licence}}</p>
                 <p><strong>18+ vereist?</strong> {{$application->adult}}</p>
             </div>
+            <!-- Description -->
+            <p class="text-white mb-6 text-base sm:text-lg">
+                Voel u zich aangetrokken tot deze baan en denk je dat je over de kwaliteiten beschikt
+                voor deze baan, geef dan hier uw email door om op de wachtlijst gezet te worden.
+            </p>
 
-            <!-- Call to Action -->
-            <div class="mt-8 text-center">
-                <a
-                    href="{{route('email.register', $application)}}"
-                    class="bg-white text-dark-moss font-semibold rounded-[30px] px-6 py-3 inline-block shadow-md hover:bg-dark-violet hover:text-white transition-transform transform hover:scale-105 duration-300 ease-in-out"
-                >
-                    Reageer
-                </a>
-            </div>
+            <!-- Form Section -->
+            <form action="{{ route('email.send', $application) }}" method="GET">
+                <div class="flex flex-col gap-4">
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="{{ old('email') }}"
+                        placeholder="Email"
+                        required
+                        class="rounded-[30px] p-3 w-full md:w-auto border border-gray-300 focus:outline-none focus:ring-2 focus:ring-dark-moss"
+                    >
+                    <button
+                        type="submit"
+                        class="bg-white text-dark-moss font-semibold rounded-[30px] px-6 py-3 w-full md:w-auto hover:bg-dark-violet hover:text-white transition-transform transform hover:scale-105 duration-300 ease-in-out"
+                    >
+                        Verzend E-mail
+                    </button>
+                </div>
+            </form>
         </div>
     </section>
 @endsection

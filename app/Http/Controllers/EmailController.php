@@ -45,16 +45,12 @@ class EmailController extends Controller
         }
     }
 
-    public function registerEmail(Application $application)
-    {
-        return view('emails.vacancy-register', compact('application'));
-    }
-
     public function completeRegistration(Request $request)
     {
         $applicationId = $request->query('id');
         $userEmail = $request->query('email');
         $application = Application::find($applicationId);
+        $company = Company::find($applicationId);
 
         if ($application) {
             $applicant = new Applicant();
@@ -87,7 +83,7 @@ class EmailController extends Controller
                 $mail->AltBody = 'Bedankt voor uw aanmelding!';
 
                 $mail->send();
-                return view('emails.complete-registration', compact('application', 'userEmail'));
+                return view('emails.complete-registration', compact('application', 'userEmail', 'company'));
 
             } catch (Exception $e) {
                 return response()->json(['error' => $mail->ErrorInfo], 500);
