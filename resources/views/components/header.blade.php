@@ -11,7 +11,7 @@
         <!-- Centered Logo -->
         <div class="flex-1 flex justify-center items-center" >
             <a href="{{ route('home') }}">
-                <img class="h-16 w-auto" src="img/logo-oh-trans.png" alt="Logo open hiring" >
+                <img class="h-16 w-auto" src="img/logo-oh-trans.png" alt="Logo open hiring" onerror="this.onerror=null;this.src='../img/logo-oh-trans.png';">
             </a>
 
         </div>
@@ -28,7 +28,7 @@
                 <a href="{{ route('application.index') }}" class="block text-lg text-cream hover:text-violet">Vacatures</a>
                 <a href="#" class="block text-lg text-cream hover:text-violet">Over ons</a>
                 <a href="{{ route('company.index') }}" class="block text-lg text-cream hover:text-violet">Werkgevers</a>
-                <a href="#" class="block text-lg text-cream hover:text-violet">Login/Registreer voor bedrijven</a>
+                <a href="{{ route('login') }}" class="block text-lg text-cream hover:text-violet">Login/Registreer voor bedrijven</a>
             </nav>
         </div>
     </div>
