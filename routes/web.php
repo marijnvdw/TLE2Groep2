@@ -10,10 +10,6 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-//Route::get('/vacature-overzicht', function () {
-//    return view('ApplicationController');
-//})->name('vacatures');
-
 Route::resource('vacature-overzicht', ApplicationController::class);
 
 Route::get('/test', function () {
