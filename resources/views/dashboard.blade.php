@@ -16,11 +16,20 @@
                     {{ __("You're logged in!") }}
                     <a>Vacature aanmaken.</a>
                     {{ Auth::user()->name }}
+
                 </div>
             </div>
         </div>
     </div>
+    <div class="carousel-cell bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-10 w-[80vw] mx-auto overflow-hidden mb-8 text-white">
+        <h1>Chef</h1>
+        <p>beschrijving</p>
+        <a href="">Vraag sollicitant aan</a>
+        <a href="">Pas aan</a>
+        <a href="">Verwijder</a>
+    </div>
 
-    <p>hi</p>
+
+
 
 @endsection
