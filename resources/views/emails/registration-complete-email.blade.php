@@ -68,7 +68,7 @@
     </div>
     <div class="content">
         <p>Bedankt voor uw aanmelding! Uw reactie is succesvol ontvangen.</p>
-        <p>U staat momenteel op de <strong>3e plaats</strong> in de wachtlijst. Zodra het uw beurt is, ontvangt u van ons een e-mail met alle details om aan de slag te gaan.</p>
+        <p>U staat momenteel op de <strong>3e plaats</strong> in de wachtlijst voor <strong>{{ $application->title }}</strong> bij <strong>{{ $company->name }}, {{ $company->city }} {{ $company->address }}</strong>. Zodra het uw beurt is, ontvangt u van ons een e-mail met alle details om aan de slag te gaan.</p>
         <p>Heeft u vragen? Neem gerust contact met ons op via openhiringofficial@gmail.com.</p>
         <p>Wilt u weten hoe lang het nog duurt voordat u aan de beurt bent? Klik op de knop hieronder om uw plek in de wachtrij te bekijken:</p>
         <div style="text-align: center;">

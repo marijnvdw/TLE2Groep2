@@ -1,6 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('error'))
+        <div id="errorModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div class="bg-white rounded-lg p-6 w-[90%] max-w-md shadow-lg">
+                <h2 class="text-xl font-bold mb-4">Error</h2>
+                <p class="text-gray-700">{{ session('error') }}</p>
+                <button
+                    class="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                    onclick="closeModal()">Sluit</button>
+            </div>
+        </div>
+    @endif
+
+    <script>
+        function closeModal() {
+            document.getElementById('errorModal').remove();
+        }
+    </script>
+
     <section class="flex justify-center p-4 sm:p-8">
         <div class="bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-8 w-full max-w-[600px] mx-auto overflow-hidden mb-8">
             <!-- Header Section -->
