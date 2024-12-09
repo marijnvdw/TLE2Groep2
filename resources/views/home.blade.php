@@ -36,7 +36,7 @@
 
         <div class="bg-cream rounded-[30px] shadow-lg shadow-medium-moss p-6 w-[80vw] mx-auto overflow-hidden">
             <div class="text-center">
-                <h2 class="text-xl sm:text-2xl font-bold text-dark-moss pt-6 pb-4 break-words">Disclaimer:</h2>
+                <h2 class="text-xl sm:text-2xl font-bold text-dark-moss pt-6 pb-4 break-words">Goed om te weten:</h2>
             </div>
 
             <div class="flex items-start pb-2">
