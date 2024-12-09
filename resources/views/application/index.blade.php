@@ -66,11 +66,16 @@
                         {{--                    <button class="border flex-1 bg-white rounded-[30px] " type="button">filters</button>--}}
                         <input class="border flex-1 rounded-[30px] pl-2" type="text" name="search"
                                placeholder="Zoek vacatures">
-                        <a href="{{ route('filter.results', ['show_modal' => true]) }} id=" openModalButton"
-                        class="border flex-1 bg-white rounded-[30px] " type="button">filters</a>
+                        <a
+                            href="{{ route('filter.results', ['show_modal' => true]) }}"
+                            id="openModalButton"
+                            class="border flex-1 bg-white rounded-[30px]">
+                            filters >
+                        </a>
+
                     </form>
 
-                    {{--                <p class="filter-description">active filters:</p>--}}
+                    <p class="filter-description">active filters:</p>
 
                 </div>
 
@@ -175,9 +180,8 @@
                         </div>
 
                     @endforeach
-
-
                 </div>
+                <p class="text-center	">pagina x/x</p>
             </div>
         </section>
 
