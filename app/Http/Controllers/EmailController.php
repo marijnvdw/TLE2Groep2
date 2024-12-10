@@ -21,7 +21,7 @@ class EmailController extends Controller
     public function sendEmail(Request $request, Application $application)
     {
         $userEmail = $request->input('email');
-        $company = Company::find($application->companie_id);
+        $company = Company::find($application->company_id);
 
         $applicant = Applicant::where('email', $userEmail)
             ->where('application_id', $application->id)
@@ -53,7 +53,7 @@ class EmailController extends Controller
         $applicationId = $request->query('id');
         $userEmail = $request->query('email');
         $application = Application::find($applicationId);
-        $company = Company::find($application->companie_id);
+        $company = Company::find($application->company_id);
 
         $applicant = Applicant::where('email', $userEmail)
             ->where('application_id', $applicationId)
