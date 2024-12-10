@@ -2,6 +2,16 @@
 
 @section('content')
 
+
+    <div class="bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-6 w-[80vw] mx-auto overflow-hidden mb-8">
+        @auth()
+            <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                <a href="{{ route('admin-overzicht.create') }}"> <x-button> voeg een bedrijf toe</x-button> <a/>
+                @endauth
+            </div>
+    </div>
+
     <div class="bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-6 w-[80vw] mx-auto overflow-hidden mb-8">
 
     <div class="py-12">
@@ -13,10 +23,9 @@
                     <table class="table-auto w-full">
                         <thead>
                         <tr>
-                            <th class="px-4 py-2">ID</th>
-                            <th class="px-4 py-2">Name</th>
-                            <th class="px-4 py-2">Role</th>
-                            <th class="px-4 py-2">Change role</th>
+                            <th class="px-4 py-2">Bedrijfsnaam</th>
+                            <th class="px-4 py-2">Stad</th>
+                            <th class="px-4 py-2">Bedrijfscode</th>
                         </tr>
                         </thead>
                         @foreach ($companies as $company)

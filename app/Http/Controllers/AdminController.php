@@ -13,13 +13,13 @@ class AdminController extends Controller
     public function index()
     {
         // Check if user is an admin
-        if (Auth::user()->is_admin) {
+        if (Auth::user()->admin) {
             // Get all companies and show them on the dashboard
             $companies = Company::all();
-            return view('dashboard', compact('companies'));
+            return view('admin.index', compact('companies'));
         } else {
             // if user is not an admin redirect to home
-            return redirect('/');
+            return redirect('/')->with('error', 'Je bent niet bevoegd om deze pagina te bekijken.');
         }
     }
 
@@ -30,7 +30,6 @@ class AdminController extends Controller
     public function create()
     {
         //
-        return view('admin.create');
     }
 
     /**
