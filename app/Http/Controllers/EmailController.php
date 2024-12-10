@@ -96,7 +96,7 @@ class EmailController extends Controller
         $applicationId = $request->query('id');
         $userEmail = $request->query('email');
         $application = Application::find($applicationId);
-        $company = Company::find($application->companie_id);
+        $company = Company::find($application->company_id);
 
         // Get all applicants for the application, ordered by registration order
         $applicants = Applicant::where('application_id', $applicationId)
