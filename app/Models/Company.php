@@ -9,10 +9,7 @@ class Company extends Model
 {
     use HasFactory;
 
-<<<<<<<<< Temporary merge branch 1
-    protected $table = 'companies'; // Specify the table name
-    protected $fillable = ['name', 'phone_number', 'address', 'city', 'company_code'];
-=========
+
     protected $fillable = [
         'name',
         'phone_number',
