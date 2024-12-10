@@ -1,0 +1,46 @@
+@extends('layouts.app')
+
+@section('content')
+
+
+    <div class="bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-6 w-[80vw] mx-auto overflow-hidden mb-8">
+        @auth()
+            <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                <a href="{{ route('admin-overzicht.create') }}"> <x-button> voeg een bedrijf toe</x-button> <a/>
+                @endauth
+            </div>
+    </div>
+
+    <div class="bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-6 w-[80vw] mx-auto overflow-hidden mb-8">
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-dark-moss overflow-hidden shadow-dark-moss shadow-sm sm:rounded-lg">
+                <div class="p-6 text-cream">
+                        {{ __("Company overview") }}
+
+                    <table class="table-auto w-full">
+                        <thead>
+                        <tr>
+                            <th class="px-4 py-2">Bedrijfsnaam</th>
+                            <th class="px-4 py-2">Stad</th>
+                            <th class="px-4 py-2">Bedrijfscode</th>
+                        </tr>
+                        </thead>
+                        @foreach ($companies as $company)
+                            <tbody>
+                            <tr>
+                                <td class="border px-4 py-2">{{ $company->name }}</td>
+                                <td class="border px-4 py-2">{{ $company->city }}</td>
+                                <td class="border px-4 py-2">{{ $company->company_code }}</td>
+                            </tr>
+                            </tbody>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection
