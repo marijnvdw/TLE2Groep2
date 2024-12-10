@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ModalController;
 use App\Http\Controllers\EmailController;
@@ -10,11 +11,9 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-//Route::get('/vacature-overzicht', function () {
-//    return view('ApplicationController');
-//})->name('vacatures');
+Route::resource('application', ApplicationController::class);
 
-Route::resource('vacature-overzicht', ApplicationController::class);
+Route::resource('admin-overview', AdminController::class);
 
 Route::get('/test', function () {
     return view('test');
