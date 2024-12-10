@@ -1,7 +1,7 @@
-@extends('layouts.app');
+@extends('layouts.app')
 
 @section('content')
-    ;
+
 
     <div>
         <h1>Werkgevers</h1>
