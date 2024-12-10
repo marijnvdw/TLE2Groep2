@@ -42,17 +42,20 @@ class ApplicationController extends Controller
             'drivers_licence' => 'required|integer',
             'adult' => 'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'details' => 'nullable|string',
+            'details' => 'required|string',
         ]);
 
         // Handle the image upload if present
-        if ($request->hasFile('image')) {
-            $validatedData['image'] = $request->file('image')->store('images', 'public');
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('images', 'public'); // Save in 'storage/app/public/images'
         }
 
+        // Set the creation date
         $validatedData['creation_date'] = now()->format('Y-m-d');
 
+        // Associate the application with the authenticated user's company
         $validatedData['company_id'] = Auth::user()->company->id;
+
         // Create a new application with the validated data
         Application::create($validatedData);
 
@@ -72,19 +75,41 @@ class ApplicationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Application $application)
+    public function edit(Request $request)
     {
-        //
+        $id = $request->query('id');
+        $application = Application::findOrFail($id); // Fetch the application by ID or throw an error if not found
+
         return view('application.edit', compact('application'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Application $application)
+    public function update(Request $request)
     {
-        //
+        $id = $request->input('id');
+        $application = Application::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'employment' => 'required|string|max:255',
+            'drivers_licence' => 'required|integer',
+            'adult' => 'required|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'details' => 'required|string',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        $application->update($validatedData);
+
+        return redirect()->route('applications.index')->with('success', 'Vacature succesvol bijgewerkt.');
     }
+
 
     /**
      * Remove the specified resource from storage.

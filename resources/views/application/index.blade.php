@@ -172,8 +172,9 @@
                                 <!-- Image section on larger screens -->
                                 <div class="hidden md:flex md:w-1/3 lg:w-1/4 justify-center">
                                     <img
-                                        src="https://mei-arch.eu/en/wp-content/uploads/sites/2/2022/01/OvD-47-1020x1320.jpg?image-crop-positioner-ts=1642509477"
-                                        alt="mcdonalds work" class="max-w-full h-auto object-cover">
+                                        src="storage/images/jmmnT6jAPaTIyxEIG4SQSgAr6O2wsF8x9XV1mUlp.jpg"
+{{--                                      images/seHUIGexlgBCi4pwVo1pEMuBTVgfkEwa7TwamUBe.jpg  --}}
+                                        alt="mcdonalds workers" class="max-w-full h-auto object-cover">
                                 </div>
                             </div>
 

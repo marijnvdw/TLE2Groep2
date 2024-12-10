@@ -25,7 +25,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/application', [ModalController::class, 'showModal'])->name('application.index');
 Route::get('/application/filter', [ModalController::class, 'filterResults'])->name('filter.results');
-
+Route::get('/application/edit', [ApplicationController::class, 'edit'])->name('application.edit');
 
 
 Route::get('email/send/{application}', [EmailController::class, 'sendEmail'])->name('email.send');

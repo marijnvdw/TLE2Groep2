@@ -16,6 +16,7 @@
                     <a href="{{ route('application.create') }}">Vacature aanmaken.</a><br>
                     Username: {{ Auth::user()->name }}<br>
                     Company name: {{ Auth::user()->company->name }}
+                    Company name: {{ Auth::user()->company->id }}
                 </div>
             </div>
         </div>
