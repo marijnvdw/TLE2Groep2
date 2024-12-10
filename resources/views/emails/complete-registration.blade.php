@@ -13,7 +13,7 @@
                 Bedankt voor uw aanmelding als <strong>{{ $application->title }}</strong> bij <strong>{{ $company->name }}, {{ $company->city }} {{ $company->address }}</strong>.
             </p>
             <p class="text-white mb-6 text-base sm:text-lg text-center">
-                U staat momenteel op de <strong class="font-semibold">3e plaats</strong> in de wachtlijst. Zodra het uw beurt is, ontvangt u van ons een e-mail met alle details om aan de slag te gaan.
+                U staat momenteel op plaats nummer: <strong class="font-semibold">{{ $applicantCount+1 }}</strong> in de wachtlijst. Zodra het uw beurt is, ontvangt u van ons een e-mail met alle details om aan de slag te gaan.
             </p>
             <p class="text-white mb-6 text-base sm:text-lg text-center">
                 Heeft u vragen? Neem gerust contact met ons op via <a href="mailto:openhiringofficial@gmail.com" class="text-rose-brown hover:underline">openhiringofficial@gmail.com</a>.
