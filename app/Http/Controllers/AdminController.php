@@ -29,7 +29,11 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        if (!Auth::user()->admin) {
+            return redirect()->route('/')->with('error', 'Je moet admin zijn om een bedrijf toe te voegen');
+        } else {
+            return view('admin.create');
+        }
     }
 
     /**
@@ -37,7 +41,25 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        // Validation
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'phone_number' => 'required|numeric|digits:10',
+            'address' => 'required|string|max:200',
+            'city' => 'required|string|max:200',
+            'company_code' => 'required|string|max:50',
+        ]);
 
+        $company = new Company();
+
+        $company->name = $request->input(key: 'name');
+        $company->phone_number = $request->input(key: 'phone_number');
+        $company->address = $request->input(key: 'address');
+        $company->city = $request->input(key: 'city');
+        $company->company_code = $request->input(key: 'company_code');
+
+        $company->save();
+        return redirect()->route('admin-overzicht.index');
     }
 
     /**
@@ -51,24 +73,62 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit(string $id)
     {
-        //
+        $company = Company::findOrFail($id);
+
+        if (!auth()->user()->admin) {
+            return redirect()->route('/')->with('error', 'Je bent niet bevoegd om deze pagina te bekijken.');
+        }
+        return view('admin.edit')->with('company', $company);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Application $application)
+    public function update(Request $request, string $id)
     {
-        //
+        $company = Company::findOrFail($id);
+
+        if (!auth()->user()->admin) {
+            return redirect()->route('/')->with('error', 'Je bent niet bevoegd om deze pagina te bekijken.');
+        }
+
+        // Validatie
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'phone_number' => 'required|digits:10',
+            'address' => 'required|string|max:200',
+            'city' => 'required|string|max:200',
+            'company_code' => 'required|string|max:50',
+        ]);
+
+        // Bijwerken van de gegevens
+        $company->update([
+            'name' => $request->name,
+            'phone_number' => $request->phone_number,
+            'address' => $request->address,
+            'city' => $request->city,
+            'company_code' => $request->company_code,
+        ]);
+
+        // Redirect met een succesbericht
+        return redirect()->route('admin-overzicht.index')->with('success', 'Bedrijf succesvol bijgewerkt!');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Verwijder de opgegeven resource uit de database.
      */
-    public function destroy(Application $application)
+    public function destroy(Company $company)
     {
-        //
+
+//        if (!auth()->user()->admin) {
+//            return redirect()->route('/')->with('error', 'Je bent niet bevoegd deze pagina te bekijken.');
+//        }
+//
+//        $company->delete();
+//
+//        return redirect()->route('admin-overzicht.index')->with('success', 'Bedrijf succesvol verwijderd!');
+
     }
 }

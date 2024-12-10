@@ -18,7 +18,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-dark-moss overflow-hidden shadow-dark-moss shadow-sm sm:rounded-lg">
                 <div class="p-6 text-cream">
-                        {{ __("Company overview") }}
+                        {{ __("Bedrijven overzicht") }}
 
                     <table class="table-auto w-full">
                         <thead>
@@ -26,6 +26,7 @@
                             <th class="px-4 py-2">Bedrijfsnaam</th>
                             <th class="px-4 py-2">Stad</th>
                             <th class="px-4 py-2">Bedrijfscode</th>
+                            <th class="px-4 py-2">Edit </th>
                         </tr>
                         </thead>
                         @foreach ($companies as $company)
@@ -34,6 +35,12 @@
                                 <td class="border px-4 py-2">{{ $company->name }}</td>
                                 <td class="border px-4 py-2">{{ $company->city }}</td>
                                 <td class="border px-4 py-2">{{ $company->company_code }}</td>
+                                <td class="border px-4 py-2 text-center">
+                                    <a href="{{ route('admin-overzicht.edit', $company->id) }}"
+                                       class="bg-cream hover:bg-gray text-dark-moss font-bold py-2 px-4 rounded">
+                                        Bewerken
+                                    </a>
+                                </td>
                             </tr>
                             </tbody>
                         @endforeach
