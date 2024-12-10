@@ -164,7 +164,7 @@
 
                                         <a href="{{route('application.show', $application)}}"
                                         >
-                                            <x-button type=":">Meer informatie</x-button>
+                                            <x-button type=":" href="{{route('application.show', $application)}}">Meer informatie</x-button>
                                         </a>
                                     </div>
                                 </div>

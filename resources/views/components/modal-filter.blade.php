@@ -1,7 +1,7 @@
 <div class="text-center space-y-4">
     <div id="filterModal" style="position: fixed; display: flex; justify-content: center; align-items: center; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 9999;">
         <div class="modalContent" style="background-color: #2E342A; padding: 4vw; border-radius: 20px; width: 70%; max-width: 800px; text-align: center;">
-            <span class="close-btn" style="font-size: 7vw; color: #6d6d6d; cursor: pointer; display: flex; justify-content: end; padding: 0 2vw;">&times;</span>
+            <span class="close-btn" style="font-size: 7vw; color: #6d6d6d; cursor: pointer; display: flex; justify-content: end; padding: 0 2vw;" role="button" tabindex="0" onclick="closeModal()">&times;</span>
             <form action="{{ route('filter.results') }}" method="get" class="filters" style="color: #DA9F93;">
                 <div style="margin-bottom: 4vw;">
                     <p class="filter" style="display: flex; justify-content: center; font-size: 2rem; margin-bottom: 0.5rem">Filters</p>
@@ -83,22 +83,29 @@
 
             body.style.overflow = 'hidden';
 
-            closeBtn.addEventListener('click', function () {
+            function closeModal() {
                 modal.style.display = 'none';
                 body.style.overflow = 'auto';
-            });
+            }
+
+            closeBtn.addEventListener('click', closeModal);
 
             window.addEventListener('click', function (event) {
                 if (event.target === modal) {
-                    modal.style.display = 'none';
-                    body.style.overflow = 'auto';
+                    closeModal();
+                }
+            });
+
+            closeBtn.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    closeModal();
                 }
             });
 
             const form = modal.querySelector('form');
             form.addEventListener('submit', function () {
-                modal.style.display = 'none';
-                body.style.overflow = 'auto';
+                closeModal();
             });
         });
 

@@ -2,10 +2,10 @@
     <!-- Navigation Bar -->
     <div class="flex justify-between items-center">
         <!-- Hamburger Menu -->
-        <div class="flex flex-col justify-center items-center cursor-pointer" onclick="toggleOverlay()">
-            <span class="block w-6 h-1 bg-violet mb-1"></span>
-            <span class="block w-6 h-1 bg-violet mb-1"></span>
-            <span class="block w-6 h-1 bg-violet"></span>
+        <div id="burgerMenu" class="flex flex-col justify-center items-center cursor-pointer" onclick="toggleOverlay()" tabindex="0" role="button">
+            <span class="block w-10 h-1 bg-violet"></span>
+            <span class="block w-10 text-center text-violet text-sm font-bold">Menu</span>
+            <span class="block w-10 h-1 bg-violet"></span>
         </div>
 
         <!-- Centered Logo -->
@@ -21,7 +21,7 @@
     <div id="overlay" class="z-10 fixed inset-0 bg-black bg-opacity-50 hidden transition-opacity">
         <div class="absolute top-0 left-0 w-3/4 max-w-sm h-full bg-dark-moss shadow-lg p-6">
             <!-- Close Button -->
-            <div class="absolute top-4 right-4 text-2xl text-cream cursor-pointer" onclick="toggleOverlay()">&times;</div>
+            <div id="closeBtn" class="absolute top-4 right-4 text-2xl text-cream cursor-pointer" onclick="toggleOverlay()" tabindex="0" role="button">&times;</div>
 
             <!-- Menu Links -->
             <nav class="mt-24 space-y-6">
@@ -32,13 +32,31 @@
             </nav>
         </div>
     </div>
-
     <!-- Script for Toggle -->
     <script>
+        const overlay = document.getElementById('overlay');
+        const burgerMenu = document.getElementById('burgerMenu');
+        const closeBtn = document.getElementById('closeBtn');
+
         function toggleOverlay() {
-            const overlay = document.getElementById('overlay');
             overlay.classList.toggle('hidden');
             overlay.classList.toggle('opacity-100');
         }
+
+        function keyBoardAcces(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                toggleOverlay();
+                event.preventDefault();
+            }
+        }
+
+        burgerMenu.addEventListener('keydown', function (event) {
+            keyBoardAcces(event);
+        });
+
+        closeBtn.addEventListener('keydown', function (event) {
+            keyBoardAcces(event);
+        });
+
     </script>
 </header>
