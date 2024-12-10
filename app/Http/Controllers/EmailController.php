@@ -5,49 +5,46 @@ namespace App\Http\Controllers;
 use App\Models\Applicant;
 use App\Models\Application;
 use App\Models\Company;
+use App\Services\MailerService;
 use Illuminate\Http\Request;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 class EmailController extends Controller
 {
+    protected $mailerService;
+
+    public function __construct(MailerService $mailerService)
+    {
+        $this->mailerService = $mailerService;
+    }
+
     public function sendEmail(Request $request, Application $application)
     {
         $userEmail = $request->input('email');
         $company = Company::find($application->companie_id);
-        // Initialize PHPMailer
-        $mail = new PHPMailer(true);
 
-        try {
-            // Server settings
-            $mail->isSMTP();
-            $mail->Host = env('MAIL_HOST');
-            $mail->SMTPAuth = true;
-            $mail->Username = env('MAIL_USERNAME');
-            $mail->Password = env('MAIL_PASSWORD');
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = env('MAIL_PORT');
+        $applicant = Applicant::where('email', $userEmail)
+            ->where('application_id', $application->id)
+            ->first();
 
-            // Recipients
-            $mail->setFrom('openhiringofficial@gmail.com', 'Open Hiring');
-            $mail->addAddress($userEmail);
-
-            // Content
-            $mail->isHTML(true);
-            $mail->Subject = 'Maak uw aanmelding compleet!';
-            $mail->Body = view('emails.registration-email', ['application' => $application, 'userEmail' => $userEmail, 'company' => $company])->render();
-            $mail->AltBody = 'Bedankt voor uw aanmelding!';
-
-            $mail->send();
-            return view('emails.registration-confirmation');
-        } catch (Exception $e) {
-            return response()->json(['error' => $mail->ErrorInfo], 500);
+        if ($applicant) {
+            return redirect()->back()->with('error', 'Deze email staat al geregistreerd voor deze vacature.');
         }
-    }
 
-    public function registerEmail(Application $application)
-    {
-        return view('emails.vacancy-register', compact('application'));
+        $htmlBody = view('emails.registration-email',
+            compact('application', 'userEmail', 'company'))->render();
+
+        $result = $this->mailerService->sendMail(
+            $userEmail,
+            'Maak uw aanmelding compleet!',
+            $htmlBody,
+            'Bedankt voor uw aanmelding!'
+        );
+
+        if ($result === true) {
+            return view('emails.registration-confirmation');
+        } else {
+            return response()->json(['error' => $result], 500);
+        }
     }
 
     public function completeRegistration(Request $request)
@@ -55,6 +52,7 @@ class EmailController extends Controller
         $applicationId = $request->query('id');
         $userEmail = $request->query('email');
         $application = Application::find($applicationId);
+        $company = Company::find($application->companie_id);
 
         if ($application) {
             $applicant = new Applicant();
@@ -63,34 +61,20 @@ class EmailController extends Controller
             $applicant->application_id = $applicationId;
             $applicant->save();
 
-            // Initialize PHPMailer
-            $mail = new PHPMailer(true);
+            $htmlBody = view('emails.registration-complete-email',
+                compact('application', 'userEmail', 'company'))->render();
 
-            try {
-                // Server settings
-                $mail->isSMTP();
-                $mail->Host = env('MAIL_HOST');
-                $mail->SMTPAuth = true;
-                $mail->Username = env('MAIL_USERNAME');
-                $mail->Password = env('MAIL_PASSWORD');
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = env('MAIL_PORT');
+            $result = $this->mailerService->sendMail(
+                $userEmail,
+                'Bevestiging van uw aanmelding!',
+                $htmlBody,
+                'Bedankt voor uw aanmelding!'
+            );
 
-                // Recipients
-                $mail->setFrom('openhiringofficial@gmail.com', 'Open Hiring');
-                $mail->addAddress($userEmail);
-
-                // Content
-                $mail->isHTML(true);
-                $mail->Subject = 'Bevestiging van uw aanmelding!';
-                $mail->Body = view('emails.registration-complete-email', ['application' => $application, 'userEmail' => $userEmail])->render();
-                $mail->AltBody = 'Bedankt voor uw aanmelding!';
-
-                $mail->send();
-                return view('emails.complete-registration', compact('application', 'userEmail'));
-
-            } catch (Exception $e) {
-                return response()->json(['error' => $mail->ErrorInfo], 500);
+            if ($result === true) {
+                return view('emails.complete-registration', compact('application', 'userEmail', 'company'));
+            } else {
+                return response()->json(['error' => $result], 500);
             }
         }
     }
