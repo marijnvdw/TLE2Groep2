@@ -18,8 +18,10 @@ class ApplicationController extends Controller
         //return view('application.index');
         //dd('hi');
 
-        if ($request->filled('location')) {
-            $applications->where('city', 'LIKE', "%{$request->location}%");
+        if (!$request->filled('allCities')) {
+            if ($request->filled('location')) {
+                $applications->where('city', 'LIKE', "%{$request->location}%");
+            }
         }
 
         if ($request->filled('sector')) {

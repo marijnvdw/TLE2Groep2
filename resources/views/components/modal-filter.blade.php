@@ -15,6 +15,13 @@
                     </div>
 
                     <div style="margin-bottom: 2vw;">
+                        <label for="allCities" style="display: flex; align-items: center; font-size: 1rem;">
+                            <input type="checkbox" name="allCities" id="allCities" style="color: #344343; width: 5vw; height: 5vw; margin-right: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;">
+                            <span>Alle locaties laten zien.</span>
+                        </label>
+                    </div>
+
+                    <div style="margin-bottom: 2vw;">
                         <label for="sector" style="display: flex; font-size: 1rem; margin-bottom: 0.5rem;">Sector</label>
                         <select name="sector" id="sector" style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;">
                             <option value=""></option>
