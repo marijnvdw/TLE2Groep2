@@ -7,8 +7,7 @@ use App\Models\Application;
 use App\Models\Company;
 use App\Services\MailerService;
 use Illuminate\Http\Request;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+use function Pest\Laravel\get;
 
 class EmailController extends Controller
 {
@@ -56,6 +55,17 @@ class EmailController extends Controller
         $application = Application::find($applicationId);
         $company = Company::find($application->company_id);
 
+        $applicant = Applicant::where('email', $userEmail)
+            ->where('application_id', $applicationId)
+            ->first();
+
+        if ($applicant) {
+            return redirect()->route('error.page')->with('error', 'Deze email staat al geregistreerd voor deze vacature.');
+        }
+
+        $applicantCount = Applicant::where('application_id', $applicationId)->count();
+
+
         if ($application) {
             $applicant = new Applicant();
             $applicant->email = $userEmail;
@@ -64,7 +74,7 @@ class EmailController extends Controller
             $applicant->save();
 
             $htmlBody = view('emails.registration-complete-email',
-                compact('application', 'userEmail', 'company'))->render();
+                compact('application', 'userEmail', 'company', 'applicantCount'))->render();
 
             $result = $this->mailerService->sendMail(
                 $userEmail,
@@ -74,10 +84,40 @@ class EmailController extends Controller
             );
 
             if ($result === true) {
-                return view('emails.complete-registration', compact('application', 'userEmail', 'company'));
+                return view('emails.complete-registration', compact('application', 'userEmail', 'company', 'applicantCount', 'applicant'));
             } else {
                 return response()->json(['error' => $result], 500);
             }
         }
+    }
+
+    public function checkQueue(Request $request)
+    {
+        $applicationId = $request->query('id');
+        $userEmail = $request->query('email');
+        $application = Application::find($applicationId);
+        $company = Company::find($application->company_id);
+
+        // Get all applicants for the application, ordered by registration order
+        $applicants = Applicant::where('application_id', $applicationId)
+            ->orderBy('created_at', 'asc')
+            ->get();
+
+        // Find the position of the user's email
+        $position = null;
+
+        foreach ($applicants as $index => $applicant) {
+            if ($applicant->email === $userEmail) {
+                $position = $index + 1; // Position starts at 1, not 0
+                break;
+            }
+        }
+
+        if ($position === null) {
+            // User's email is not found in the queue
+            return redirect()->route('error.page')->with('error', 'Uw e-mailadres staat niet in de wachtrij voor deze vacature.');
+        }
+
+        return view('emails.check-queue', compact('position', 'application', 'company'));
     }
 }

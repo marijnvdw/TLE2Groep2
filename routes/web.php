@@ -31,6 +31,10 @@ Route::get('/application/filter', [ModalController::class, 'filterResults'])->na
 Route::get('email/send/{application}', [EmailController::class, 'sendEmail'])->name('email.send');
 Route::get('email/register/{application}', [EmailController::class, 'registerEmail'])->name('email.register');
 Route::get('email/complete-registration', [EmailController::class, 'completeRegistration'])->name('complete-registration');
+Route::get('email/check-queue', [EmailController::class, 'checkQueue'])->name('check-queue');
+Route::get('/error', function () {
+    return view('error');
+})->name('error.page');
 
 Route::resource('application', ApplicationController::class);
 
