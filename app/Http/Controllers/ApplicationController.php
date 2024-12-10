@@ -11,12 +11,34 @@ class ApplicationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(request $request)
     {
-        $applications = Application::all();
+        $applications = Application::query();
         //dd($applications);
         //return view('application.index');
         //dd('hi');
+
+        if ($request->filled('location')) {
+            $applications->where('city', 'LIKE', "%{$request->location}%");
+        }
+
+        if ($request->filled('sector')) {
+            $applications->where('sector', $request->sector);
+        }
+
+        if ($request->filled('hours')) {
+            $applications->where('hours', $request->hours);
+        }
+
+        if ($request->filled('adult')) {
+            $applications->where('adult', true);
+        }
+
+        if ($request->filled('drivers_license')) {
+            $applications->where('drivers_license', true);
+        }
+
+        $applications = $applications->get();
 
         return view('application.index', compact('applications'));
 //        return view('vacature-overzicht', compact('applications'));

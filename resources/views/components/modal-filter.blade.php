@@ -1,8 +1,8 @@
 <div class="text-center space-y-4">
-    <div id="filterModal" style="position: fixed; display: flex; justify-content: center; align-items: center; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 9999;">
+    <div id="filterModal" style="position: fixed; display: none; justify-content: center; align-items: center; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 9999;">
         <div class="modalContent" style="background-color: #2E342A; padding: 4vw; border-radius: 20px; width: 70%; max-width: 800px; text-align: center;">
             <span class="close-btn" style="font-size: 7vw; color: #6d6d6d; cursor: pointer; display: flex; justify-content: end; padding: 0 2vw;">&times;</span>
-            <form action="{{ route('filter.results') }}" method="get" class="filters" style="color: #DA9F93;">
+            <form action="{{ route('applications.filter') }}" method="get" class="filters" style="color: #DA9F93;">
                 <div style="margin-bottom: 4vw;">
                     <p class="filter" style="display: flex; justify-content: center; font-size: 2rem; margin-bottom: 0.5rem">Filters</p>
                     <p style="display: flex; justify-content: center; font-size: 1.2rem;">Selecteer uw voorkeuren</p>
@@ -10,19 +10,8 @@
 
                 <div style="margin-bottom: 4vw;">
                     <div style="margin-bottom: 2vw;">
-                        <label for="location" style="display: flex; font-size: 1rem; margin-bottom: 0.5rem;">Postcode</label>
-                        <input type="text" name="location" id="location" placeholder="3067TN" style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;">
-                    </div>
-
-                    <div style="margin-bottom: 2vw;">
-                        <label for="distance" style="display: flex; font-size: 1rem; margin-bottom: 0.5rem;">Afstand</label>
-                        <select name="distance" id="distance" style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;">
-                            <option value=""></option>
-                            <option value="5">5 km</option>
-                            <option value="10">10 km</option>
-                            <option value="20">20 km</option>
-                            <option value="50">50 km</option>
-                        </select>
+                        <label for="location" style="display: flex; font-size: 1rem; margin-bottom: 0.5rem;">Locatie</label>
+                        <input type="text" name="location" id="location" placeholder="Locatie laden..." style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;">
                     </div>
 
                     <div style="margin-bottom: 2vw;">
@@ -63,6 +52,9 @@
                     </div>
                 </div>
 
+                <input type="hidden" name="latitude" id="latitude">
+                <input type="hidden" name="longitude" id="longitude">
+
                 <x-button type="submit" class="filterSubmit" style="width: 100%; border-radius: 15px; box-shadow: none;">Bevestig filters</x-button>
             </form>
         </div>
@@ -71,34 +63,67 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             handleFocusBlur('location');
-            handleFocusBlur('distance');
             handleFocusBlur('sector');
             handleFocusBlur('hours');
 
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                }
+            }
+
+            function showPosition(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+
+                document.getElementById("latitude").value = latitude;
+                document.getElementById("longitude").value = longitude;
+
+                fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=0dd76c0f87de49b5a9f1c51dcf1f0fcb`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.results.length > 0) {
+                            var components = data.results[0].components;
+                            var city = components.city || components.village || "Onbekend";
+
+                            document.getElementById("location").value = `${city}`;
+                            document.getElementById("location").placeholder = `${city}`;
+                        } else {
+                            document.getElementById("location").placeholder = "locatie niet gevonden";
+                        }
+                    })
+            }
+
+            window.onload = getLocation;
+
+            const locationInput = document.getElementById('location');
+            locationInput.addEventListener('input', function() {
+                document.getElementById("latitude").value = '';
+                document.getElementById("longitude").value = '';
+            });
+
+
+            const openModalButton = document.getElementById('openModalButton');
+            const closeModalButton = document.querySelector('.close-btn');
             const modal = document.getElementById('filterModal');
-            const closeBtn = document.getElementsByClassName('close-btn')[0];
             const body = document.querySelector('body');
 
-            modal.style.display = 'flex';
+            openModalButton.addEventListener('click', function (event) {
+                event.preventDefault();
+                modal.style.display = 'flex';
+                body.style.overflow = 'hidden';
+            });
 
-            body.style.overflow = 'hidden';
-
-            closeBtn.addEventListener('click', function () {
+            closeModalButton.addEventListener('click', function (event) {
                 modal.style.display = 'none';
                 body.style.overflow = 'auto';
             });
 
-            window.addEventListener('click', function (event) {
+            window.addEventListener('click', function(event) {
                 if (event.target === modal) {
                     modal.style.display = 'none';
                     body.style.overflow = 'auto';
                 }
-            });
-
-            const form = modal.querySelector('form');
-            form.addEventListener('submit', function () {
-                modal.style.display = 'none';
-                body.style.overflow = 'auto';
             });
         });
 

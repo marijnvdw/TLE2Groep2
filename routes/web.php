@@ -24,16 +24,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/application', [ModalController::class, 'showModal'])->name('application.index');
-Route::get('/application/filter', [ModalController::class, 'filterResults'])->name('filter.results');
-
+Route::get('/application/filter', [ApplicationController::class, 'index'])->name('applications.filter');
+Route::resource('application', ApplicationController::class);
 
 
 Route::get('email/send/{application}', [EmailController::class, 'sendEmail'])->name('email.send');
 Route::get('email/register/{application}', [EmailController::class, 'registerEmail'])->name('email.register');
 Route::get('email/complete-registration', [EmailController::class, 'completeRegistration'])->name('complete-registration');
 
-Route::resource('application', ApplicationController::class);
 
 //Route::get('createVacature', ApplicationController::class);
 Route::get('locations/create', [LocationController::class, 'create'])->name('locations.create');

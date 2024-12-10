@@ -7,14 +7,6 @@ use Illuminate\Http\Request;
 
 class ModalController extends Controller
 {
-    public function showModal()
-    {
-        /** @return \Illuminate\View\View */
-
-        $applications = Application::all();
-
-        return view('application.index', compact('applications'));
-    }
 
     public function filterResults(Request $request)
     {
