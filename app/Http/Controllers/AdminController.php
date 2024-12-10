@@ -129,6 +129,5 @@ class AdminController extends Controller
 //        $company->delete();
 //
 //        return redirect()->route('admin-overzicht.index')->with('success', 'Bedrijf succesvol verwijderd!');
-
     }
 }
