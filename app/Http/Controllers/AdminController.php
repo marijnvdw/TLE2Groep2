@@ -6,20 +6,21 @@ use App\Models\Admin;
 use App\Models\Application;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $admin = Admin::all();
-
-
-        return view('admin.index', compact('admin'));
-
-
+        // Check if user is an admin
+        if (Auth::user()->admin) {
+            // Get all companies and show them on the dashboard
+            $companies = Company::all();
+            return view('admin.index', compact('companies'));
+        } else {
+            // if user is not an admin redirect to home
+            return redirect('/')->with('error', 'Je bent niet bevoegd om deze pagina te bekijken.');
+        }
     }
 
 
@@ -29,7 +30,6 @@ class AdminController extends Controller
     public function create()
     {
         //
-        return view('admin.create');
     }
 
     /**

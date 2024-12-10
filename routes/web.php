@@ -11,9 +11,9 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::resource('application', ApplicationController::class);
+Route::resource('vacature-overzicht', ApplicationController::class);
 
-Route::resource('admin-overview', AdminController::class);
+Route::resource('admin-overzicht', AdminController::class);
 
 Route::get('/test', function () {
     return view('test');
