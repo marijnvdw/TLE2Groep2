@@ -16,4 +16,8 @@ class Company extends Model
         'city',
         'company_code',
     ];
+
+    public function applications() {
+        return $this->hasMany(Application::class);
+    }
 }

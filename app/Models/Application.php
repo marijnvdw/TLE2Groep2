@@ -21,4 +21,12 @@ class Application extends Model
     ];
 
     public $timestamps = false; // Disable automatic timestamps (created_at, updated_at)
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+
 }
+
