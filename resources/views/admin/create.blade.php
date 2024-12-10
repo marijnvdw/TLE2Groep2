@@ -24,7 +24,7 @@
             <div>
                 <x-input-label class="text-cream" for="address" >Straat en huisnummer</x-input-label>
                 <x-text-input id="address" name="address" class="{{ $errors->has('address') ? 'border-red-500' : '' }}"/>
-                @error('genre_id')
+                @error('address')
                 <span class="text-red-600 text-sm">{{ 'Vul hier het de straat en het huisnummer in' }}</span>
                 @enderror
             </div>
