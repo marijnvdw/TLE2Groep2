@@ -18,7 +18,13 @@ class Application extends Model
         'adult',
         'image',
         'details',
+        'company_id',
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 
     public $timestamps = false; // Disable automatic timestamps (created_at, updated_at)
 }

@@ -18,11 +18,12 @@ class ApplicationController extends Controller
         //dd($applications);
         //return view('application.index');
         //dd('hi');
-        $applications = Application::all();
 
         if (!$request->filled('allCities')) {
             if ($request->filled('location')) {
-                $applications->where('city', 'LIKE', "%{$request->location}%");
+                $applications->whereHas('company', function ($query) use ($request) {
+                    $query->where('city', 'LIKE', "%{$request->location}%");
+                });
             }
         }
 
@@ -30,8 +31,9 @@ class ApplicationController extends Controller
             $applications->where('sector', $request->sector);
         }
 
-        if ($request->filled('hours')) {
-            $applications->where('hours', $request->hours);
+        if ($request->filled('employment')) {
+            $employment = $request->employment == 'fulltime' ? true : false;
+            $applications->where('employment', $employment);
         }
 
         if ($request->filled('adult')) {
