@@ -14,7 +14,7 @@ class EmailController extends Controller
     public function sendEmail(Request $request, Application $application)
     {
         $userEmail = $request->input('email');
-        $company = Company::find($application->companie_id);
+        $company = Company::find($application->company_id);
         // Initialize PHPMailer
         $mail = new PHPMailer(true);
 
