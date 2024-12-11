@@ -39,7 +39,7 @@
                 <h2 class="text-rose-brown text-3xl sm:text-4xl font-bold text-center sm:text-left">
                     {{$application->title}}
                 </h2>
-                <p>{{$application->description}}</p>
+                <p>{{$application->details}}</p>
                 <p><strong>Contractvorm:</strong> {{$application->employment}}</p>
                 <p><strong>Rijbewijs nodig?</strong> {{$application->drivers_licence}}</p>
                 <p><strong>18+ vereist?</strong> {{$application->adult}}</p>

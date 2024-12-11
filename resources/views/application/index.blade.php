@@ -163,8 +163,8 @@
                                     <div class="flex justify-center gap-8 md:gap-12 lg:gap-16">
                                         <img
                                             src="
-                                         {{ $application->details }}"
-                                            alt="logo"
+                                                storage/{{ $application->company->image }}"
+                                            alt="{{ $application->company->image }}"
                                             class="h-12 md:h-16 lg:h-20">
                                         <div class="flex flex-col justify-center text-md md:text-lg lg:text-xl">
                                             <h2>{{ $application->title}}</h2>
@@ -175,7 +175,7 @@
                                     <!-- Image section on mobile -->
                                     <div class="flex justify-center mt-4 md:hidden">
                                         <img
-                                            src="{{ $application->image}}"
+                                            src="storage/{{ $application->image}}"
                                             alt="pic " class="max-w-full h-auto object-cover">
                                     </div>
 
