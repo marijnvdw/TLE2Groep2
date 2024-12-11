@@ -25,7 +25,10 @@ class ApplicationController extends Controller
      */
     public function create()
     {
-        //
+        if (!auth()->check() || auth()->user()->admin)
+        {
+            return redirect()->route('home');
+        }
         return view('application.create');
     }
 
@@ -34,6 +37,10 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
+        if (!auth()->check() || auth()->user()->admin)
+        {
+            return redirect()->route('home');
+        }
         // Validate the incoming request
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
@@ -75,19 +82,45 @@ class ApplicationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request)
+    public function edit(string $id)
     {
-        $id = $request->query('id');
-        $application = Application::findOrFail($id); // Fetch the application by ID or throw an error if not found
+        $application = Application::find($id);
 
-        return view('application.edit', compact('application'));
+        if (!$application) {
+            abort(404, 'Application not found.');
+        }
+
+        if (auth()->check() && auth()->user()->admin) {
+            return view('application.edit', compact('application'));
+        }
+
+        if (auth()->check() && $application->company_id === auth()->user()->company_id) {
+            return view('application.edit', compact('application'));
+        }
+
+        return redirect()->route('home')->with('error', 'Unauthorized access.');
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request)
     {
+        $application = Application::find($request);
+
+        if (!$application) {
+            abort(404, 'Application not found.');
+        }
+
+        if (auth()->check() && auth()->user()->admin) {
+            return view('application.edit', compact('application'));
+        }
+
+        if (auth()->check() && $application->company_id === auth()->user()->company_id) {
+            return view('application.edit', compact('application'));
+        }
+
         $id = $request->input('id');
         $application = Application::findOrFail($id);
 
@@ -107,15 +140,27 @@ class ApplicationController extends Controller
 
         $application->update($validatedData);
 
-        return redirect()->route('applications.index')->with('success', 'Vacature succesvol bijgewerkt.');
+        return redirect()->route('dashboard')->with('success', 'Vacature succesvol bijgewerkt.');
     }
 
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Application $application)
+    public function destroy(string $id)
     {
-        //
+        $application = Application::find($id);
+
+        if (!$application) {
+            abort(404, 'Application not found.');
+        }
+
+        if ((!auth()->check() || !auth()->user()->admin) && $application->company_id !== auth()->user()->company_id) {
+            return redirect()->route('home')->with('error', 'Unauthorized access.');
+        }
+
+        $application->delete();
+
+        return redirect()->route('application.index')->with('success', 'Application successfully deleted.');
     }
 }

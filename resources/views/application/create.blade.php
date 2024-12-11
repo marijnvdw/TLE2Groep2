@@ -13,7 +13,7 @@
             <h1 class="text-xl sm:text-2xl font-bold text-cream content-center py-6 break-words">Nieuwe Vacature
                 Toevoegen</h1>
 
-            <form action="{{ route('applications.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('application.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div style="margin-bottom: 2vw;">

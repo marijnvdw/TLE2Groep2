@@ -25,21 +25,12 @@ Route::get('/dashboard', function () {
 
 Route::get('/application', [ModalController::class, 'showModal'])->name('application.index');
 Route::get('/application/filter', [ModalController::class, 'filterResults'])->name('filter.results');
-Route::get('/application/edit', [ApplicationController::class, 'edit'])->name('application.edit');
-
 
 Route::get('email/send/{application}', [EmailController::class, 'sendEmail'])->name('email.send');
 Route::get('email/register/{application}', [EmailController::class, 'registerEmail'])->name('email.register');
 Route::get('email/complete-registration', [EmailController::class, 'completeRegistration'])->name('complete-registration');
 
 Route::resource('application', ApplicationController::class);
-
-//Route::get('createVacature', ApplicationController::class);
-Route::get('locations/create', [LocationController::class, 'create'])->name('locations.create');
-
-
-Route::get('/applications/create', [ApplicationController::class, 'create'])->name('applications.create');
-Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

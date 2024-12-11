@@ -5,8 +5,9 @@
         <div class="container">
             <h1 class="text-xl sm:text-2xl font-bold text-cream content-center py-6 break-words">Vacature Bewerken</h1>
 
-            <form action="{{ route('applications.update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('application.update', $application->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PATCH')
                 <input type="hidden" name="id" value="{{ $application->id }}">
 
                 <div style="margin-bottom: 2vw;">
