@@ -36,17 +36,16 @@ Route::get('/error', function () {
 })->name('error.page');
 
 
-//Route::get('createVacature', ApplicationController::class);
-Route::get('locations/create', [LocationController::class, 'create'])->name('locations.create');
-
-
-Route::get('/applications/create', [ApplicationController::class, 'create'])->name('applications.create');
-Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//company routes
+Route::resource('company', \App\Http\Controllers\companyController::class);
+
+
 require __DIR__.'/auth.php';
+
+

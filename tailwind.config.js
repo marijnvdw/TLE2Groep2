@@ -41,6 +41,7 @@ module.exports = {
                 'white': '#FFFFFF',
                 'cream': '#FBFCF6',
                 'gray': '#D6D6D6',
+                'error': '#fd7272'
             },
             fontFamily: {
                 sans: ['Radikal W01 Regular', 'sans-serif'],

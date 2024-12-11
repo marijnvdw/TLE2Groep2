@@ -61,9 +61,12 @@ class ApplicationController extends Controller
             $applications->where('drivers_license', true);
             $activeFilters['drivers_license'] = $request->drivers_license;
         }
+        $applications = Application::all();
+        $applicationsCount = Application::all()->count();
 
 
-        return view('application.index', compact('applications', 'activeFilters'));
+
+        return view('application.index', compact('applications', 'activeFilters', 'applicationsCount'));
     }
 
 
@@ -72,7 +75,10 @@ class ApplicationController extends Controller
      */
     public function create()
     {
-        //
+        if (!auth()->check() || auth()->user()->admin)
+        {
+            return redirect()->route('home');
+        }
         return view('application.create');
     }
 
@@ -81,6 +87,10 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
+        if (!auth()->check() || auth()->user()->admin)
+        {
+            return redirect()->route('home');
+        }
         // Validate the incoming request
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
@@ -89,17 +99,20 @@ class ApplicationController extends Controller
             'drivers_licence' => 'required|integer',
             'adult' => 'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'details' => 'nullable|string',
+            'details' => 'required|string',
         ]);
 
         // Handle the image upload if present
-        if ($request->hasFile('image')) {
-            $validatedData['image'] = $request->file('image')->store('images', 'public');
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('images', 'public'); // Save in 'storage/app/public/images'
         }
 
+        // Set the creation date
         $validatedData['creation_date'] = now()->format('Y-m-d');
 
+        // Associate the application with the authenticated user's company
         $validatedData['company_id'] = Auth::user()->company->id;
+
         // Create a new application with the validated data
         Application::create($validatedData);
 
@@ -119,25 +132,84 @@ class ApplicationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Application $application)
+    public function edit(string $id)
     {
-        //
-        return view('application.edit', compact('application'));
+        $application = Application::find($id);
+
+        if (!$application) {
+            abort(404, 'Application not found.');
+        }
+
+        if (auth()->check() && auth()->user()->admin) {
+            return view('application.edit', compact('application'));
+        }
+
+        if (auth()->check() && $application->company_id === auth()->user()->company_id) {
+            return view('application.edit', compact('application'));
+        }
+
+        return redirect()->route('home')->with('error', 'Unauthorized access.');
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Application $application)
+    public function update(Request $request)
     {
-        //
+        $application = Application::find($request);
+
+        if (!$application) {
+            abort(404, 'Application not found.');
+        }
+
+        if (auth()->check() && auth()->user()->admin) {
+            return view('application.edit', compact('application'));
+        }
+
+        if (auth()->check() && $application->company_id === auth()->user()->company_id) {
+            return view('application.edit', compact('application'));
+        }
+
+        $id = $request->input('id');
+        $application = Application::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'employment' => 'required|string|max:255',
+            'drivers_licence' => 'required|integer',
+            'adult' => 'required|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'details' => 'required|string',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        $application->update($validatedData);
+
+        return redirect()->route('dashboard')->with('success', 'Vacature succesvol bijgewerkt.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Application $application)
+    public function destroy(string $id)
     {
-        //
+        $application = Application::find($id);
+
+        if (!$application) {
+            abort(404, 'Application not found.');
+        }
+
+        if ((!auth()->check() || !auth()->user()->admin) && $application->company_id !== auth()->user()->company_id) {
+            return redirect()->route('home')->with('error', 'Unauthorized access.');
+        }
+
+        $application->delete();
+
+        return redirect()->route('application.index')->with('success', 'Application successfully deleted.');
     }
 }

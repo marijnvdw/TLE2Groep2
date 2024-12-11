@@ -137,16 +137,29 @@
                 body.style.overflow = 'hidden';
             });
 
-            closeModalButton.addEventListener('click', function () {
+            function closeModal() {
                 modal.style.display = 'none';
                 body.style.overflow = 'auto';
-            });
+            }
+
+            closeBtn.addEventListener('click', closeModal);
 
             window.addEventListener('click', function(event) {
                 if (event.target === modal) {
-                    modal.style.display = 'none';
-                    body.style.overflow = 'auto';
+                    closeModal();
                 }
+            });
+
+            closeBtn.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    closeModal();
+                }
+            });
+
+            const form = modal.querySelector('form');
+            form.addEventListener('submit', function () {
+                closeModal();
             });
         });
 

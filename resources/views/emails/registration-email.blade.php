@@ -70,7 +70,7 @@
         <p>Bedankt voor uw aanmelding als <strong>{{ $application->title }}</strong> bij <strong>{{ $company->name }}, {{ $company->city }} {{ $company->address }}</strong>.</p>
         <p>Uw aanmelding is bijna klaar. Klik op de knop hieronder om deze af te ronden:</p>
         <div style="text-align: center;">
-            <a href="http://127.0.0.1:8000/email/complete-registration?id={{ $application->id }}&email={{ $userEmail }}" class="button">
+            <a href="{{ $baseUrl }}/email/complete-registration?id={{ $application->id }}&email={{ $userEmail }}" class="button">
                 Aanmelding afronden
             </a>
         </div>
