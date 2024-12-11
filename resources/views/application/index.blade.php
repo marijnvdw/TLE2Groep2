@@ -128,12 +128,13 @@
 
                     {{--                </div>--}}
 
-                    @foreach ($applications as $application)
+                    @foreach ($applications as $index => $application)
 
                         <div
                             class="carousel-cell bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-10 w-[80vw] mx-auto overflow-hidden mb-8">
 
                             <div class="flex flex-col md:flex-row md:gap-8 lg:gap-12">
+
                                 <!-- Details section -->
                                 <div class="flex flex-col justify-center md:w-2/3 lg:w-3/4">
                                     <div class="flex justify-center gap-8 md:gap-12 lg:gap-16">
@@ -176,12 +177,12 @@
                                         alt="mcdonalds work" class="max-w-full h-auto object-cover">
                                 </div>
                             </div>
+                            <p class="text-center">vacature {{ $index+1 }} van de {{ $applicationsCount }}</p>
 
                         </div>
 
                     @endforeach
                 </div>
-                <p class="text-center	">pagina x/x</p>
             </div>
         </section>
 

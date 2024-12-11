@@ -13,18 +13,17 @@
             <a href="{{ route('home') }}">
                 <img class="h-16 w-auto" src="img/logo-oh-trans.png" alt="Logo open hiring" onerror="this.onerror=null;this.src='../img/logo-oh-trans.png';">
             </a>
-
         </div>
     </div>
 
     <!-- Overlay Menu -->
-    <div id="overlay" class="z-10 fixed inset-0 bg-black bg-opacity-50 hidden transition-opacity">
-        <div class="absolute top-0 left-0 w-3/4 max-w-sm h-full bg-dark-moss shadow-lg p-6">
+    <div id="overlay" class="z-10 fixed inset-0 bg-black bg-opacity-50 hidden transition-opacity duration-300 opacity-0">
+        <div class="absolute top-0 left-0 w-full max-w-sm h-full flex flex-col bg-dark-moss shadow-lg p-6">
             <!-- Close Button -->
             <div id="closeBtn" class="absolute top-4 right-4 text-2xl text-cream cursor-pointer" onclick="toggleOverlay()" tabindex="0" role="button">&times;</div>
 
             <!-- Menu Links -->
-            <nav class="mt-24 space-y-6">
+            <nav class="mt-24 space-y-6 flex-grow">
                 <a href="{{ route('application.index') }}" class="block text-lg text-cream hover:text-violet">Vacatures</a>
                 <a href="#" class="block text-lg text-cream hover:text-violet">Over ons</a>
                 <a href="#" class="block text-lg text-cream hover:text-violet">Werkgevers</a>
@@ -56,6 +55,12 @@
 
         closeBtn.addEventListener('keydown', function (event) {
             keyBoardAcces(event);
+        });
+
+        window.addEventListener('click', function (event) {
+            if (event.target === overlay) {
+                toggleOverlay();
+            }
         });
 
     </script>
