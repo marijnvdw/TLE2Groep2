@@ -51,8 +51,8 @@
             </div>
             <div class="flex flex-col text-black gap-2">
                 <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center " href="">Vraag sollicitant aan</a>
-                <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center " href="">Pas aan</a>
-                <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center " href="">Verwijder</a>
+                <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center " href="{{route('application.edit', $application)}}">Pas aan</a>
+                <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center " href="{{route('application.destroy', $application)}}">Verwijder</a>
             </div>
         </div>
 

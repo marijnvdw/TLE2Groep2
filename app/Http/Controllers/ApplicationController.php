@@ -194,12 +194,12 @@ class ApplicationController extends Controller
             abort(404, 'Application not found.');
         }
 
-        if ((!auth()->check() || !auth()->user()->admin) && $application->company_id !== auth()->user()->company_id) {
+        if ((!auth()->check()) && $application->company_id !== auth()->user()->company_id) {
             return redirect()->route('home')->with('error', 'Unauthorized access.');
         }
 
         $application->delete();
 
-        return redirect()->route('application.index')->with('success', 'Application successfully deleted.');
+        return redirect()->route('dashboard')->with('success', 'Application successfully deleted.');
     }
 }
