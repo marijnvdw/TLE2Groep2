@@ -153,7 +153,7 @@
                                 <div class="hidden md:flex md:w-1/3 lg:w-1/4 justify-center">
                                     <img
                                         src="storage/images/jmmnT6jAPaTIyxEIG4SQSgAr6O2wsF8x9XV1mUlp.jpg"
-                                        images/seHUIGexlgBCi4pwVo1pEMuBTVgfkEwa7TwamUBe.jpg
+{{--                                        images/seHUIGexlgBCi4pwVo1pEMuBTVgfkEwa7TwamUBe.jpg--}}
                                     alt="mcdonalds workers" class="max-w-full h-auto object-cover">
                                 </div>
 
