@@ -54,7 +54,7 @@ class ApplicationController extends Controller
         $applications = Application::all();
         $applicationsCount = Application::all()->count();
 
-        $applications = $applications->get();
+
 
         return view('application.index', compact('applications', 'activeFilters', 'applicationsCount'));
     }
