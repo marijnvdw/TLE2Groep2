@@ -61,21 +61,25 @@
                     class="flex items-center justify-center w-6 h-6 ml-2 mt-0.5 cursor-pointer"
                     onclick="togglePopup()">
                     <img src="/img/information-button.png">
-                </div><br>
-            </div>
-                <!-- Popup -->
-                <div
-                    id="infoPopup"
-                    class=" left-0 mt-3 p-4 bg-violet bg-opacity-80 rounded-lg shadow-lg shadow-dark-violet hidden"
-                    onmouseover="keepPopupOpen()"
-                    onmouseleave="hidePopup()"
-                >
-                    <h3 class="text-xl sm:text-2xl font-bold text-cream pt-6 pb-4 break-words">Hoe werkt de wachtrij?</h3>
-                    <p class="text-lg sm:text-xl text-cream break-words">
-
-                        Als je je aanmeldt, krijg je meteen een plek in de wachtrij. Hoe eerder je je aanmeldt, hoe sneller je kans maakt om gekozen te worden door de werkgever. De werkgever selecteert kandidaten van bovenaan de lijst, dus vroeg aanmelden vergroot je kansen om snel aan de slag te gaan. Door je nu aan te melden, zet je de eerste stap richting jouw nieuwe baan!
-                    </p>
                 </div>
+                <br>
+            </div>
+            <!-- Popup -->
+            <div
+                id="infoPopup"
+                class=" left-0 mt-3 p-4 bg-violet bg-opacity-80 rounded-lg shadow-lg shadow-dark-violet hidden"
+                onmouseover="keepPopupOpen()"
+                onmouseleave="hidePopup()"
+            >
+                <h3 class="text-xl sm:text-2xl font-bold text-cream pt-6 pb-4 break-words">Hoe werkt de wachtrij?</h3>
+                <p class="text-lg sm:text-xl text-cream break-words">
+
+                    Als je je aanmeldt, krijg je meteen een plek in de wachtrij. Hoe eerder je je aanmeldt, hoe sneller
+                    je kans maakt om gekozen te worden door de werkgever. De werkgever selecteert kandidaten van
+                    bovenaan de lijst, dus vroeg aanmelden vergroot je kansen om snel aan de slag te gaan. Door je nu
+                    aan te melden, zet je de eerste stap richting jouw nieuwe baan!
+                </p>
+            </div>
 
 
             <script>

@@ -27,7 +27,7 @@
             <nav class="mt-24 space-y-6">
                 <a href="{{ route('application.index') }}" class="block text-lg text-cream hover:text-violet">Vacatures</a>
                 <a href="#" class="block text-lg text-cream hover:text-violet">Over ons</a>
-                <a href="#" class="block text-lg text-cream hover:text-violet">Werkgevers</a>
+                <a href="{{ route('company.index') }}" class="block text-lg text-cream hover:text-violet">Werkgevers</a>
                 <a href="{{ route('login') }}" class="block text-lg text-cream hover:text-violet">Login/Registreer voor bedrijven</a>
             </nav>
         </div>

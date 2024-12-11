@@ -9,6 +9,7 @@ class Company extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         'name',
         'phone_number',
@@ -16,4 +17,8 @@ class Company extends Model
         'city',
         'company_code',
     ];
+
+    public function applications() {
+        return $this->hasMany(Application::class);
+    }
 }
