@@ -15,8 +15,9 @@ class ApplicationController extends Controller
     public function index()
     {
         $applications = Application::all();
+        $applicationsCount = Application::all()->count();
 
-        return view('application.index', compact('applications'));
+        return view('application.index', compact('applications', 'applicationsCount'));
     }
 
 

@@ -72,14 +72,14 @@
         <p>Heeft u vragen? Neem gerust contact met ons op via openhiringofficial@gmail.com.</p>
         <p>Wilt u weten hoe lang het nog duurt voordat u aan de beurt bent? Klik op de knop hieronder om uw plek in de wachtrij te bekijken:</p>
         <div style="text-align: center;">
-            <a href="http://127.0.0.1:8000/email/check-queue?id={{ $application->id }}&email={{ $userEmail }}" class="button">
+            <a href="{{ $baseUrl }}/email/check-queue?id={{ $application->id }}&email={{ $userEmail }}" class="button">
                 Controleer mijn plek in de wachtrij
             </a>
         </div>
 
                 <p>Wilt u zich afmelden voor deze vacature? Klik dan op de knop hieronder om uw aanmelding te annuleren.</p>
         <div style="text-align: center;">
-            <a href="http://127.0.0.1:8000/email/cancel-registration?id={{ $application->id }}&email={{ $userEmail }}" class="button">
+            <a href="{{ $baseUrl }}/email/cancel-registration?id={{ $application->id }}&email={{ $userEmail }}" class="button">
                 Aanmelding annuleren
             </a>
         </div>
