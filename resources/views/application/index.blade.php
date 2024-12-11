@@ -7,7 +7,7 @@
             'sector' => 'Sector',
             'employment' => 'Werkgelegenheid',
             'allCities' => 'Alle locaties',
-            'adult' => 'Leeftijd',
+            'adult' => '18+',
             'drivers_license' => 'Rijbewijs',
         ];
     @endphp
@@ -77,27 +77,27 @@
 
 
 
-                    <div>
-                        <p class="filter-description">actieve filters:</p>
+                    <div class="flex flex-wrap ">
+                        <p class="text-sm font-medium pr-2">actieve filters:  </p>
                         @if(!empty($activeFilters))
-                            <div>
-                                <ul style="width: 50%">
+                            <div class="100% overflow-hidden">
+                                <ul class="flex  flex-wrap gap-2">
                                     @foreach($activeFilters as $filter => $value)
-                                        <li style="color: #ffffff; background-color: #6d6d6d; display: flex; padding: 1vw">
-                                            <span style="">{{ $filterTranslations[$filter] ?? ucfirst($filter) }}:</span>
-                                            <span>{{ $value }}</span>
-                                            <form action="{{ url()->current() }}" method="GET" style="display: inline;">
+                                        <li class="bg-white text-black text-xs items-center justify-between pl-2 rounded-[30px] flex flex-row border">
+                                            <span class="mr-2">{{ $filterTranslations[$filter] ?? ucfirst($filter) }}:</span>
+                                            <span class="mr-2">{{ $value }}</span>
+                                            <form action="{{ url()->current() }}" method="GET" class="inline-block">
                                                 @foreach (request()->except([$filter, 'page']) as $key => $val)
                                                     <input type="hidden" name="{{ $key }}" value="{{ $val }}">
                                                 @endforeach
-                                                <button type="submit">Verwijder filter</button>
+                                                <button type="submit" class=" py-1 px-2 rounded-[30px] hover:bg-red-600">x</button>
                                             </form>
                                         </li>
                                     @endforeach
                                 </ul>
                             </div>
                         @else
-                            <p>Geen actieve filters.</p>
+                            <p class="text-gray-500">Geen actieve filters.</p>
                         @endif
                     </div>
 
