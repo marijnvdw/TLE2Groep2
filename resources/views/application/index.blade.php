@@ -68,19 +68,17 @@
             <x-modal-filter id="filterModal" class="hidden"></x-modal-filter>
             <div class=" pb-5">
                 <div class="px-5 pb-5">
-                    <form class="flex justify-center gap-10 pb-2" method="GET" action="{{ route('application.index') }}">
-                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Zoek vacatures" id="searchInput" class="border flex-1 rounded-[30px] pl-2">
-                        @foreach(request()->except('search') as $key => $value)
-                            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-                        @endforeach
-                    </form>
-                    <x-button id="openModalButton" class="border flex-1 bg-white rounded-[30px]" type="submit">Zoeken</x-button>
-
-
-
-
+                    <div class="flex ">
+                        <form class="flex justify-center gap-10 pb-2" method="GET" action="{{ route('application.index') }}">
+                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Zoek vacatures" id="searchInput" class="border flex-1 rounded-[30px] pl-2">
+                            @foreach(request()->except('search') as $key => $value)
+                                <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                            @endforeach
+                        </form>
+                        <x-button id="openModalButton" class="border flex-1 bg-white rounded-[30px]" type="submit">Filters</x-button>
+                    </div>
                     <div class="flex flex-wrap ">
-                        <p class="text-sm font-medium pr-2">actieve filters:  </p>
+                        <p class="text-sm font-medium pr-2">Actieve filters:  </p>
                         @if(!empty($activeFilters))
                             <div class="100% overflow-hidden">
                                 <ul class="flex  flex-wrap gap-2">
