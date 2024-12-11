@@ -21,6 +21,10 @@ class Application extends Model
         'company_id',
     ];
 
+    public static function findOrFail(array $applicationId)
+    {
+    }
+
     public function company()
     {
         return $this->belongsTo(Company::class);

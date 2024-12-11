@@ -6,6 +6,7 @@ use App\Http\Controllers\ModalController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CompanyController;
 
 Route::get('/', function () {
     return view('home');
@@ -19,9 +20,6 @@ Route::get('/test', function () {
     return view('test');
 })->name('test');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/application/filter', [ApplicationController::class, 'index'])->name('applications.filter');
 Route::resource('application', ApplicationController::class);
@@ -35,6 +33,15 @@ Route::get('/error', function () {
     return view('error');
 })->name('error.page');
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    // Dashboard route
+    Route::get('/dashboard', [CompanyController::class, 'index'])->name('dashboard');
+
+    // Company-specific routes
+    Route::prefix('company')->name('companies.')->group(function () {
+        Route::get('request-applicant', [CompanyController::class, 'requestApplicant'])->name('request-applicant');
+    });
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
