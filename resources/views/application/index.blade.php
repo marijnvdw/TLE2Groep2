@@ -112,7 +112,7 @@
                         <div
                             class="carousel-cell bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-10 w-[80vw] mx-auto overflow-hidden mb-8 flex flex-col justify-stretch ">
                             <div
-                                class="flex flex-col md:flex-row md:gap-8 lg:gap-12 h-[100%] flex flex-col bg-red-600 justify-stretch">
+                                class="flex flex-col md:flex-row md:gap-8 lg:gap-12 h-[100%] flex flex-col justify-stretch">
                                 <!-- Details section -->
                                 <div class=" h-[100%] flex flex-col justify-between md:w-2/3 lg:w-3/4">
                                     <div class="flex justify-center gap-8 md:gap-12 lg:gap-16">
