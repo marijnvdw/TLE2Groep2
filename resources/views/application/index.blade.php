@@ -60,6 +60,7 @@
             background-color: transparent;
         }
 
+
     </style>
 
     <div>
@@ -73,9 +74,10 @@
                         {{--                    <button class="border flex-1 bg-white rounded-[30px] " type="button">filters</button>--}}
                         <input class="border flex-1 rounded-[30px] pl-2" type="text" name="search"
                                placeholder="Zoek vacatures">
-                        <x-button id="openModalButton" class="border flex-1 bg-white rounded-[30px] " type="button">filters</x-button>
+                        <x-button id="openModalButton" class="border flex-1 bg-white rounded-[30px] " type="button">
+                            filters
+                        </x-button>
                     </form>
-
 
 
                     <div>
@@ -85,7 +87,8 @@
                                 <ul style="width: 50%">
                                     @foreach($activeFilters as $filter => $value)
                                         <li style="color: #ffffff; background-color: #6d6d6d; display: flex; padding: 1vw">
-                                            <span style="">{{ $filterTranslations[$filter] ?? ucfirst($filter) }}:</span>
+                                            <span
+                                                style="">{{ $filterTranslations[$filter] ?? ucfirst($filter) }}:</span>
                                             <span>{{ $value }}</span>
                                             <form action="{{ url()->current() }}" method="GET" style="display: inline;">
                                                 @foreach (request()->except([$filter, 'page']) as $key => $val)
@@ -105,16 +108,17 @@
                 </div>
 
                 <!-- Flickity HTML init -->
-                <div class="carousel " data-flickity='{ "wrapAround": true }'>
+                <div class="carousel " data-flickity='{ "wrapAround": true, "pageDots": false}'>
 
 
                     @foreach ($applications as $index => $application)
 
                         <div
-                            class="carousel-cell bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-10 w-[80vw] mx-auto overflow-hidden mb-8 flex flex-col justify-between ">
-                            <div class="flex flex-col md:flex-row md:gap-8 lg:gap-12 h-[100%] flex flex-col justify-between">
+                            class="carousel-cell bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-10 w-[80vw] mx-auto overflow-hidden mb-8 flex flex-col justify-stretch ">
+                            <div
+                                class="flex flex-col md:flex-row md:gap-8 lg:gap-12 h-[100%] flex flex-col bg-red-600 justify-stretch">
                                 <!-- Details section -->
-                                <div class="flex flex-col justify-between md:w-2/3 lg:w-3/4">
+                                <div class=" h-[100%] flex flex-col justify-between md:w-2/3 lg:w-3/4">
                                     <div class="flex justify-center gap-8 md:gap-12 lg:gap-16">
                                         <img
                                             src="
@@ -137,28 +141,33 @@
                                     <!-- Description and button -->
                                     <div class="mt-4">
                                         <p class="text-sm md:text-base lg:text-lg">
-                                            {{ $application->description }}
+                                            {{ $application->details }}
                                         </p>
 
-
-                                        <a href="{{route('application.show', $application)}}"
-                                        >
-                                            <x-button type=":" href="{{route('application.show', $application)}}">Meer informatie</x-button>
-                                        </a>
                                     </div>
+
+
                                 </div>
 
                                 <!-- Image section on larger screens -->
                                 <div class="hidden md:flex md:w-1/3 lg:w-1/4 justify-center">
                                     <img
                                         src="storage/images/jmmnT6jAPaTIyxEIG4SQSgAr6O2wsF8x9XV1mUlp.jpg"
-{{--                                      images/seHUIGexlgBCi4pwVo1pEMuBTVgfkEwa7TwamUBe.jpg  --}}
-                                        alt="mcdonalds workers" class="max-w-full h-auto object-cover">
+                                        images/seHUIGexlgBCi4pwVo1pEMuBTVgfkEwa7TwamUBe.jpg
+                                    alt="mcdonalds workers" class="max-w-full h-auto object-cover">
                                 </div>
 
                             </div>
-                            <p class="text-center max-h-1">vacature {{ $index+1 }} van de {{ $applicationsCount }}</p>
-
+                            <div class="flex flex-col gap-3">
+                                <a href="{{route('application.show', $application)}}"
+                                >
+                                    <x-button type=":" href="{{route('application.show', $application)}}">Meer
+                                        informatie
+                                    </x-button>
+                                </a>
+                                <p class="text-center max-h-1">vacature {{ $index+1 }} van
+                                    de {{ $applicationsCount }}</p>
+                            </div>
                         </div>
                     @endforeach
                 </div>
