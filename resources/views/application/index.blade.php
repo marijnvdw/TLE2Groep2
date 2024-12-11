@@ -90,7 +90,7 @@
                                                 @foreach (request()->except([$filter, 'page']) as $key => $val)
                                                     <input type="hidden" name="{{ $key }}" value="{{ $val }}">
                                                 @endforeach
-                                                <button type="submit" class=" py-1 px-2 rounded-[30px] hover:bg-red-600">X</button>
+                                                <button type="submit" class=" py-1 px-2 rounded-[30px] hover:bg-red-600">x</button>
                                             </form>
                                         </li>
                                     @endforeach
