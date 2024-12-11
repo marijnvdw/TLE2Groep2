@@ -7,7 +7,7 @@
             'sector' => 'Sector',
             'employment' => 'Werkgelegenheid',
             'allCities' => 'Alle locaties',
-            'adult' => 'Leeftijd',
+            'adult' => '18+',
             'drivers_license' => 'Rijbewijs',
         ];
     @endphp
