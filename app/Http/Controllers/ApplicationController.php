@@ -55,7 +55,6 @@ class ApplicationController extends Controller
         $applicationsCount = Application::all()->count();
 
 
-
         return view('application.index', compact('applications', 'activeFilters', 'applicationsCount'));
     }
 
@@ -65,8 +64,7 @@ class ApplicationController extends Controller
      */
     public function create()
     {
-        if (!auth()->check() || auth()->user()->admin)
-        {
+        if (!auth()->check() || auth()->user()->admin) {
             return redirect()->route('home');
         }
         return view('application.create');
@@ -77,8 +75,7 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        if (!auth()->check() || auth()->user()->admin)
-        {
+        if (!auth()->check() || auth()->user()->admin) {
             return redirect()->route('home');
         }
         // Validate the incoming request
@@ -193,12 +190,15 @@ class ApplicationController extends Controller
         if (!$application) {
             abort(404, 'Application not found.');
         }
+//
+//        if ((!auth()->check()) && $application->company_id !== auth()->user()->company_id) {
+//            return redirect()->route('home')->with('error', 'Unauthorized access.');
+//        }
+        else {
 
-        if ((!auth()->check()) && $application->company_id !== auth()->user()->company_id) {
-            return redirect()->route('home')->with('error', 'Unauthorized access.');
+            $application->delete();
+
         }
-
-        $application->delete();
 
         return redirect()->route('dashboard')->with('success', 'Application successfully deleted.');
     }
