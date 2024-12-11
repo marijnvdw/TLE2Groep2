@@ -15,12 +15,22 @@ class ApplicationController extends Controller
     public function index(request $request)
     {
         $applications = Application::query();
-
         $activeFilters = [];
 
         //dd($applications);
         //return view('application.index');
         //dd('hi');
+
+        if ($request->filled('search')) {
+            $searchTerm = '%' . $request->input('search') . '%';
+            $applications->where(function ($query) use ($searchTerm) {
+                $query->where('title', 'like', $searchTerm)
+                    ->orWhere('description', 'like', $searchTerm)
+                    ->orWhere('details', 'like', $searchTerm)
+                    ->orWhere('city', 'like', $searchTerm);
+            });
+            $activeFilters['search'] = $request->search;
+        }
 
         if (!$request->filled('allCities')) {
             if ($request->filled('location')) {
@@ -52,7 +62,6 @@ class ApplicationController extends Controller
             $activeFilters['drivers_license'] = $request->drivers_license;
         }
 
-        $applications = $applications->get();
 
         return view('application.index', compact('applications', 'activeFilters'));
     }
