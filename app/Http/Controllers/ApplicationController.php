@@ -15,6 +15,9 @@ class ApplicationController extends Controller
     public function index(request $request)
     {
         $applications = Application::query();
+
+        $activeFilters = [];
+
         //dd($applications);
         //return view('application.index');
         //dd('hi');
@@ -24,29 +27,34 @@ class ApplicationController extends Controller
                 $applications->whereHas('company', function ($query) use ($request) {
                     $query->where('city', 'LIKE', "%{$request->location}%");
                 });
+                $activeFilters['location'] = $request->location;
             }
         }
 
         if ($request->filled('sector')) {
             $applications->where('sector', $request->sector);
+            $activeFilters['sector'] = $request->sector;
         }
 
         if ($request->filled('employment')) {
             $employment = $request->employment == 'fulltime' ? true : false;
             $applications->where('employment', $employment);
+            $activeFilters['employment'] = $request->employment;
         }
 
         if ($request->filled('adult')) {
             $applications->where('adult', true);
+            $activeFilters['adult'] = $request->adult;
         }
 
         if ($request->filled('drivers_license')) {
             $applications->where('drivers_license', true);
+            $activeFilters['drivers_license'] = $request->drivers_license;
         }
 
         $applications = $applications->get();
 
-        return view('application.index', compact('applications'));
+        return view('application.index', compact('applications', 'activeFilters'));
     }
 
 

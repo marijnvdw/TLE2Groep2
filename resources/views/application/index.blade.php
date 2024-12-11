@@ -1,7 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-
+    @php
+        $filterTranslations = [
+            'location' => 'Locatie',
+            'sector' => 'Sector',
+            'employment' => 'Werkgelegenheid',
+            'allCities' => 'Alle locaties',
+            'adult' => 'Leeftijd',
+            'drivers_license' => 'Rijbewijs',
+        ];
+    @endphp
     <style>
         .carousel-cell {
             width: 66%;
@@ -66,7 +75,31 @@
                         <x-button id="openModalButton" class="border flex-1 bg-white rounded-[30px] " type="button">filters</x-button>
                     </form>
 
-                    <p class="filter-description">active filters:</p>
+
+
+                    <div>
+                        <p class="filter-description">actieve filters:</p>
+                        @if(!empty($activeFilters))
+                            <div>
+                                <ul style="width: 50%">
+                                    @foreach($activeFilters as $filter => $value)
+                                        <li style="color: #ffffff; background-color: #6d6d6d; display: flex; padding: 1vw">
+                                            <span style="">{{ $filterTranslations[$filter] ?? ucfirst($filter) }}:</span>
+                                            <span>{{ $value }}</span>
+                                            <form action="{{ url()->current() }}" method="GET" style="display: inline;">
+                                                @foreach (request()->except([$filter, 'page']) as $key => $val)
+                                                    <input type="hidden" name="{{ $key }}" value="{{ $val }}">
+                                                @endforeach
+                                                <button type="submit">Verwijder filter</button>
+                                            </form>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @else
+                            <p>Geen actieve filters.</p>
+                        @endif
+                    </div>
 
                 </div>
 
