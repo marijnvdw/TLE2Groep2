@@ -65,7 +65,7 @@
     <div>
         <section>
             <x-modal-filter id="filterModal" class="hidden"></x-modal-filter>
-            <div class="px-5 pb-5">
+            <div class=" pb-5">
                 <div class="px-5 pb-5">
                     <form class="flex justify-center gap-10 pb-2 " method="GET">
                         {{--                    <input class="border flex-1 rounded-[30px] pl-2" type="text" name="search"--}}
@@ -105,61 +105,16 @@
                 </div>
 
                 <!-- Flickity HTML init -->
-                <div class="carousel" data-flickity='{ "wrapAround": true }'>
+                <div class="carousel " data-flickity='{ "wrapAround": true }'>
 
-                    {{--                <div--}}
-                    {{--                    class="carousel-cell bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-10 w-[80vw] mx-auto overflow-hidden mb-8">--}}
-
-                    {{--                    <div class="flex flex-col md:flex-row md:gap-8 lg:gap-12">--}}
-                    {{--                        <!-- Details section -->--}}
-                    {{--                        <div class="flex flex-col justify-center md:w-2/3 lg:w-3/4">--}}
-                    {{--                            <div class="flex justify-center gap-8 md:gap-12 lg:gap-16">--}}
-                    {{--                                <img--}}
-                    {{--                                    src="https://cdn.freebiesupply.com/logos/large/2x/mcdonalds-15-logo-png-transparent.png"--}}
-                    {{--                                    alt="logo"--}}
-                    {{--                                    class="h-12 md:h-16 lg:h-20">--}}
-                    {{--                                <div class="flex flex-col justify-center text-md md:text-lg lg:text-xl">--}}
-                    {{--                                    <h2>MCdonalds</h2>--}}
-                    {{--                                    <h3>Rotterdam Blaak</h3>--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-
-                    {{--                            <!-- Image section on mobile -->--}}
-                    {{--                            <div class="flex justify-center mt-4 md:hidden">--}}
-                    {{--                                <img--}}
-                    {{--                                    src="https://mei-arch.eu/en/wp-content/uploads/sites/2/2022/01/OvD-47-1020x1320.jpg?image-crop-positioner-ts=1642509477"--}}
-                    {{--                                    alt="mcdonalds work" class="max-w-full h-auto object-cover">--}}
-                    {{--                            </div>--}}
-
-                    {{--                            <!-- Description and button -->--}}
-                    {{--                            <div class="mt-4">--}}
-                    {{--                                <p class="text-sm md:text-base lg:text-lg">--}}
-                    {{--                                    beschrijving pipikaka--}}
-                    {{--                                    mcdonalds yummy yippee ich habe cola--}}
-                    {{--                                </p>--}}
-                    {{--                                <a href="" class="block mt-4 text-center">--}}
-                    {{--                                    <x-button type=":">Meer informatie</x-button>--}}
-                    {{--                                </a>--}}
-                    {{--                            </div>--}}
-                    {{--                        </div>--}}
-
-                    {{--                        <!-- Image section on larger screens -->--}}
-                    {{--                        <div class="hidden md:flex md:w-1/3 lg:w-1/4 justify-center">--}}
-                    {{--                            <img--}}
-                    {{--                                src="https://mei-arch.eu/en/wp-content/uploads/sites/2/2022/01/OvD-47-1020x1320.jpg?image-crop-positioner-ts=1642509477"--}}
-                    {{--                                alt="mcdonalds work" class="max-w-full h-auto object-cover">--}}
-                    {{--                        </div>--}}
-                    {{--                    </div>--}}
-
-                    {{--                </div>--}}
 
                     @foreach ($applications as $index => $application)
 
                         <div
-                            class="carousel-cell bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-10 w-[80vw] mx-auto overflow-hidden mb-8">
-                            <div class="flex flex-col md:flex-row md:gap-8 lg:gap-12">
+                            class="carousel-cell bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-10 w-[80vw] mx-auto overflow-hidden mb-8 flex flex-col justify-between ">
+                            <div class="flex flex-col md:flex-row md:gap-8 lg:gap-12 h-[100%] flex flex-col justify-between">
                                 <!-- Details section -->
-                                <div class="flex flex-col justify-center md:w-2/3 lg:w-3/4">
+                                <div class="flex flex-col justify-between md:w-2/3 lg:w-3/4">
                                     <div class="flex justify-center gap-8 md:gap-12 lg:gap-16">
                                         <img
                                             src="
@@ -200,8 +155,9 @@
 {{--                                      images/seHUIGexlgBCi4pwVo1pEMuBTVgfkEwa7TwamUBe.jpg  --}}
                                         alt="mcdonalds workers" class="max-w-full h-auto object-cover">
                                 </div>
+
                             </div>
-                            <p class="text-center">vacature {{ $index+1 }} van de {{ $applicationsCount }}</p>
+                            <p class="text-center max-h-1">vacature {{ $index+1 }} van de {{ $applicationsCount }}</p>
 
                         </div>
                     @endforeach
