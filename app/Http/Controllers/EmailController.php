@@ -13,6 +13,8 @@ class EmailController extends Controller
 {
     protected $mailerService;
 
+    public $baseUrl = 'http://127.0.0.1:8000';
+
     public function __construct(MailerService $mailerService)
     {
         $this->mailerService = $mailerService;
@@ -22,6 +24,7 @@ class EmailController extends Controller
     {
         $userEmail = $request->input('email');
         $company = Company::find($application->company_id);
+        $baseUrl = $this->baseUrl;
 
         $applicant = Applicant::where('email', $userEmail)
             ->where('application_id', $application->id)
@@ -32,7 +35,7 @@ class EmailController extends Controller
         }
 
         $htmlBody = view('emails.registration-email',
-            compact('application', 'userEmail', 'company'))->render();
+            compact('application', 'userEmail', 'company', 'baseUrl'))->render();
 
         $result = $this->mailerService->sendMail(
             $userEmail,
@@ -54,6 +57,7 @@ class EmailController extends Controller
         $userEmail = $request->query('email');
         $application = Application::find($applicationId);
         $company = Company::find($application->company_id);
+        $baseUrl = $this->baseUrl;
 
         $applicant = Applicant::where('email', $userEmail)
             ->where('application_id', $applicationId)
@@ -74,7 +78,7 @@ class EmailController extends Controller
             $applicant->save();
 
             $htmlBody = view('emails.registration-complete-email',
-                compact('application', 'userEmail', 'company', 'applicantCount'))->render();
+                compact('application', 'userEmail', 'company', 'applicantCount', 'baseUrl'))->render();
 
             $result = $this->mailerService->sendMail(
                 $userEmail,

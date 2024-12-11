@@ -55,24 +55,23 @@
             <div class="flex items-start pb-2">
                 <img src="/img/check.png" alt="3" class="mr-2 mt-2 w-4 h-4">
                 <p class="text-lg sm:text-xl text-dark-moss break-words">Open hiring werkt doormiddel van een
-                    wachtrij!</p>
+                    wachtlijst!</p>
                 <div
                     id="infoIcon"
                     class="flex items-center justify-center w-6 h-6 ml-2 mt-0.5 cursor-pointer"
-                    onclick="togglePopup()">
+                    onclick="togglePopup()" tabindex="0" role="button">
                     <img src="/img/information-button.png">
-                </div>
-                <br>
+                </div><br>
             </div>
-            <!-- Popup -->
-            <div
-                id="infoPopup"
-                class=" left-0 mt-3 p-4 bg-violet bg-opacity-80 rounded-lg shadow-lg shadow-dark-violet hidden"
-                onmouseover="keepPopupOpen()"
-                onmouseleave="hidePopup()"
-            >
-                <h3 class="text-xl sm:text-2xl font-bold text-cream pt-6 pb-4 break-words">Hoe werkt de wachtrij?</h3>
-                <p class="text-lg sm:text-xl text-cream break-words">
+                <!-- Popup -->
+                <div
+                    id="infoPopup"
+                    class=" left-0 mt-3 p-4 bg-violet bg-opacity-80 rounded-lg shadow-lg shadow-dark-violet hidden"
+                    onmouseover="keepPopupOpen()"
+                    onmouseleave="hidePopup()"
+                >
+                    <h3 class="text-xl sm:text-2xl font-bold text-cream pt-6 pb-4 break-words">Hoe werkt de wachtlijst?</h3>
+                    <p class="text-lg sm:text-xl text-cream break-words">
 
                     Als je je aanmeldt, krijg je meteen een plek in de wachtrij. Hoe eerder je je aanmeldt, hoe sneller
                     je kans maakt om gekozen te worden door de werkgever. De werkgever selecteert kandidaten van
@@ -84,19 +83,21 @@
 
             <script>
                 let isPopupHovered = false;
+                const popup = document.getElementById('infoPopup');
+                const infoIcon = document.getElementById('infoIcon');
+                const infoPopup = document.getElementById('infoPopup');
 
                 function showPopup() {
-                    document.getElementById('infoPopup').classList.remove('hidden');
+                    popup.classList.remove('hidden');
                 }
 
                 function hidePopup() {
                     if (!isPopupHovered) {
-                        document.getElementById('infoPopup').classList.add('hidden');
+                        popup.classList.add('hidden');
                     }
                 }
 
                 function togglePopup() {
-                    const popup = document.getElementById('infoPopup');
                     popup.classList.toggle('hidden');
                 }
 
@@ -105,10 +106,14 @@
                 }
 
                 document.addEventListener('click', (event) => {
-                    const infoIcon = document.getElementById('infoIcon');
-                    const infoPopup = document.getElementById('infoPopup');
                     if (!infoIcon.contains(event.target) && !infoPopup.contains(event.target)) {
                         hidePopup();
+                    }
+                });
+                document.addEventListener('keydown', (event) => {
+                    if ((event.key === 'Enter' || event.key === ' ') && document.activeElement === infoIcon) {
+                        togglePopup();
+                        event.preventDefault();
                     }
                 });
             </script>

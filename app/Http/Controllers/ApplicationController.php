@@ -12,11 +12,51 @@ class ApplicationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(request $request)
     {
-        $applications = Application::all();
+        $applications = Application::query();
 
-        return view('application.index', compact('applications'));
+        $activeFilters = [];
+
+        //dd($applications);
+        //return view('application.index');
+        //dd('hi');
+
+        if (!$request->filled('allCities')) {
+            if ($request->filled('location')) {
+                $applications->whereHas('company', function ($query) use ($request) {
+                    $query->where('city', 'LIKE', "%{$request->location}%");
+                });
+                $activeFilters['location'] = $request->location;
+            }
+        }
+
+        if ($request->filled('sector')) {
+            $applications->where('sector', $request->sector);
+            $activeFilters['sector'] = $request->sector;
+        }
+
+        if ($request->filled('employment')) {
+            $employment = $request->employment == 'fulltime' ? true : false;
+            $applications->where('employment', $employment);
+            $activeFilters['employment'] = $request->employment;
+        }
+
+        if ($request->filled('adult')) {
+            $applications->where('adult', true);
+            $activeFilters['adult'] = $request->adult;
+        }
+
+        if ($request->filled('drivers_license')) {
+            $applications->where('drivers_license', true);
+            $activeFilters['drivers_license'] = $request->drivers_license;
+        }
+        $applications = Application::all();
+        $applicationsCount = Application::all()->count();
+
+
+
+        return view('application.index', compact('applications', 'activeFilters', 'applicationsCount'));
     }
 
 
@@ -142,7 +182,6 @@ class ApplicationController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Vacature succesvol bijgewerkt.');
     }
-
 
     /**
      * Remove the specified resource from storage.

@@ -23,8 +23,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/application', [ModalController::class, 'showModal'])->name('application.index');
-Route::get('/application/filter', [ModalController::class, 'filterResults'])->name('filter.results');
+Route::get('/application/filter', [ApplicationController::class, 'index'])->name('applications.filter');
+Route::resource('application', ApplicationController::class);
+
 
 Route::get('email/send/{application}', [EmailController::class, 'sendEmail'])->name('email.send');
 Route::get('email/register/{application}', [EmailController::class, 'registerEmail'])->name('email.register');
@@ -34,7 +35,6 @@ Route::get('/error', function () {
     return view('error');
 })->name('error.page');
 
-Route::resource('application', ApplicationController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

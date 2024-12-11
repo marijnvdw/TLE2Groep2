@@ -10,6 +10,7 @@ class Application extends Model
     use HasFactory;
 
     protected $fillable = [
+        'creation_date',
         'title',
         'description',
         'employment',
@@ -17,16 +18,15 @@ class Application extends Model
         'adult',
         'image',
         'details',
-        'creation_date',
         'company_id',
     ];
-
-    public $timestamps = false; // Disable automatic timestamps (created_at, updated_at)
 
     public function company()
     {
         return $this->belongsTo(Company::class);
     }
+
+    public $timestamps = false; // Disable automatic timestamps (created_at, updated_at)
 
     // Application.php
     public function applicants()
