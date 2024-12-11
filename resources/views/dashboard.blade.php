@@ -11,13 +11,13 @@
 
     <div class="bg-cream rounded-[30px] shadow-lg shadow-medium-moss p-6 w-[80vw] mx-auto overflow-hidden max-w-96">
         <div class="text-center">
-            <h2 class="text-xl  font-bold text-dark-moss pb-2 break-words">{{ __("You're logged in!") }}</h2>
+            <h2 class="text-xl  font-bold text-dark-moss pb-2 break-words">{{ __("Je bent ingelogd!") }}</h2>
         </div>
 
         <div class="flex items-start pb-2">
             <p class="">
-                Username: {{ Auth::user()->name }}<br>
-                Company name: {{ Auth::user()->company->name }}
+                Naam: {{ Auth::user()->name }}<br>
+                Bedrijfsnaam: {{ Auth::user()->company->name }}
             </p>
         </div>
 
@@ -41,10 +41,12 @@
             <h1 class="text-xl text-center  ">{{ $application->title }}</h1>
             <div class="flex justify-between content-between">
                 <p class="flex-1">{{ $application->description }}</p>
-                <div class="flex-1">
+                <div class="flex-1 ">
                     <img class="object-fill"
                          src="{{ $application->image }}"
                          alt="job image">
+                    <p class="font-bold text-[#DA9F93]"> aanmeldingen: {{ $application->applicants()->count() }}</p>
+
                 </div>
             </div>
             <div class="flex flex-col text-black gap-2">
@@ -56,6 +58,9 @@
 
     @endforeach
     </div>
+
+
+
 
 
 

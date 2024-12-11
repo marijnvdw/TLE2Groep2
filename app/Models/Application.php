@@ -27,6 +27,12 @@ class Application extends Model
         return $this->belongsTo(Company::class);
     }
 
+    // Application.php
+    public function applicants()
+    {
+        return $this->hasMany(Applicant::class);
+    }
+
 
 }
 

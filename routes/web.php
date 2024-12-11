@@ -56,3 +56,5 @@ Route::resource('company', \App\Http\Controllers\companyController::class);
 
 
 require __DIR__.'/auth.php';
+
+
