@@ -1,7 +1,7 @@
 <div class="text-center space-y-4">
     <div id="filterModal" style="position: fixed; display: none; justify-content: center; align-items: center; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 9999;">
         <div class="modalContent" style="background-color: #2E342A; padding: 4vw; border-radius: 20px; width: 80vw; max-width: 800px; height: auto; min-height: 60vh; max-height: 90vh; text-align: center; overflow-y: auto; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box;">
-            <span class="close-btn" style="font-size: 7vw; color: #6d6d6d; cursor: pointer; display: flex; justify-content: end; padding: 0 2vw;">&times;</span>
+            <span class="close-btn" style="font-size: 7vw; color: #6d6d6d; cursor: pointer; display: flex; justify-content: end; padding: 0 2vw;" tabindex="0" role="button">&times;</span>
             <form action="{{ route('application.index') }}" method="GET" class="filters" style="color: #DA9F93; padding: 1vw 1vw 3vw 1vw">
                 @foreach(request()->except(['page']) as $key => $value)
                     <input type="hidden" name="{{ $key }}" value="{{ $value }}">

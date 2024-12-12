@@ -68,14 +68,14 @@
             <x-modal-filter id="filterModal" class="hidden"></x-modal-filter>
             <div class=" pb-5">
                 <div class="px-5 pb-5">
-                    <div class="flex ">
-                        <form class="flex justify-center gap-10 pb-2" method="GET" action="{{ route('application.index') }}">
-                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Zoek vacatures" id="searchInput" class="border flex-1 rounded-[30px] pl-2">
+                    <div class="flex gap-8 items-center mb-4">
+                        <form class="w-2/4" method="GET" action="{{ route('application.index') }}">
+                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Zoek vacatures" id="searchInput" class="w-full h-12 px-5 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             @foreach(request()->except('search') as $key => $value)
                                 <input type="hidden" name="{{ $key }}" value="{{ $value }}">
                             @endforeach
                         </form>
-                        <x-button id="openModalButton" class="border flex-1 bg-white rounded-[30px]" type="submit">Filters</x-button>
+                        <x-button id="openModalButton" class="w-full flex-1 h-12 rounded-full bg-white border border-gray-300 text-black hover:bg-gray-100" type="submit">Filters</x-button>
                     </div>
                     <div class="flex flex-wrap ">
                         <p class="text-sm font-medium pr-2">Actieve filters:  </p>
