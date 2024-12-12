@@ -124,7 +124,7 @@
 
 
             const openModalButton = document.getElementById('openModalButton');
-            const closeModalButton = document.querySelector('.close-btn');
+            const closeBtn = document.querySelector('.close-btn');
             const modal = document.getElementById('filterModal');
             const body = document.querySelector('body');
 

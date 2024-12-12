@@ -7,14 +7,6 @@
             <h1 class="text-rose-brown text-3xl sm:text-4xl font-bold mb-6 text-center">vraag sollicitanten aan</h1>
             <form action="">
                 <p class="text-white text-base sm:text-lg text-center mb-6">{{ $applicantsCount }}</p>
-                <label for="applicants">kies aantal sollicitanten:</label>
-
-                <select name="applicants" id="applicants">
-                    @foreach($applicants as $index => $applicant)
-                        <option value="{{ $applicant->id }}">{{ $index+1 }}</option>
-                    @endforeach
-                </select>
-
                 <div class="mt-6 text-center">
                     <a
                         href="{{ url('/') }}"
