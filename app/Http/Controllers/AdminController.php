@@ -122,12 +122,12 @@ class AdminController extends Controller
     public function destroy(Company $company)
     {
 
-//        if (!auth()->user()->admin) {
-//            return redirect()->route('/')->with('error', 'Je bent niet bevoegd deze pagina te bekijken.');
-//        }
-//
-//        $company->delete();
-//
-//        return redirect()->route('admin-overzicht.index')->with('success', 'Bedrijf succesvol verwijderd!');
+        if (!auth()->user()->admin) {
+            return redirect()->route('/')->with('error', 'Je bent niet bevoegd deze pagina te bekijken.');
+        }
+
+        $company->delete();
+
+        return redirect()->route('admin-overzicht.index')->with('success', 'Bedrijf succesvol verwijderd!');
     }
 }

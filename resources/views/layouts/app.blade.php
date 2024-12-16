@@ -12,7 +12,7 @@
 
 
 </head>
-<body class="bg-light-moss text-dark-moss font-sans">
+<body class="bg-light-moss text-dark-moss font-sans min-h-screen">
 <!-- Header -->
 <x-header />
 

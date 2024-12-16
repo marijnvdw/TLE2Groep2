@@ -34,30 +34,32 @@
 
 
     <div class="flex flex-wrap justify-center gap-5 p-10">
-    @foreach (Auth::user()->company->applications as $application)
-        <div
-            class="bg-dark-moss shadow-lg shadow-dark-moss; rounded-[30px] flex-auto mx-auto p-10 max-w-xl overflow-hidden text-white flex flex-col gap-5 justify-between"
-        >
-            <h1 class="text-xl text-center  ">{{ $application->title }}</h1>
-            <div class="flex justify-between content-between">
-                <p class="flex-1">{{ $application->description }}</p>
-                <div class="flex-1 ">
-                    <img class="object-fill"
-                         src="{{ $application->image }}"
-                         alt="job image">
-                    <p class="font-bold text-[#DA9F93]"> Aantal aanmeldingen: {{ $application->applicants()->count() }}</p>
+        @foreach (Auth::user()->company->applications as $application)
+            <div
+                class="bg-dark-moss shadow-lg shadow-dark-moss; rounded-[30px] flex-auto mx-auto p-10 max-w-xl overflow-hidden text-white flex flex-col gap-5 justify-between"
+            >
+                <h1 class="text-xl text-center  ">{{ $application->title }}</h1>
+                <div class="flex justify-between content-between">
+                    <p class="flex-1">{{ $application->description }}</p>
+                    <div class="flex-1 ">
+                        <img class="object-fill"
+                             src="{{ $application->image }}"
+                             alt="job image">
+                        <p class="font-bold text-[#DA9F93]"> aanmeldingen: {{ $application->applicants()->count() }}</p>
 
+                    </div>
+                </div>
+                <div class="flex flex-col text-black gap-2">
+                    <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center "
+                       href="">Vraag sollicitant aan</a>
+                    <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center "
+                       href="">Pas aan</a>
+                    <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center "
+                       href="">Verwijder</a>
                 </div>
             </div>
-            <div class="flex flex-col text-black gap-2">
-                <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center " href="">Vraag sollicitant aan</a>
-                <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center " href="">Pas aan</a>
-                <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center " href="">Verwijder</a>
-            </div>
-        </div>
 
-    @endforeach
+        @endforeach
     </div>
-
 
 @endsection

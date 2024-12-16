@@ -14,6 +14,7 @@ Route::get('/', function () {
 Route::resource('vacature-overzicht', ApplicationController::class);
 
 Route::resource('admin-overzicht', AdminController::class);
+Route::delete('/admin-overzicht/{id}', [AdminController::class, 'destroy'])->name('admin-overzicht.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
