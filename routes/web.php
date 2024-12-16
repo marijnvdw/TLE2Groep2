@@ -25,6 +25,8 @@ route::get('/about-us', function () {
 
 Route::get('/application/filter', [ApplicationController::class, 'index'])->name('applications.filter');
 Route::resource('application', ApplicationController::class);
+Route::delete('/applications/{id}', [ApplicationController::class, 'destroy'])->name('application.destroy');
+
 
 
 Route::get('email/send/{application}', [EmailController::class, 'sendEmail'])->name('email.send');
