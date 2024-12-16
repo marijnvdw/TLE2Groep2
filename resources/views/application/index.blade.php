@@ -118,7 +118,7 @@
                                     <div class="flex justify-center gap-8 md:gap-12 lg:gap-16">
                                         <img
                                             src="
-                                                storage/{{ $application->company->image }}"
+                                                {{ $application->company->image }}"
                                             alt="{{ $application->company->image }}"
                                             class="h-12 md:h-16 lg:h-20">
                                         <div class="flex flex-col justify-center text-md md:text-lg lg:text-xl">
@@ -130,7 +130,7 @@
                                     <!-- Image section on mobile -->
                                     <div class="flex justify-center mt-4 md:hidden">
                                         <img
-                                            src="storage/{{ $application->image}}"
+                                            src="{{ $application->image}}"
                                             alt="pic " class="max-w-full h-auto object-cover">
                                     </div>
 
@@ -148,9 +148,9 @@
                                 <!-- Image section on larger screens -->
                                 <div class="hidden md:flex md:w-1/3 lg:w-1/4 justify-center">
                                     <img
-                                        src="storage/images/jmmnT6jAPaTIyxEIG4SQSgAr6O2wsF8x9XV1mUlp.jpg"
+                                        src="{{ $application->image}}"
 {{--                                        images/seHUIGexlgBCi4pwVo1pEMuBTVgfkEwa7TwamUBe.jpg--}}
-                                    alt="mcdonalds workers" class="max-w-full h-auto object-cover">
+                                    alt="{{ $application->image}}" class="max-w-full h-auto object-cover">
                                 </div>
 
                             </div>
