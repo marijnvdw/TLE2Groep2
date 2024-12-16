@@ -68,11 +68,11 @@
             <x-modal-filter id="filterModal" class="hidden"></x-modal-filter>
             <div class=" pb-5">
                 <div class="px-5 pb-5">
-                    <form class="flex justify-center gap-10 pb-2 " method="GET">
+                    <form class="flex justify-center gap-5 pb-2 " method="GET">
                         {{--                    <input class="border flex-1 rounded-[30px] pl-2" type="text" name="search"--}}
                         {{--                           placeholder="Zoek vacatures">--}}
                         {{--                    <button class="border flex-1 bg-white rounded-[30px] " type="button">filters</button>--}}
-                        <input class="border flex-1 rounded-[30px] pl-2" type="text" name="search"
+                        <input class="border flex-1 rounded-[30px] pl-5" type="text" name="search"
                                placeholder="Zoek vacatures">
                         <x-button id="openModalButton" class="border flex-1 bg-white rounded-[30px] " type="button">
                             filters
