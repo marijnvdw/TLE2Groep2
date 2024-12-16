@@ -119,8 +119,9 @@ class AdminController extends Controller
     /**
      * Verwijder de opgegeven resource uit de database.
      */
-    public function destroy(Company $company)
+    public function destroy(string $id)
     {
+        $company = Company::find($id);
 
         if (!auth()->user()->admin) {
             return redirect()->route('/')->with('error', 'Je bent niet bevoegd deze pagina te bekijken.');
