@@ -43,8 +43,9 @@ Route::middleware('auth')->group(function () {
 });
 
 //company routes
-Route::resource('company', \App\Http\Controllers\companyController::class);
-
+Route::get('/companies', function () {
+    return view('companies');
+})->name('companies');
 
 require __DIR__.'/auth.php';
 

@@ -1,6 +1,6 @@
 <header class="bg-dark-green text-white p-4">
     <!-- Navigation Bar -->
-    <div class="flex justify-between items-center">
+    <div class="flex items-center justify-between ">
         <!-- Hamburger Menu -->
         <div id="burgerMenu" class="flex flex-col justify-center items-center cursor-pointer" onclick="toggleOverlay()" tabindex="0" role="button">
             <span class="block w-10 h-1 bg-violet"></span>
@@ -9,11 +9,14 @@
         </div>
 
         <!-- Centered Logo -->
-        <div class="flex-1 flex justify-center items-center" >
-            <a href="{{ route('home') }}">
+        <div class="" >
+            <a  class=""
+                href="{{ route('home') }}">
                 <img class="h-16 w-auto" src="img/logo-oh-trans.png" alt="Logo open hiring" onerror="this.onerror=null;this.src='../img/logo-oh-trans.png';">
             </a>
         </div>
+
+        <div class="w-10"></div>
     </div>
 
     <!-- Overlay Menu -->
@@ -26,7 +29,7 @@
             <nav class="mt-24 space-y-6 flex-grow">
                 <a href="{{ route('application.index') }}" class="block text-lg text-cream hover:text-violet">Vacatures</a>
                 <a href="{{ route('about-us') }}" class="block text-lg text-cream hover:text-violet">Over ons</a>
-                <a href="{{ route('company.index') }}" class="block text-lg text-cream hover:text-violet">Werkgevers</a>
+                <a href="{{ route('companies') }}" class="block text-lg text-cream hover:text-violet">Werkgevers</a>
                 <a href="{{ route('login') }}" class="block text-lg text-cream hover:text-violet">Login/Registreer voor bedrijven</a>
             </nav>
         </div>
