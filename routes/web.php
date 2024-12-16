@@ -15,13 +15,13 @@ Route::resource('vacature-overzicht', ApplicationController::class);
 
 Route::resource('admin-overzicht', AdminController::class);
 
-Route::get('/test', function () {
-    return view('test');
-})->name('test');
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+route::get('/about-us', function () {
+    return view('about-us');
+})->name('about-us');
 
 Route::get('/application/filter', [ApplicationController::class, 'index'])->name('applications.filter');
 Route::resource('application', ApplicationController::class);
