@@ -43,7 +43,7 @@
                 <p class="flex-1">{{ $application->description }}</p>
                 <div class="flex-1 ">
                     <img class="object-fill"
-                         src="storage/{{ $application->image }}"
+                         src="{{ $application->image }}"
                          alt="job image">
                     <p class="font-bold text-[#DA9F93]"> aanmeldingen: {{ $application->applicants()->count() }}</p>
 
