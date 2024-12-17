@@ -48,7 +48,7 @@ Route::get('/error', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // Dashboard route
-    Route::get('/dashboard', [CompanyController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Company-specific routes
     Route::prefix('companies')->name('companies.')->group(function () {
