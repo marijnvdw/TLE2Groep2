@@ -37,7 +37,7 @@
                 class="bg-dark-moss shadow-lg shadow-dark-moss; rounded-[30px] flex-auto mx-auto p-10 max-w-xl overflow-hidden text-white flex flex-col gap-5 justify-between"
             >
                 <h1 class="text-xl text-center  ">{{ $application->title }}</h1>
-                <div class="flex justify-between content-between gap-4">
+                <div class="flex justify-between content-between gap-4 flex-wrap">
                     <p class="flex-1">{{ $application->description }}</p>
                     <div class="flex-1 ">
                         <img class="object-fill"
@@ -47,25 +47,31 @@
                             Aantal aanmeldingen: {{ $application->applicantCount->applicants_count ?? 0 }}</p>
                     </div>
                 </div>
-                <div class="flex flex-col text-black gap-2">
+                <div class="flex flex-col text-dark-moss gap-2">
                     <label for="applicants-{{ $application->id }}" class="text-white">kies aantal aanmelders:</label>
 
-                    <select name="applicants" id="applicants-{{ $application->id }}">
-                        @if($application->applicantCount->applicants_count > 0)
-                            <option value="" selected disabled>0</option>
-                        @for ($i = 1; $i <= $application->applicantCount->applicants_count; $i++)
-                                <option value="{{ $i }}">{{ $i }}</option>
-                            @endfor
-                        @else
-                            <option value="" selected disabled>0</option>
-                        @endif
-                    </select>
+                    <div class="flex flex-col md:flex-row items-center gap-4">
+                        <select class="bg-white text-dark-moss rounded-[30px] px-4 py-2 font-bold text-center w-full md:w-16"
+                                name="applicants"
+                                id="applicants-{{ $application->id }}">
+                            @if($application->applicantCount->applicants_count > 0)
+                                <option value="" selected disabled>0</option>
+                                @for ($i = 1; $i <= $application->applicantCount->applicants_count; $i++)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
+                            @else
+                                <option value="" selected disabled>0</option>
+                            @endif
+                        </select>
 
-                    <a id="applicant-link-{{ $application->id }}"
-                       class="shadow-lg font-bold bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center"
-                       href="#">
-                        Vraag sollicitanten aan
-                    </a>
+                        <a id="applicant-link-{{ $application->id }}"
+                           class="w-full shadow-lg font-bold bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center"
+                           href="#">
+                            Vraag sollicitanten aan
+                        </a>
+                    </div>
+
+
 
                     <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center "
                        href="{{route('application.edit', $application)}}">Pas aan</a>
