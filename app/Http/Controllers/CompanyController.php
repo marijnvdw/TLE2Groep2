@@ -26,7 +26,7 @@ class CompanyController extends Controller
             );
         }
 
-        return view('companies.dashboard', compact('applications', 'user'));
+        return view('dashboard', compact('applications', 'user'));
     }
 
 
