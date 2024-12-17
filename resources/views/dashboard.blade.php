@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col text-dark-moss gap-2">
-                    <label for="applicants-{{ $application->id }}" class="text-white">kies aantal aanmelders:</label>
+                    <label for="applicants-{{ $application->id }}" class="text-white">kies aantal sollicitanten:</label>
 
                     <div class="flex flex-col md:flex-row items-center gap-4">
                         <select class="bg-white text-dark-moss rounded-[30px] px-4 py-2 font-bold text-center w-full md:w-16"

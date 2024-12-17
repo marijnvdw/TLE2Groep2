@@ -12,7 +12,7 @@
                         Persoon {{ $index + 1 }}
                     </h1>
                     <p class="text-white text-base sm:text-lg text-center mb-6">
-                        Kies datum en tijd voor aanmelder om langs te komen. De keuze is uit een week vanaf nu tot en met een maand vanaf nu
+                        Kies datum en tijd voor sollicitant om langs te komen. De keuze is uit een week vanaf nu tot en met een maand vanaf nu
                     </p>
                     <!-- Hidden input for applicant ID -->
                     <input type="hidden" name="applicants[{{ $index }}][id]" value="{{ $applicant->id }}">
@@ -27,7 +27,7 @@
                     type="submit"
                     class="bg-dark-violet text-white font-semibold rounded-[30px] px-6 py-3 hover:bg-white hover:text-dark-moss transition-colors duration-300 ease-in-out"
                 >
-                    Informeer Aanmelders
+                    Informeer sollicitanten
                 </button>
             </div>
         </form>
