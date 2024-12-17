@@ -13,7 +13,7 @@
         <div class="" >
             <a  class=""
                 href="{{ route('home') }}">
-                <img class="h-16 w-auto" src="storage/images/logo-oh-trans.png" alt="Logo open hiring" onerror="this.onerror=null;this.src='../img/logo-oh-trans.png';">
+                <img class="h-16 w-auto" src="{{asset('storage/images/logo-oh-trans.png')}}" alt="Logo open hiring">
             </a>
         </div>
 

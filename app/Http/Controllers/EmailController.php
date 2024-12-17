@@ -13,7 +13,8 @@ class EmailController extends Controller
 {
     protected $mailerService;
 
-    public $baseUrl = 'http://127.0.0.1:8000';
+    //public $baseUrl = 'http://127.0.0.1:8000';
+    public $baseUrl = 'http://145.24.223.251'; //server url
 
     public function __construct(MailerService $mailerService)
     {
