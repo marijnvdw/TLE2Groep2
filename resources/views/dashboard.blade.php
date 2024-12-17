@@ -34,17 +34,17 @@
     <div class="flex flex-wrap justify-center gap-5 p-10">
         @foreach ($applications as $application)
             <div
-                class="bg-dark-moss shadow-lg rounded-[30px] flex-auto mx-auto p-10 max-w-xl overflow-hidden text-white flex flex-col gap-5 justify-between"
+                class="bg-dark-moss shadow-lg shadow-dark-moss; rounded-[30px] flex-auto mx-auto p-10 max-w-xl overflow-hidden text-white flex flex-col gap-5 justify-between"
             >
-                <h1 class="text-xl text-center">{{ $application['title'] }}</h1>
-                <div class="flex justify-between content-between">
-                    <p class="flex-1">{{ $application['description'] }}</p>
-                    <div class="flex-1">
+                <h1 class="text-xl text-center  ">{{ $application->title }}</h1>
+                <div class="flex justify-between content-between gap-4">
+                    <p class="flex-1">{{ $application->description }}</p>
+                    <div class="flex-1 ">
                         <img class="object-fill"
-                             src="{{ $application['image_url'] }}"
-                             alt="Job image">
-                        <p class="font-bold text-[#DA9F93]">
-                            Aanmeldingen: {{ $application->applicantCount->applicants_count ?? 0 }}</p>
+                             src="{{ $application->image }}"
+                             alt="job image">
+                        <p class=" mt-2 text-[#7C1A51] bg-white text-center rounded py-1 ">
+                            Aantal aanmeldingen: {{ $application->applicantCount->applicants_count ?? 0 }}</p>
                     </div>
                 </div>
                 <div class="flex flex-col text-black gap-2">
