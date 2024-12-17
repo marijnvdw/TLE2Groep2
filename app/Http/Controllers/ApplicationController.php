@@ -18,9 +18,6 @@ class ApplicationController extends Controller
         $applications = Application::query();
         $activeFilters = [];
 
-        //dd($applications);
-        //return view('application.index');
-        //dd('hi');
 
         if ($request->filled('search')) {
             $searchTerm = '%' . $request->input('search') . '%';
