@@ -45,7 +45,7 @@
                         <img class="object-fill"
                              src="{{ $application->image }}"
                              alt="job image">
-                        <p class="font-bold text-[#DA9F93]"> Aantal
+                        <p class=" mt-2 text-[#7C1A51] bg-white text-center rounded py-1 "> Aantal
                             aanmeldingen: {{ $application->applicants()->count() }}</p>
 
                     </div>
