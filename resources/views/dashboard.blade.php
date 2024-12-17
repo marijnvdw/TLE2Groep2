@@ -39,13 +39,14 @@
                 class="bg-dark-moss shadow-lg shadow-dark-moss; rounded-[30px] flex-auto mx-auto p-10 max-w-xl overflow-hidden text-white flex flex-col gap-5 justify-between"
             >
                 <h1 class="text-xl text-center  ">{{ $application->title }}</h1>
-                <div class="flex justify-between content-between">
+                <div class="flex justify-between content-between gap-4">
                     <p class="flex-1">{{ $application->description }}</p>
                     <div class="flex-1 ">
                         <img class="object-fill"
                              src="{{ $application->image }}"
                              alt="job image">
-                        <p class="font-bold text-[#DA9F93]"> aanmeldingen: {{ $application->applicants()->count() }}</p>
+                        <p class=" mt-2 text-[#7C1A51] bg-white text-center rounded py-1 "> Aantal
+                            aanmeldingen: {{ $application->applicants()->count() }}</p>
 
                     </div>
                 </div>
@@ -53,13 +54,21 @@
                     <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center "
                        href="">Vraag sollicitant aan</a>
                     <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center "
-                       href="">Pas aan</a>
-                    <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center "
-                       href="">Verwijder</a>
+                       href="{{route('application.edit', $application)}}">Pas aan</a>
+                    <form action="{{ route('application.destroy', $application) }}" method="POST"
+                          onsubmit="return confirm('Weet u zeker dat u deze vacature wilt verwijderen?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                                class="w-[100%] shadow-lg font-bold bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center">
+                            Verwijder
+                        </button>
+                    </form>
                 </div>
             </div>
 
         @endforeach
     </div>
+
 
 @endsection

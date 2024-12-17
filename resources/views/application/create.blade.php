@@ -42,12 +42,16 @@
                 <div style="margin-bottom: 2vw;">
                     <label for="employment"
                            style="display: flex; font-size: 1rem; margin-bottom: 0.5rem;" class="text-cream">Dienstverband</label>
-                    <input type="text" name="employment" id="employment"
-                           style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;"
-                           class="{{ $errors->has('employment') ? 'border-red-500' : '' }}">
-                    @error('employment')
-                    <span class="text-error text-sm">{{ 'Vul hier een dienstverband in' }}</span>
-                    @enderror
+{{--                    <input type="text" name="employment" id="employment"--}}
+{{--                           style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;"--}}
+{{--                           class="{{ $errors->has('employment') ? 'border-red-500' : '' }}">--}}
+{{--                    @error('employment')--}}
+{{--                    <span class="text-error text-sm">{{ 'Vul hier een dienstverband in' }}</span>--}}
+{{--                    @enderror--}}
+                    <select name="employment" id="employment" class="form-control" required>
+                        <option value="1">Fulltime</option>
+                        <option value="0">Parttime</option>
+                    </select>
                 </div>
 
                 <div class="mb-3">

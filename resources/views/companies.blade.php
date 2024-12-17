@@ -9,8 +9,8 @@
         $companies = DB::table('companies')->get();
     @endphp
 
-    <div class="px-5">
-        <h1 class="text-xl font-bold text-center pb-5">Werkgevers</h1>
+    <div class="px-6">
+        <h1 class="text-center text-4xl sm:text-5xl font-bold text-dark-moss pt-10 pb-6">Werkgevers</h1>
         <ul>
             @foreach ($companies as $company)
                 <li>
