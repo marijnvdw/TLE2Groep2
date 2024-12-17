@@ -92,7 +92,7 @@ class ApplicationController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'employment' => 'required|string|max:255',
+            'employment' => 'required|integer',
             'drivers_licence' => 'required|integer',
             'adult' => 'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -101,7 +101,7 @@ class ApplicationController extends Controller
 
         // Handle the image upload if present
         if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('images', 'public'); // Save in 'storage/app/public/images'
+            $validatedData['image'] = $request->file('image')->store('images', 'public'); // Save in 'storage/images'
         }
 
         // Set the creation date
@@ -109,6 +109,10 @@ class ApplicationController extends Controller
 
         // Associate the application with the authenticated user's company
         $validatedData['company_id'] = Auth::user()->company->id;
+
+        //storage
+
+        $validatedData['image'] = 'storage/' . $validatedData['image'];
 
         // Create a new application with the validated data
         Application::create($validatedData);
@@ -154,41 +158,39 @@ class ApplicationController extends Controller
      */
     public function update(Request $request)
     {
-        $application = Application::find($request);
-
-        if (!$application) {
-            abort(404, 'Application not found.');
-        }
-
-        if (auth()->check() && auth()->user()->admin) {
-            return view('application.edit', compact('application'));
-        }
-
-//        if (auth()->check() && $application->company_id === auth()->user()->company_id) {
-//            return view('application.edit', compact('application'));
-//        }
-
         $id = $request->input('id');
         $application = Application::findOrFail($id);
 
+        // Validate the incoming request
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'employment' => 'required|string|max:255',
+            'employment' => 'required|integer',
             'drivers_licence' => 'required|integer',
             'adult' => 'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'details' => 'required|string',
         ]);
 
+        // Handle image upload separately
         if ($request->hasFile('image')) {
-            $validatedData['image'] = $request->file('image')->store('images', 'public');
+            // Store the file in 'public/images' and get the path
+            $path = $request->file('image')->store('images', 'public');
+
+            // Add the correct path to the validated data
+            $validatedData['image'] = 'storage/' . $path;
+        } else {
+            // If no new image is uploaded, keep the existing image
+            $validatedData['image'] = $application->image;
         }
 
+        // Update the application with the validated data
         $application->update($validatedData);
 
+        // Redirect back with a success message
         return redirect()->route('dashboard')->with('success', 'Vacature succesvol bijgewerkt.');
     }
+
 
     /**
      * Remove the specified resource from storage.
