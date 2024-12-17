@@ -114,7 +114,7 @@ class ApplicationController extends Controller
         Application::create($validatedData);
 
         // Redirect with a success message
-        return redirect()->route('application.index')->with('success', 'Vacature succesvol aangemaakt.');
+        return redirect()->route('dashboard')->with('success', 'Vacature succesvol aangemaakt.');
     }
 
     /**
@@ -164,9 +164,9 @@ class ApplicationController extends Controller
             return view('application.edit', compact('application'));
         }
 
-        if (auth()->check() && $application->company_id === auth()->user()->company_id) {
-            return view('application.edit', compact('application'));
-        }
+//        if (auth()->check() && $application->company_id === auth()->user()->company_id) {
+//            return view('application.edit', compact('application'));
+//        }
 
         $id = $request->input('id');
         $application = Application::findOrFail($id);
@@ -193,20 +193,37 @@ class ApplicationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(string $id)
     {
+        // Find the application by ID
         $application = Application::find($id);
 
+        // Check if the application exists
         if (!$application) {
-            abort(404, 'Application not found.');
+            return redirect()->route('application.index')->with('error', 'Application not found.');
         }
 
-        if ((!auth()->check() || !auth()->user()->admin) && $application->company_id !== auth()->user()->company_id) {
-            return redirect()->route('home')->with('error', 'Unauthorized access.');
+        // Check if the user is authorized to delete the application
+        if (!auth()->check() ||
+            (!auth()->user()->admin && $application->company_id !== auth()->user()->company_id)) {
+            return redirect()->route('application.index')->with('error', 'Unauthorized access.');
         }
 
+        // Delete the application
         $application->delete();
 
-        return redirect()->route('application.index')->with('success', 'Application successfully deleted.');
+        // Redirect with a success message
+        return redirect()->route('dashboard')->with('success', 'Application successfully deleted.');
     }
+
+
+
+
+
+
+
+
 }
