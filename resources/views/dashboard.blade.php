@@ -65,10 +65,17 @@
                         Vraag sollicitanten aan
                     </a>
 
-                    <a class="shadow-lg font-bold bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center"
-                       href="">Pas aan</a>
-                    <a class="shadow-lg font-bold bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center"
-                       href="">Verwijder</a>
+                    <a class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center "
+                       href="{{route('application.edit', $application)}}">Pas aan</a>
+                    <form action="{{ route('application.destroy', $application) }}" method="POST"
+                          onsubmit="return confirm('Weet u zeker dat u deze vacature wilt verwijderen?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                                class="w-[100%] shadow-lg font-bold bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center">
+                            Verwijder
+                        </button>
+                    </form>
                 </div>
             </div>
         @endforeach
