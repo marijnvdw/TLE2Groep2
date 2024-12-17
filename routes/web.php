@@ -5,6 +5,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ModalController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,9 +17,13 @@ Route::resource('vacature-overzicht', ApplicationController::class);
 Route::resource('admin-overzicht', AdminController::class);
 Route::delete('/admin-overzicht/{id}', [AdminController::class, 'destroy'])->name('admin-overzicht.destroy');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+use App\Http\Controllers\DashboardController;
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+
 
 route::get('/about-us', function () {
     return view('about-us');
@@ -48,6 +53,6 @@ Route::get('/companies', function () {
     return view('companies');
 })->name('companies');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
