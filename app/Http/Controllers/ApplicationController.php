@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Company;
+use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -111,6 +112,7 @@ class ApplicationController extends Controller
             'adult' => 'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'details' => 'required|string',
+            'sector' => 'string',
         ]);
 
         // Handle the image upload if present
@@ -184,6 +186,7 @@ class ApplicationController extends Controller
             'adult' => 'required|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'details' => 'required|string',
+            'sector' => 'string',
         ]);
 
         // Handle image upload separately
@@ -200,7 +203,7 @@ class ApplicationController extends Controller
 
         // Update the application with the validated data
         $application->update($validatedData);
-
+//            dd($validatedData);
         // Redirect back with a success message
         return redirect()->route('dashboard')->with('success', 'Vacature succesvol bijgewerkt.');
     }

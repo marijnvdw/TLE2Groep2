@@ -23,6 +23,28 @@
                 </div>
 
                 <div style="margin-bottom: 2vw;">
+                    <label for="sector" style="display: flex; font-size: 1rem; margin-bottom: 0.5rem;" class="text-cream">Sector</label>
+                    <select name="sector" id="sector" style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px; box-sizing: border-box;">
+                        <option value="" {{ $application->sector == '' ? 'selected' : '' }}>Alle sectoren</option>
+                        <option value="technologie" {{ $application->sector == 'technologie' ? 'selected' : '' }}>Technologie</option>
+                        <option value="gezondheidszorg {{ $application->sector == 'gezondheidszorg' ? 'selected' : '' }}">Gezondheidszorg</option>
+                        <option value="onderwijs" {{ $application->sector == 'onderwijs' ? 'selected' : '' }}>Onderwijs</option>
+                        <option value="financiën" {{ $application->sector == 'financiën' ? 'selected' : '' }}>Financiën </option>
+                        <option value="bouw" {{ $application->sector == 'bouw' ? 'selected' : '' }}>Bouw</option>
+                        <option value="retail" {{ $application->sector == 'retail' ? 'selected' : '' }}>Retail </option>
+                        <option value="logistiek" {{ $application->sector == 'logistiek' ? 'selected' : '' }}>Logistiek </option>
+                        <option value="horeca" {{ $application->sector == 'horeca' ? 'selected' : '' }}>Horeca </option>
+                        <option value="creatief" {{ $application->sector == 'creatief' ? 'selected' : '' }}>Creatief</option>
+                        <option value="landbouw" {{ $application->sector == 'landbouw' ? 'selected' : '' }}>Landbouw</option>
+                    </select>
+                    @error('sector')
+                    <span class="text-error text-sm">{{ 'Vul hier een sector in' }}</span>
+                    @enderror
+                </div>
+
+
+
+                <div style="margin-bottom: 2vw;">
                     <label class="text-cream" for="employment">Dienstverband</label>
 {{--                    <input type="text" name="employment" id="employment" value="{{ $application->employment }}" required--}}
 {{--                           style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;">--}}
