@@ -119,11 +119,12 @@
                                         <img
                                             src="
                                                 {{ $application->company->image }}"
-                                            alt="{{ $application->company->image }}"
+                                            alt="{{ $application->company->name }} foto"
                                             class="h-12 md:h-16 lg:h-20">
                                         <div class="flex flex-col justify-center text-md md:text-lg lg:text-xl">
+                                            <h2 class="text-xl sm:text-2xl font-bold">{{ $application->company->name}}</h2>
                                             <h2>{{ $application->title}}</h2>
-                                            <h3>{{ $application->employment}}</h3>
+                                            <h2>{{ $application->company->city}}</h2>
                                         </div>
                                     </div>
 
@@ -131,7 +132,7 @@
                                     <div class="flex justify-center mt-4 md:hidden">
                                         <img
                                             src="{{ $application->image}}"
-                                            alt="pic " class="max-w-full h-auto object-cover">
+                                            alt="{{$application->title}} foto" class="max-w-full h-auto object-cover">
                                     </div>
 
                                     <!-- Description and button -->
@@ -149,8 +150,8 @@
                                 <div class="hidden md:flex md:w-1/3 lg:w-1/4 justify-center">
                                     <img
                                         src="{{ $application->image}}"
-{{--                                        images/seHUIGexlgBCi4pwVo1pEMuBTVgfkEwa7TwamUBe.jpg--}}
-                                    alt="{{ $application->image}}" class="max-w-full h-auto object-cover">
+                                        {{--                                        images/seHUIGexlgBCi4pwVo1pEMuBTVgfkEwa7TwamUBe.jpg--}}
+                                        alt="{{ $application->image}}" class="max-w-full h-auto object-cover">
                                 </div>
 
                             </div>

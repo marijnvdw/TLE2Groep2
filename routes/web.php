@@ -5,6 +5,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ModalController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,14 +15,19 @@ Route::get('/', function () {
 Route::resource('vacature-overzicht', ApplicationController::class);
 
 Route::resource('admin-overzicht', AdminController::class);
+Route::delete('/admin-overzicht/{id}', [AdminController::class, 'destroy'])->name('admin-overzicht.destroy');
 
-Route::get('/test', function () {
-    return view('test');
-})->name('test');
+use App\Http\Controllers\DashboardController;
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+
+
+route::get('/about-us', function () {
+    return view('about-us');
+})->name('about-us');
 
 Route::get('/application/filter', [ApplicationController::class, 'index'])->name('applications.filter');
 Route::resource('application', ApplicationController::class);
@@ -43,9 +49,10 @@ Route::middleware('auth')->group(function () {
 });
 
 //company routes
-Route::resource('company', \App\Http\Controllers\companyController::class);
+Route::get('/companies', function () {
+    return view('companies');
+})->name('companies');
 
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
