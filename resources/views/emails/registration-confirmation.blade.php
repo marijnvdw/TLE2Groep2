@@ -8,7 +8,7 @@
             Bevestiging van uw aanmelding
         </h1>
         <p class="text-white text-base sm:text-lg text-center mb-6">
-            Uw aanmelding is succesvol ontvangen! Een bevestigingsmail is onderweg naar ht door u opgegeven e-mailadres.
+            Uw aanmelding is succesvol ontvangen! Een bevestigingsmail is onderweg naar het door u opgegeven e-mailadres.
         </p>
         <p class="text-white text-base sm:text-lg text-center mb-6">
             Volg de instructies in de e-mail om uw aanmelding compleet te maken. Controleer ook uw spam-map als u de e-mail niet direct ziet.
