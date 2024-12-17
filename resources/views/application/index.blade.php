@@ -116,15 +116,15 @@
                                 <!-- Details section -->
                                 <div class=" h-[100%] flex flex-col justify-between md:w-2/3 lg:w-3/4">
                                     <div class="flex justify-center gap-8 md:gap-12 lg:gap-16">
-{{--                                        <img--}}
-{{--                                            src="--}}
-{{--                                                {{ $application->company->image }}"--}}
-{{--                                            alt="{{ $application->company->name }} foto"--}}
-{{--                                            class="h-12 md:h-16 lg:h-20">--}}
+                                       <img
+                                            src="
+                                                {{ $application->company->image }}"
+                                            alt="{{ $application->company->name }} foto"
+                                            class="h-12 md:h-16 lg:h-20">
                                         <div class="flex flex-col justify-center text-md md:text-lg lg:text-xl">
-{{--                                            <h2 class="text-xl sm:text-2xl font-bold">{{ $application->company->name}}</h2>--}}
+                                            <h2 class="text-xl sm:text-2xl font-bold">{{ $application->company->name}}</h2>
                                             <h2>{{ $application->title}}</h2>
-{{--                                            <h2>{{ $application->company->city}}</h2>--}}
+                                            <h2>{{ $application->company->city}}</h2>
                                         </div>
                                     </div>
 
