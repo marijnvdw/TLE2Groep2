@@ -4,6 +4,13 @@
 
         <!-- Name -->
         <div>
+            <x-input-label for="company_code" :value="__('Company code')" />
+            <x-text-input id="company_id" class="block mt-1 w-full" type="text" name="company_id" :value="old('company_code')" required autofocus autocomplete="company_id" />
+            <x-input-error :messages="$errors->get('company_code')" class="mt-2" />
+        </div>
+
+        <!-- Name -->
+        <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
