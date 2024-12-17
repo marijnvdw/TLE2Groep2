@@ -25,8 +25,10 @@ class ApplicationController extends Controller
             $searchTerm = '%' . $request->input('search') . '%';
             $applications->where(function ($query) use ($searchTerm) {
                 $query->where('title', 'like', $searchTerm)
-                    ->orWhere('details', 'like', $searchTerm);
-//                    ->orWhere('name', 'like', $searchTerm);
+                    ->orWhereHas('company', function ($companyQuery) use ($searchTerm) {
+                        $companyQuery->where('city', 'like', $searchTerm)
+                        ->orWhere('name', 'like', $searchTerm);
+                    });
             });
             $activeFilters['search'] = $request->search;
         }
@@ -46,20 +48,32 @@ class ApplicationController extends Controller
         }
 
         if ($request->filled('employment')) {
-            $employment = $request->employment == 'fulltime' ? true : false;
-            $applications->where('employment', $employment);
+            if ($request->employment === 'fulltime') {
+                $applications->where('employment', true);
+            } elseif ($request->employment === 'parttime') {
+                $applications->where('employment', false);
+            }
             $activeFilters['employment'] = $request->employment;
         }
 
         if ($request->filled('adult')) {
-            $applications->where('adult', true);
+            if ($request->adult === 'ja') {
+                $applications->where('adult', true);
+            } elseif ($request->adult === 'nee') {
+                $applications->where('adult', false);
+            }
             $activeFilters['adult'] = $request->adult;
         }
 
-        if ($request->filled('drivers_license')) {
-            $applications->where('drivers_license', true);
-            $activeFilters['drivers_license'] = $request->drivers_license;
+        if ($request->filled('drivers_licence')) {
+            if ($request->drivers_licence === 'ja') {
+                $applications->where('drivers_licence', true); // 1 in database
+            } elseif ($request->drivers_licence === 'nee') {
+                $applications->where('drivers_licence', false); // 0 in database
+            }
+            $activeFilters['drivers_licence'] = $request->drivers_licence;
         }
+
         $applications = $applications->get();
         $applicationsCount = Application::all()->count();
 

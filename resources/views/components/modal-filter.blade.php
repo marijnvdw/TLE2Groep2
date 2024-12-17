@@ -34,7 +34,7 @@
                                 <select name="sector" id="sector" style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px; box-sizing: border-box;">
                                     <option value="" {{ request('sector') == '' ? 'selected' : '' }}>Alle sectoren</option>
                                     <option value="technologie" {{ request('sector') == 'technologie' ? 'selected' : '' }}>Technologie</option>
-                                    <option value="gezondheidzorg {{ request('sector') == 'gezondheidzorg' ? 'selected' : '' }}">Gezondheidzorg</option>
+                                    <option value="gezondheidszorg {{ request('sector') == 'gezondheidszorg' ? 'selected' : '' }}">Gezondheidszorg</option>
                                     <option value="onderwijs" {{ request('sector') == 'onderwijs' ? 'selected' : '' }}>Onderwijs</option>
                                     <option value="financiën" {{ request('sector') == 'financiën' ? 'selected' : '' }}>Financiën </option>
                                     <option value="bouw" {{ request('sector') == 'bouw' ? 'selected' : '' }}>Bouw</option>
@@ -60,14 +60,22 @@
                     <div style="margin-bottom: 6vw;">
                         <div style="margin-bottom: 2vw;">
                             <label for="adult" style="display: flex; align-items: center; font-size: 1rem;">
-                                <input type="checkbox" name="adult" id="adult" style="color: #344343; width: 5vw; height: 5vw; margin-right: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;" {{ request('adult') ? 'checked' : '' }}>
+                                <select name="adult" id="adult" style="color: #344343; width: 25%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px; margin-right: 1vw;">
+                                    <option value="" {{ request('adult') == '' ? 'selected' : '' }}></option>
+                                    <option value="ja" {{ request('adult') == 'ja' ? 'selected' : '' }}>ja</option>
+                                    <option value="nee" {{ request('adult') == 'nee' ? 'selected' : '' }}>nee</option>
+                                </select>
                                 <span>Ik ben 18+</span>
                             </label>
                         </div>
 
                         <div style="margin-bottom: 2vw;">
-                            <label for="drivers_license" style="display: flex; align-items: center; font-size: 1rem;">
-                                <input type="checkbox" name="drivers_license" id="drivers_license" style="color: #344343; width: 5vw; height: 5vw; margin-right: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;" {{ request('drivers_license') ? 'checked' : '' }}>
+                            <label for="drivers_licence" style="display: flex; align-items: center; font-size: 1rem;">
+                                <select name="drivers_licence" id="drivers_licence" style="color: #344343; width: 25%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px; margin-right: 1vw;">
+                                    <option value="" {{ request('drivers_licence') == '' ? 'selected' : '' }}></option>
+                                    <option value="ja" {{ request('drivers_licence') == 'ja' ? 'selected' : '' }}>ja</option>
+                                    <option value="nee" {{ request('drivers_licence') == 'nee' ? 'selected' : '' }}>nee</option>
+                                </select>
                                 <span>Ik heb een rijbewijs</span>
                             </label>
                         </div>

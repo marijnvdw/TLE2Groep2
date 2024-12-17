@@ -8,7 +8,7 @@
             'employment' => 'Werkgelegenheid',
             'allCities' => 'Alle locaties',
             'adult' => '18+',
-            'drivers_license' => 'Rijbewijs',
+            'drivers_licence' => 'Rijbewijs',
         ];
     @endphp
     <style>
