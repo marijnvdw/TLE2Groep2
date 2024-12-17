@@ -72,8 +72,9 @@ class ApplicationController extends Controller
             $activeFilters['drivers_licence'] = $request->drivers_licence;
         }
 
-        $applications = $applications->get();
+        $applications = $applications->with('company')->get();
         $applicationsCount = Application::all()->count();
+//        dd($applications);
 
         return view('application.index', compact('applications', 'activeFilters', 'applicationsCount'));
     }
