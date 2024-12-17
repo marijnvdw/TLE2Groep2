@@ -38,6 +38,11 @@ class Application extends Model
         return $this->hasMany(Applicant::class);
     }
 
+    public function applicantCount()
+    {
+        return $this->hasOne(ApplicationApplicantCount::class);
+    }
+
 
 }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Applicant;
 use App\Models\Application;
+use App\Models\ApplicationApplicantCount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,35 +14,30 @@ class CompanyController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $applications = $user->company->applications;
-//        $applicants = Applicant::where('application_id', $applications->id);
-//        $applicantsCount = $applicants->count();
+        $applications = optional($user->company)->applications ?? collect();
 
-        $applicants = Applicant::all();
+        foreach ($applications as $application) {
+            $applicantCount = $application->applicants()->count();
 
-        return view('companies.dashboard', compact('applications', 'applicants', 'user'));
+            // Update of maak een nieuwe record in de koppeltabel
+            ApplicationApplicantCount::updateOrCreate(
+                ['application_id' => $application->id],
+                ['applicants_count' => $applicantCount]
+            );
+        }
+
+        return view('companies.dashboard', compact('applications', 'user'));
     }
-//    public function index()
-//    {
-//        $user = Auth::user();
-//        $applications = $user->company->applications;
-//
-//        // Get applicants per application, and count them
-//        $applicationsWithApplicants = $applications->map(function ($application) {
-//            $applicants = Applicant::where('application_id', $application->id)->get();
-//            $application->applicants_count = $applicants->count();
-//            $application->applicants = $applicants;
-//            return $application;
-//        });
-//
-//        return view('companies.dashboard', compact('applicationsWithApplicants', 'user', 'applications'));
-//    }
 
 
-    public function requestApplicant(Request $request) {
+    public function requestApplicant(Request $request)
+    {
+        $index = $request->query('index');
         $applicationId = $request->query('id');
+
         $applicants = Applicant::where('application_id', $applicationId)
             ->orderBy('created_at', 'asc')
+            ->take($index)
             ->get();
 
         return view('companies.request-applicant', compact('applicants'));

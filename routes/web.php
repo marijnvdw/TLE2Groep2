@@ -29,6 +29,8 @@ Route::get('email/send/{application}', [EmailController::class, 'sendEmail'])->n
 Route::get('email/register/{application}', [EmailController::class, 'registerEmail'])->name('email.register');
 Route::get('email/complete-registration', [EmailController::class, 'completeRegistration'])->name('complete-registration');
 Route::get('email/check-queue', [EmailController::class, 'checkQueue'])->name('check-queue');
+Route::post('/email/inform-applicants-mail', [EmailController::class, 'sendInformApplicantsMail'])
+    ->name('email.inform-applicants-mail');
 Route::get('/error', function () {
     return view('error');
 })->name('error.page');
@@ -38,7 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [CompanyController::class, 'index'])->name('dashboard');
 
     // Company-specific routes
-    Route::prefix('company')->name('companies.')->group(function () {
+    Route::prefix('companies')->name('companies.')->group(function () {
         Route::get('request-applicant', [CompanyController::class, 'requestApplicant'])->name('request-applicant');
     });
 });

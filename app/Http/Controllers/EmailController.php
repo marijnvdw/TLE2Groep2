@@ -124,4 +124,61 @@ class EmailController extends Controller
 
         return view('emails.check-queue', compact('position', 'application', 'company'));
     }
+
+    public function sendInformApplicantsMail(Request $request)
+    {
+        $applicants = $request->input('applicants'); // Retrieve submitted applicants data
+        $baseUrl = $this->baseUrl;
+
+        // Track email sending results
+        $errors = [];
+
+        foreach ($applicants as $applicant) {
+            $applicantId = $applicant['id'];
+            $chosenTime = $applicant['time'];
+
+            // Find the applicant by ID
+            $applicantModel = Applicant::find($applicantId);
+            if ($applicantModel) {
+                // Retrieve the application related to the applicant
+                $application = Application::find($applicantModel->application_id);
+                if ($application) {
+                    // Retrieve the company related to the application
+                    $company = Company::find($application->company_id);
+                    try {
+                        // Ensure the company data is passed to the email view
+                        $htmlBody = view('emails.inform-applicant-email',
+                            compact('baseUrl', 'chosenTime', 'applicantModel', 'company', 'application'))->render();
+
+                        $result = $this->mailerService->sendMail(
+                            $applicantModel->email,
+                            'Gefeliciteerd met uw baan!',
+                            $htmlBody,
+                            'Bedankt voor uw aanmelding!'
+                        );
+
+                        if ($result !== true) {
+                            $errors[] = "Failed to send email to: {$applicantModel->email}";
+                        }
+                    } catch (\Exception $e) {
+                        $errors[] = "Error sending email to {$applicantModel->email}: {$e->getMessage()}";
+                    }
+                } else {
+                    $errors[] = "Applicant with ID {$applicantId} not found.";
+                }
+            }
+
+            // Check for errors and decide the response
+            if (count($errors) > 0) {
+                // Log the errors or return an appropriate response
+                return response()->json([
+                    'message' => 'Some emails failed to send.',
+                    'errors' => $errors,
+                ], 500);
+            }
+
+        }
+        return redirect()->route('home');
+
+    }
 }

@@ -41,20 +41,34 @@
                         <img class="object-fill"
                              src="{{ $application['image_url'] }}"
                              alt="Job image">
-                        <p class="font-bold text-[#DA9F93]">Aanmeldingen: </p>
+                        <p class="font-bold text-[#DA9F93]">
+                            Aanmeldingen: {{ $application->applicantCount->applicants_count ?? 0 }}</p>
                     </div>
                 </div>
                 <div class="flex flex-col text-black gap-2">
+                    <label for="applicants-{{ $application->id }}" class="text-white">kies aantal aanmelders:</label>
 
-                    <a id="applicant-link" class="shadow-lg font-bold bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center"
-                       href="{{ route('companies.request-applicant', ['id' => $application->id, 'index' => 0]) }}">
+                    <select name="applicants" id="applicants-{{ $application->id }}">
+                        @if($application->applicantCount->applicants_count > 0)
+                            <option value="" selected disabled>0</option>
+                        @for ($i = 1; $i <= $application->applicantCount->applicants_count; $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+                        @else
+                            <option value="" selected disabled>0</option>
+                        @endif
+                    </select>
+
+                    <a id="applicant-link-{{ $application->id }}"
+                       class="shadow-lg font-bold bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center"
+                       href="#">
                         Vraag sollicitanten aan
                     </a>
 
                     <a class="shadow-lg font-bold bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center"
-                    href="">Pas aan</a>
+                       href="">Pas aan</a>
                     <a class="shadow-lg font-bold bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center"
-                    href="">Verwijder</a>
+                       href="">Verwijder</a>
                 </div>
             </div>
         @endforeach
@@ -62,13 +76,24 @@
 @endsection
 
 <script>
-    function updateHref() {
-        const selectElement = document.getElementById('applicants');
-        const selectedOption = selectElement.options[selectElement.selectedIndex];
-        const index = selectedOption.getAttribute('data-index'); // Get index from data attribute
-        const linkElement = document.getElementById('applicant-link');
+    document.addEventListener('DOMContentLoaded', () => {
+        // Find all select elements with the class 'applicants'
+        const selectElements = document.querySelectorAll('select[id^="applicants-"]');
 
-        // Update href with the new index value
-        linkElement.href = `{{ route('companies.request-applicant', ['id' => $application->id, 'index' => '']) }}` + index;
-    }
+        selectElements.forEach(selectElement => {
+            selectElement.addEventListener('change', () => {
+                const selectedValue = selectElement.value || 0;  // Default to 0 if no value selected
+                const applicationId = selectElement.id.split('-')[1];  // Extract application ID from the ID
+
+                // Find the corresponding link element using the same application ID
+                const linkElement = document.getElementById(`applicant-link-${applicationId}`);
+
+                // Dynamically generate the URL with the selected 'index'
+                const newHref = `/companies/request-applicant?id=${applicationId}&index=${selectedValue}`;
+
+                // Update the link's href
+                linkElement.href = newHref;
+            });
+        });
+    });
 </script>
