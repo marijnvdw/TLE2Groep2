@@ -7,7 +7,7 @@
             'sector' => 'Sector',
             'employment' => 'Werkgelegenheid',
             'allCities' => 'Alle locaties',
-            'adult' => 'Leeftijd',
+            'adult' => '18+',
             'drivers_license' => 'Rijbewijs',
         ];
     @endphp
@@ -68,40 +68,36 @@
             <x-modal-filter id="filterModal" class="hidden"></x-modal-filter>
             <div class=" pb-5">
                 <div class="px-5 pb-5">
-                    <form class="flex justify-center gap-5 pb-2 " method="GET">
-                        {{--                    <input class="border flex-1 rounded-[30px] pl-2" type="text" name="search"--}}
-                        {{--                           placeholder="Zoek vacatures">--}}
-                        {{--                    <button class="border flex-1 bg-white rounded-[30px] " type="button">filters</button>--}}
-                        <input class="border flex-1 rounded-[30px] pl-5" type="text" name="search"
-                               placeholder="Zoek vacatures">
-                        <x-button id="openModalButton" class="border flex-1 bg-white rounded-[30px] " type="button">
-                            filters
-                        </x-button>
-                    </form>
-
-
-                    <div>
-                        <p class="filter-description">actieve filters:</p>
+                    <div class="flex gap-8 items-center mb-4">
+                        <form class="w-2/4" method="GET" action="{{ route('application.index') }}">
+                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Zoek vacatures" id="searchInput" class="w-full h-12 px-5 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            @foreach(request()->except('search') as $key => $value)
+                                <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                            @endforeach
+                        </form>
+                        <x-button id="openModalButton" class="w-full flex-1 h-12 rounded-full bg-white border border-gray-300 text-black hover:bg-gray-100" type="submit">Filters</x-button>
+                    </div>
+                    <div class="flex flex-wrap ">
+                        <p class="text-sm font-medium pr-2">Actieve filters:  </p>
                         @if(!empty($activeFilters))
-                            <div>
-                                <ul style="width: 50%">
+                            <div class="100% overflow-hidden">
+                                <ul class="flex  flex-wrap gap-2">
                                     @foreach($activeFilters as $filter => $value)
-                                        <li style="color: #ffffff; background-color: #6d6d6d; display: flex; padding: 1vw">
-                                            <span
-                                                style="">{{ $filterTranslations[$filter] ?? ucfirst($filter) }}:</span>
-                                            <span>{{ $value }}</span>
-                                            <form action="{{ url()->current() }}" method="GET" style="display: inline;">
+                                        <li class="bg-white text-black text-xs items-center justify-between pl-2 rounded-[30px] flex flex-row border">
+                                            <span class="mr-2">{{ $filterTranslations[$filter] ?? ucfirst($filter) }}:</span>
+                                            <span class="mr-2">{{ $value }}</span>
+                                            <form action="{{ url()->current() }}" method="GET" class="inline-block">
                                                 @foreach (request()->except([$filter, 'page']) as $key => $val)
                                                     <input type="hidden" name="{{ $key }}" value="{{ $val }}">
                                                 @endforeach
-                                                <button type="submit">Verwijder filter</button>
+                                                <button type="submit" class=" py-1 px-2 rounded-[30px] hover:bg-red-600">x</button>
                                             </form>
                                         </li>
                                     @endforeach
                                 </ul>
                             </div>
                         @else
-                            <p>Geen actieve filters.</p>
+                            <p class="text-gray-500">Geen actieve filters.</p>
                         @endif
                     </div>
 

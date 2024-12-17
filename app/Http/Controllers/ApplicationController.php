@@ -15,14 +15,23 @@ class ApplicationController extends Controller
     public function index(request $request)
     {
         $applications = Application::query();
-
         $activeFilters = [];
 
         //dd($applications);
         //return view('application.index');
         //dd('hi');
 
-        if (!$request->filled('allCities')) {
+        if ($request->filled('search')) {
+            $searchTerm = '%' . $request->input('search') . '%';
+            $applications->where(function ($query) use ($searchTerm) {
+                $query->where('title', 'like', $searchTerm)
+                    ->orWhere('details', 'like', $searchTerm);
+//                    ->orWhere('name', 'like', $searchTerm);
+            });
+            $activeFilters['search'] = $request->search;
+        }
+
+        if (!$request->boolean('allCities')) {
             if ($request->filled('location')) {
                 $applications->whereHas('company', function ($query) use ($request) {
                     $query->where('city', 'LIKE', "%{$request->location}%");
@@ -51,7 +60,7 @@ class ApplicationController extends Controller
             $applications->where('drivers_license', true);
             $activeFilters['drivers_license'] = $request->drivers_license;
         }
-        $applications = Application::all();
+        $applications = $applications->get();
         $applicationsCount = Application::all()->count();
 
         return view('application.index', compact('applications', 'activeFilters', 'applicationsCount'));
