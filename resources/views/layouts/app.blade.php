@@ -12,12 +12,12 @@
 
 
 </head>
-<body class="bg-light-moss text-dark-moss font-sans">
+<body class="bg-light-moss text-dark-moss font-sans min-h-screen flex flex-col">
 <!-- Header -->
 <x-header />
 
 <!-- Main content -->
-<main class="container mx-auto py-8">
+<main class="container mx-auto py-8 flex-grow">
     @yield('content')
 </main>
 

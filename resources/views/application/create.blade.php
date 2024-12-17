@@ -39,15 +39,39 @@
                     @enderror
                 </div>
 
+
+                <div style="margin-bottom: 2vw;">
+                    <label for="sector" style="display: flex; font-size: 1rem; margin-bottom: 0.5rem;" class="text-cream">Sector</label>
+                    <select name="sector" id="sector" style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px; box-sizing: border-box;">
+                        <option value="" {{ request('sector') == '' ? 'selected' : '' }}>Alle sectoren</option>
+                        <option value="technologie" {{ request('sector') == 'technologie' ? 'selected' : '' }}>Technologie</option>
+                        <option value="gezondheidszorg {{ request('sector') == 'gezondheidszorg' ? 'selected' : '' }}">Gezondheidszorg</option>
+                        <option value="onderwijs" {{ request('sector') == 'onderwijs' ? 'selected' : '' }}>Onderwijs</option>
+                        <option value="financiën" {{ request('sector') == 'financiën' ? 'selected' : '' }}>Financiën </option>
+                        <option value="bouw" {{ request('sector') == 'bouw' ? 'selected' : '' }}>Bouw</option>
+                        <option value="retail" {{ request('sector') == 'retail' ? 'selected' : '' }}>Retail </option>
+                        <option value="logistiek" {{ request('sector') == 'logistiek' ? 'selected' : '' }}>Logistiek </option>
+                        <option value="horeca" {{ request('sector') == 'horeca' ? 'selected' : '' }}>Horeca </option>
+                        <option value="creatief" {{ request('sector') == 'creatief' ? 'selected' : '' }}>Creatief</option>
+                        <option value="landbouw" {{ request('sector') == 'landbouw' ? 'selected' : '' }}>Landbouw</option>
+                    </select>
+                </div>
+
+
+
                 <div style="margin-bottom: 2vw;">
                     <label for="employment"
                            style="display: flex; font-size: 1rem; margin-bottom: 0.5rem;" class="text-cream">Dienstverband</label>
-                    <input type="text" name="employment" id="employment"
-                           style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;"
-                           class="{{ $errors->has('employment') ? 'border-red-500' : '' }}">
-                    @error('employment')
-                    <span class="text-error text-sm">{{ 'Vul hier een dienstverband in' }}</span>
-                    @enderror
+{{--                    <input type="text" name="employment" id="employment"--}}
+{{--                           style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;"--}}
+{{--                           class="{{ $errors->has('employment') ? 'border-red-500' : '' }}">--}}
+{{--                    @error('employment')--}}
+{{--                    <span class="text-error text-sm">{{ 'Vul hier een dienstverband in' }}</span>--}}
+{{--                    @enderror--}}
+                    <select name="employment" id="employment" class="form-control" required>
+                        <option value="1">Fulltime</option>
+                        <option value="0">Parttime</option>
+                    </select>
                 </div>
 
                 <div class="mb-3">

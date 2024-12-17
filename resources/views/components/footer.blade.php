@@ -1,4 +1,4 @@
-<footer class="bg-dark-moss text-cream rounded-t-[30px] p-6">
+<footer class="bg-dark-moss text-cream rounded-t-[30px] p-6 bottom-0 w-full">
     <div class="font-sans flex flex-col lg:flex-row lg:justify-evenly">
         <!-- Section voor werknemer -->
         <div class="mb-6 lg:mb-0 lg:flex lg:flex-col lg:items-start text-center lg:text-left">

@@ -4,13 +4,13 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Dashboard
+            {{ __('Dashboard') }}
         </h2>
     </x-slot>
 
     <div class="bg-cream rounded-[30px] shadow-lg shadow-medium-moss p-6 w-[80vw] mx-auto overflow-hidden max-w-96">
         <div class="text-center">
-            <h2 class="text-xl font-bold text-dark-moss pb-2 break-words">Je bent ingelogd!</h2>
+            <h2 class="text-xl  font-bold text-dark-moss pb-2 break-words">{{ __("Je bent ingelogd!") }}</h2>
         </div>
 
         <div class="flex items-start pb-2">
@@ -23,11 +23,13 @@
 
     <div class="self-center px-10 py-4 flex justify-end">
         <a href="{{ route('application.create') }}"
-           class="shadow-lg font-bold bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center"
+           class="shadow-lg font-bold  bg-white text-dark-moss rounded-[30px] px-4 py-2 shadow-md hover:bg-dark-violet hover:text-white text-center "
         >
             Vacature aanmaken
         </a>
     </div>
+
+
 
     <div class="flex flex-wrap justify-center gap-5 p-10">
         @foreach ($applications as $application)

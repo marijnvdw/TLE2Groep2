@@ -19,6 +19,7 @@ class Application extends Model
         'image',
         'details',
         'company_id',
+        'sector',
     ];
 
     public static function findOrFail(array $applicationId)

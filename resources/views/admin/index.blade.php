@@ -29,6 +29,7 @@
                                     <th class="px-4 py-2">Stad</th>
                                     <th class="px-4 py-2">Bedrijfscode</th>
                                     <th class="px-4 py-2">Edit </th>
+                                    <th class="px-4 py-2">Verwijder bedrijf </th>
                                 </tr>
                                 </thead>
                                 @foreach ($companies as $company)
@@ -42,6 +43,17 @@
                                                class="bg-cream hover:bg-gray text-dark-moss font-bold py-2 px-4 rounded">
                                                 Bewerken
                                             </a>
+                                        </td>
+                                        <td class="border px-4 py-2 text-center">
+                                            <form action="{{ route('admin-overzicht.destroy', $company->id) }}" method="POST"
+                                                  onsubmit="return confirm('Weet u zeker dat u dit bedrijf wilt verwijderen?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="bg-cream hover:bg-gray text-red-800 font-bold py-2 px-4 rounded">
+                                                    Verwijder
+                                                </button>
+                                            </form>
+
                                         </td>
                                     </tr>
                                     </tbody>

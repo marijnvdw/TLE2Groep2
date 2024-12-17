@@ -8,7 +8,8 @@
                 <p class="text-gray-700">{{ session('error') }}</p>
                 <button
                     class="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                    onclick="closeModal()">Sluit</button>
+                    onclick="closeModal()">Sluit
+                </button>
             </div>
         </div>
     @endif
@@ -20,7 +21,8 @@
     </script>
 
     <section class="flex justify-center p-4 sm:p-8">
-        <div class="bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-8 w-full max-w-[600px] mx-auto overflow-hidden mb-8">
+        <div
+            class="bg-dark-moss shadow-lg shadow-dark-moss rounded-[30px] p-8 w-full max-w-[600px] mx-auto overflow-hidden mb-8">
             <!-- Header Section -->
             <div class="flex flex-col sm:flex-row-reverse justify-between items-center mb-6 gap-4">
                 <button
@@ -39,10 +41,25 @@
                 <h2 class="text-rose-brown text-3xl sm:text-4xl font-bold text-center sm:text-left">
                     {{$application->title}}
                 </h2>
-                <p>{{$application->description}}</p>
-                <p><strong>Contractvorm:</strong> {{$application->employment}}</p>
-                <p><strong>Rijbewijs nodig?</strong> {{$application->drivers_licence}}</p>
-                <p><strong>18+ vereist?</strong> {{$application->adult}}</p>
+                <p>{{$application->details}}</p>
+                <p><strong>Contractvorm:</strong>
+                    @if($application->employment === 1)
+                        Fulltime
+                    @else
+                        Parttime
+                    @endif</p>
+                <p><strong>Rijbewijs nodig:</strong>
+                    @if($application->drivers_licence === 1)
+                        Ja
+                    @else
+                        Nee
+                    @endif</p></p>
+                <p><strong>18+ vereist:</strong>
+                    @if($application->adult === 1)
+                        Ja
+                    @else
+                        Nee
+                    @endif</p></p></p>
             </div>
             <!-- Description -->
             <p class="text-white mb-6 text-base sm:text-lg">
