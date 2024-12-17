@@ -1,7 +1,7 @@
 <div class="text-center space-y-4">
     <div id="filterModal" style="position: fixed; display: none; justify-content: center; align-items: center; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 9999;">
-        <div class="modalContent" style="background-color: #2E342A; padding: 4vw; border-radius: 20px; width: 80vw; max-width: 800px; height: auto; min-height: 60vh; max-height: 90vh; text-align: center; overflow-y: auto; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box;">
-            <span class="close-btn" style="font-size: 7vw; color: #6d6d6d; cursor: pointer; display: flex; justify-content: end; padding: 0 2vw;" tabindex="0" role="button">&times;</span>
+        <div class="modalContent" style="background-color: #2E342A; padding: 1vw 4vw 4vw 4vw; border-radius: 20px; width: 80vw; max-width: 800px; height: auto; min-height: 60vh; max-height: 90vh; text-align: center; overflow-y: auto; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box;">
+            <span class="close-btn" style="font-size: 3.5rem; color: #ffffff; cursor: pointer; display: flex; justify-content: right; padding: 0 2vw;" tabindex="0" role="button">&times;</span>
             <form action="{{ route('application.index') }}" method="GET" class="filters" style="color: #DA9F93; padding: 1vw 1vw 3vw 1vw">
                 @foreach(request()->except(['page']) as $key => $value)
                     <input type="hidden" name="{{ $key }}" value="{{ $value }}">
@@ -11,59 +11,66 @@
                     <p style="display: flex; justify-content: center; font-size: 1.2rem;">Selecteer uw voorkeuren</p>
                 </div>
 
-                <div style="margin-bottom: 4vw;">
-                    <div style="margin-bottom: 2vw;">
-                        <label for="location" style="display: flex; font-size: 1rem; margin-bottom: 0.5rem;">Locatie</label>
-                        <input type="text" name="location" id="location" placeholder="Locatie laden..." style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;" value="{{ request('location') ? request('location') : '' }}">
+                <div class="deskMobileSwitch">
+                    <div style="margin-bottom: 4vw;" class="locationSectorEmployment">
+                        <div>
+                            <div style="margin-bottom: 2vw;">
+                                <label for="location" style="display: flex; font-size: 1rem; margin-bottom: 0.5rem;">Locatie</label>
+                                <input type="text" name="location" id="location" placeholder="Locatie laden..." style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;" value="{{ request('location') ? request('location') : '' }}">
+                            </div>
+
+                            <div style="margin-bottom: 2vw;">
+                                <label for="allCities" style="display: flex; align-items: center; font-size: 1rem;">
+                                    <input type="hidden" name="allCities" value="0">
+                                    <input type="checkbox" name="allCities" id="allCities" style="color: #344343; width: 5vw; height: 5vw; margin-right: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;"{{ request('allCities') ? 'checked' : '' }}>
+                                    <span>Alle locaties laten zien.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div style="margin-bottom: 2vw;">
+                                <label for="sector" style="display: flex; font-size: 1rem; margin-bottom: 0.5rem;">Sector</label>
+                                <select name="sector" id="sector" style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px; box-sizing: border-box;">
+                                    <option value="" {{ request('sector') == '' ? 'selected' : '' }}>Alle sectoren</option>
+                                    <option value="technologie" {{ request('sector') == 'technologie' ? 'selected' : '' }}>Technologie</option>
+                                    <option value="gezondheidzorg {{ request('sector') == 'gezondheidzorg' ? 'selected' : '' }}">Gezondheidzorg</option>
+                                    <option value="onderwijs" {{ request('sector') == 'onderwijs' ? 'selected' : '' }}>Onderwijs</option>
+                                    <option value="financiën" {{ request('sector') == 'financiën' ? 'selected' : '' }}>Financiën </option>
+                                    <option value="bouw" {{ request('sector') == 'bouw' ? 'selected' : '' }}>Bouw</option>
+                                    <option value="retail" {{ request('sector') == 'retail' ? 'selected' : '' }}>Retail </option>
+                                    <option value="logistiek" {{ request('sector') == 'logistiek' ? 'selected' : '' }}>Logistiek </option>
+                                    <option value="horeca" {{ request('sector') == 'horeca' ? 'selected' : '' }}>Horeca </option>
+                                    <option value="creatief" {{ request('sector') == 'creatief' ? 'selected' : '' }}>Creatief</option>
+                                    <option value="landbouw" {{ request('sector') == 'landbouw' ? 'selected' : '' }}>Landbouw</option>
+                                </select>
+                            </div>
+
+                            <div style="margin-bottom: 2vw;">
+                                <label for="employment" style="display: flex; font-size: 1rem; margin-bottom: 0.5rem;">Werkgelegenheid</label>
+                                <select name="employment" id="employment" style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;">
+                                    <option value="" {{ request('employment') == '' ? 'selected' : '' }}>Fulltime en parttime</option>
+                                    <option value="fulltime" {{ request('employment') == 'fulltime' ? 'selected' : '' }}>Fulltime</option>
+                                    <option value="parttime" {{ request('employment') == 'parttime' ? 'selected' : '' }}>Parttime</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
-                    <div style="margin-bottom: 2vw;">
-                        <label for="allCities" style="display: flex; align-items: center; font-size: 1rem;">
-                            <input type="checkbox" name="allCities" id="allCities" style="color: #344343; width: 5vw; height: 5vw; margin-right: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;" {{ request('allCities') ? 'checked' : '' }}>
-                            <span>Alle locaties laten zien.</span>
-                        </label>
-                    </div>
+                    <div style="margin-bottom: 6vw;">
+                        <div style="margin-bottom: 2vw;">
+                            <label for="adult" style="display: flex; align-items: center; font-size: 1rem;">
+                                <input type="checkbox" name="adult" id="adult" style="color: #344343; width: 5vw; height: 5vw; margin-right: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;" {{ request('adult') ? 'checked' : '' }}>
+                                <span>Ik ben 18+</span>
+                            </label>
+                        </div>
 
-                    <div style="margin-bottom: 2vw;">
-                        <label for="sector" style="display: flex; font-size: 1rem; margin-bottom: 0.5rem;">Sector</label>
-                        <select name="sector" id="sector" style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px; box-sizing: border-box;">
-                            <option value="" {{ request('sector') == '' ? 'selected' : '' }}>Alle sectoren</option>
-                            <option value="technologie" {{ request('sector') == 'technologie' ? 'selected' : '' }}>Technologie</option>
-                            <option value="gezondheidzorg {{ request('sector') == 'gezondheidzorg' ? 'selected' : '' }}">Gezondheidzorg</option>
-                            <option value="onderwijs" {{ request('sector') == 'onderwijs' ? 'selected' : '' }}>Onderwijs</option>
-                            <option value="financiën" {{ request('sector') == 'financiën' ? 'selected' : '' }}>Financiën </option>
-                            <option value="bouw" {{ request('sector') == 'bouw' ? 'selected' : '' }}>Bouw</option>
-                            <option value="retail" {{ request('sector') == 'retail' ? 'selected' : '' }}>Retail </option>
-                            <option value="logistiek" {{ request('sector') == 'logistiek' ? 'selected' : '' }}>Logistiek </option>
-                            <option value="horeca" {{ request('sector') == 'horeca' ? 'selected' : '' }}>Horeca </option>
-                            <option value="creatief" {{ request('sector') == 'creatief' ? 'selected' : '' }}>Creatief</option>
-                            <option value="landbouw" {{ request('sector') == 'landbouw' ? 'selected' : '' }}>Landbouw</option>
-                        </select>
-                    </div>
-
-                    <div style="margin-bottom: 2vw;">
-                        <label for="employment" style="display: flex; font-size: 1rem; margin-bottom: 0.5rem;">Werkgelegenheid</label>
-                        <select name="employment" id="employment" style="color: #344343; width: 100%; padding: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;">
-                            <option value="" {{ request('employment') == '' ? 'selected' : '' }}>Fulltime en parttime</option>
-                            <option value="fulltime" {{ request('employment') == 'fulltime' ? 'selected' : '' }}>Fulltime</option>
-                            <option value="parttime" {{ request('employment') == 'parttime' ? 'selected' : '' }}>Parttime</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div style="margin-bottom: 6vw;">
-                    <div style="margin-bottom: 2vw;">
-                        <label for="adult" style="display: flex; align-items: center; font-size: 1rem;">
-                            <input type="checkbox" name="adult" id="adult" style="color: #344343; width: 5vw; height: 5vw; margin-right: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;" {{ request('adult') ? 'checked' : '' }}>
-                            <span>Ik ben 18+</span>
-                        </label>
-                    </div>
-
-                    <div style="margin-bottom: 2vw;">
-                        <label for="drivers_license" style="display: flex; align-items: center; font-size: 1rem;">
-                            <input type="checkbox" name="drivers_license" id="drivers_license" style="color: #344343; width: 5vw; height: 5vw; margin-right: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;" {{ request('drivers_license') ? 'checked' : '' }}>
-                            <span>Ik heb een rijbewijs</span>
-                        </label>
+                        <div style="margin-bottom: 2vw;">
+                            <label for="drivers_license" style="display: flex; align-items: center; font-size: 1rem;">
+                                <input type="checkbox" name="drivers_license" id="drivers_license" style="color: #344343; width: 5vw; height: 5vw; margin-right: 2vw; border: 1px solid #6d6d6d; border-radius: 15px;" {{ request('drivers_license') ? 'checked' : '' }}>
+                                <span>Ik heb een rijbewijs</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
 
@@ -174,5 +181,22 @@
             });
         }
     </script>
+
+    <style>
+        @media (min-width: 1024px) {
+            #filterModal .modalContent {
+                width: 90vw;
+                height: 60vh;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            #filterModal .modalContent form {
+                overflow-y: auto;
+                height: 100%;
+                padding: 1.5vw 2vw;
+            }
+        }
+    </style>
 </div>
 
