@@ -155,9 +155,9 @@ class ApplicationController extends Controller
             return view('application.edit', compact('application'));
         }
 
-        if (auth()->check() && $application->company_id === auth()->user()->company_id) {
-            return view('application.edit', compact('application'));
-        }
+//        if (auth()->check() && $application->company_id === auth()->user()->company_id) {
+//            return view('application.edit', compact('application'));
+//        }
 
         $id = $request->input('id');
         $application = Application::findOrFail($id);
