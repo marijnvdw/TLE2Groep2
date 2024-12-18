@@ -41,7 +41,7 @@
                 <h2 class="text-rose-brown text-3xl sm:text-4xl font-bold text-center sm:text-left">
                     {{$application->title}}
                 </h2>
-                <p>{{$application->details}}</p>
+                <p>{{$application->description}}</p>
                 <p><strong>Contractvorm:</strong>
                     @if($application->employment === 1)
                         Fulltime
