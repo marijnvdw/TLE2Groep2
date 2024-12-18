@@ -1,66 +1,191 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Open Hiring Technische 
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Introductie
 
-## About Laravel
+Welkom bij het "Open Hiring" project. 
+Deze documentatie bevat een technische overdracht van het project. 
+Hierin staat waar je wat kunt vinden binnen het project en hoe de database werkt.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Dit project maakt gebruik van Laravel. Ook hangt het project af van Breeze en Composer.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Hier staat de documentatie om Composer te installeren.
+[Composer Documentatie](https://getcomposer.org/doc/00-intro.md)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Deze commando moet uitgevoerd worden om breeze te installeren.
+```bash
+composer require laravel/breeze --dev
+```
 
-## Learning Laravel
+Dit project maakt ook gebruik van de composer library phpmailer om mails te kunnen versturen.
+Deze kan geïstalleerd worden door middel van dit commando:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+composer require phpmailer/phpmailer
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Om de website lokaal te testen moet je gebruik maken van de volgende commando's, 
+deze moeten worden uitgevoerd in de terminal van de IDE:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+npm run dev
+```
+En deze moet in een aparte terminal van de IDE uitgevoerd worden:
+```bash
+php artisan serve
+```
+Je hebt nu een werkend project in je lokale omgeving.
 
-## Laravel Sponsors
+## Projectstructuur
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+De project repository is als volgt gestructureerd:
 
-### Premium Partners
+- /app: Bevat de kernlogica van de Laravel-applicatie, zoals controllers, modellen en services.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- /bootstrap: Startbestanden voor het opzetten van de applicatie.
 
-## Contributing
+- /config: Configuratiebestanden voor de applicatie.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- /database: Migratie- en seeding-bestanden voor het beheren van de database.
 
-## Code of Conduct
+- /public: Bevat de index.php en andere openbare bestanden (zoals afbeeldingen, CSS, JavaScript).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- /resources: Views die we hebben onderverdeeld in sub groepen zoals admin, emails en application
+  - css: Stijlsheets voor de applicatie.
+  - js: JavaScript-bestanden voor de front-end functionaliteit.
+  - views: De Blade-views (Laravel's templating engine) zijn hier opgeslagen. Deze map is verder onderverdeeld:
+  - admin: Views die specifiek zijn voor de admin pagina's
+  - application: Views die specifiek zijn voor het sollicitatieproces.
+  - auth: Bevat views voor authenticatie, zoals login en registratie.
+  - companies: Bevat de views die gerelateerd zijn aan bedrijven (bijv. bedrijfsprofielen).
+  - components: Kleine, herbruikbare componenten zoals modals of formulieren.
+  - emails: Bevat de views voor e-mails die naar gebruikers worden gestuurd.
+  - layouts: Overkoepelende layouts (zoals een master blade template) die andere views gebruiken.
+  - profile: Views die gerelateerd zijn aan gebruikersprofielen.
+    <br><br>
+  - about-us.blade.php: Pagina met informatie over het bedrijf of team.
+  - companies.blade.php: Pagina met een overzicht van bedrijven.
+  - dashboard.blade.php: Dashboardpagina met een overzicht voor de gebruiker.
+  - error.blade.php: Foutpagina voor wanneer iets misgaat.
+  - home.blade.php: Startpagina voor de applicatie.
+  - vacature-overzicht.blade.php: Pagina met een overzicht van vacatures.
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+- /routes: Bevat de routebestanden (bijvoorbeeld web.php voor webroutes).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- /storage: Bestanden, hier worden de foto's bijvoorbeeld opgeslagen.
+
+- /tests: Bevat unit- en integratietests.
+
+- /vendor: Bevat afhankelijkheden die via Composer zijn geïnstalleerd.
+
+<br>
+ 
+- .env: In dit bestand staan de configuraties voor dit project (deze is handmatig aangemaakt en staat niet op de github)
+
+- composer.json: Bevat de afhankelijkheden en metadata van het project.
+
+- package.json: Voor front-end afhankelijkheden en scripts.
+
+## Database Uitleg
+
+De database is ontworpen om de kernfunctionaliteiten van de applicatie te ondersteunen. Hieronder een overzicht van de tabellen en hun functies:
+
+
+### Users:
+- Beschrijft managers en admins van de applicatie.
+- Velden:
+  - id: Unieke ID van de gebruiker.
+  - name: Naam van de gebruiker.
+  - email: E-mailadres van de gebruiker (uniek).
+  - email_verified_at: Datum en tijd van e-mailverificatie.
+  - password: Gehasht wachtwoord.
+  - remember_token: Token voor sessies.
+  - created_at: Aanmaakdatum.
+  - updated_at: Laatste wijzigingsdatum.
+  - company_id: ID van het bedrijf waartoe de gebruiker behoort.
+  - admin: Boolean (0/1) 1 voor adminrechten.
+
+### Companies:
+- Bevat informatie over bedrijven die vacatures plaatsen.
+- Velden:
+  - id: Unieke ID van het bedrijf.
+  - name: Naam van het bedrijf.
+  - phone_number: Telefoonnummer van het bedrijf.
+  - address: Adres van het bedrijf.
+  - city: Stad waar het bedrijf gevestigd is.
+  - company_code: Unieke code om aan te kunnen melden bij een bedrijf.
+  - created_at: Aanmaakdatum.
+  - updated_at: Laatste wijzigingsdatum.
+  - image: Bedrijfsafbeelding.
+
+### Applications:
+- Houdt vacatures bij die bedrijven hebben geplaatst.
+- Velden:
+  - id: Unieke ID van de vacatures.
+  - creation_date: Datum van creatie.
+  - title: Titel van de vacature (functie in het bedrijf).
+  - description: Beschrijving van de vacature (De langere tekst die op het vacature overzicht zichtbaar is).
+  - employment: Boolean (0/1) 1 voor Full time en 0 voor Part time.
+  - drivers_licence: Boolean (0/1) voor rijbewijs vereiste, 1 voor verplicht.
+  - adult: Boolean (0/1) voor meerderjarigheid, 1 voor verplicht.
+  - image: Afbeelding van de baan.
+  - details: Korte beschrijving van de vacature (De kortere tekst voor op de index pagina).
+  - company_id: ID van het bedrijf dat de vacature plaatste.
+  - created_at: Aanmaakdatum.
+  - updated_at: Laatste wijzigingsdatum.
+  - sector: Sector waarin de vacature valt.
+
+### Applicants:
+- Bevat informatie over sollicitanten.
+- Velden:
+  - id: Unieke ID van de sollicitant.
+  - email: E-mailadres van de sollicitant.
+  - status: Status van de sollicitatie (bijv. geaccepteerd, afgewezen).
+  - application_id: ID van de vacature waarop is gesolliciteerd (foreign key).
+  - created_at: Aanmaakdatum.
+  - updated_at: Laatste wijzigingsdatum.
+
+### Relaties:
+- Users en Companies: Een manager kan gekoppeld zijn aan een bedrijf.
+- Companies en Applications: Een bedrijf kan meerdere vacatures plaatsen.
+- Applications en Applicants: Een vacature kan meerdere sollicitanten hebben.
+
+### Database Foto:
+![img.png](Database-Img.png)
+
+# Server up to date houden:
+
+Mochten er aanpassingen gedaan moeten worden aan de website, dan kun je deze instructies volgen om een nieuwe versie op de server te zetten.
+1. Zorg er voor dat de nieuwe versie op de Main branch van de Github staat.
+2. Maak een connectie door de Terminal/Powershell te openen.
+3. Voer daar deze command in verbinding te maken:
+```bash
+ssh <inlognaam>@<IP-adres>
+```
+4. Geeft hierna je wachtwoord op.
+5. Je hebt nu een verbinding gemaakt met de server.
+6. Voer nu het volgende commando's uit om de nieuwe versie van de Github op de server te zetten.
+
+Navigeer naar de correcte map
+```bash
+cd www/open-hiring
+```
+Voer het script uit om de nieuwe versies op de server te zetten.
+```bash
+./deploy.sh
+```
+Geef de correcte map aan.
+```bash
+open-hiring
+```
+7. Als er een nieuwe versie aanwezig is wordt deze op de server geïnstalleerd
+
+
+
+
+
+
+
+
+
