@@ -36,6 +36,23 @@ Voer de volgende commando uit om de databases aan te maken:
 
 Werk in het .env bestand de DB configuraties bij met de juiste database gegevens, zet 'DB_CONNECTION' als 'sqlite'.
 
+Voeg dit toe/pas dit aan, aan het .env bestand om er voor te zorgen dat de mail functionaliteit werkt.
+```bash
+MAIL_MAILER=log
+#MAIL_HOST=127.0.0.1
+#MAIL_PORT=2525
+#MAIL_USERNAME=null
+#MAIL_PASSWORD=null
+#MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+
+MAIL_USERNAME= ---
+MAIL_PASSWORD= ---
+MAIL_HOST= ---
+MAIL_PORT= ---
+MAIL_ENCRYPTION=tls
+```
 
 
 ### Mailsysteem setup
@@ -183,20 +200,19 @@ De database is ontworpen om de kernfunctionaliteiten van de applicatie te onders
 # Server up to date houden:
 
 Mochten er aanpassingen gedaan moeten worden aan de website, dan kun je deze instructies volgen om een nieuwe versie op de server te zetten.
-1. Zorg er voor dat de nieuwe versie op de Main branch van de Github staat.
+1. Zorg ervoor dat de bijgewerkte code in de Main branch van de GitHub-repository staat.
 2. Maak een connectie door de Terminal/Powershell te openen.
 3. Voer daar deze command in verbinding te maken:
 ```bash
 ssh <inlognaam>@<IP-adres>
 ```
 4. Geeft hierna je wachtwoord op.
-5. Je hebt nu een verbinding gemaakt met de server.
-6. Voer nu het volgende commando's uit om de nieuwe versie van de Github op de server te zetten.
-
-Navigeer naar de correcte map
+5. Na succesvolle verbinding, navigeer naar de map waarin het project zich bevindt. Gebruik het volgende commando:
 ```bash
 cd www/open-hiring
 ```
+Belangrijk: Zorg dat je in de /var/www/open-hiring map bent, niet in een submap zoals www/open-hiring\
+
 Voer het script uit om de nieuwe versies op de server te zetten.
 ```bash
 ./deploy.sh

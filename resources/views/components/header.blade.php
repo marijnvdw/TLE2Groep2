@@ -1,13 +1,79 @@
+<style>
+    .flex-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Pas aan voor meer of minder ruimte tussen items */
+        gap: 1rem; /* Voegt ruimte tussen items toe */
+        flex-wrap: wrap; /* Zorgt ervoor dat items op de volgende regel worden geplaatst als ze niet passen */
+    }
+
+    .logout-form {
+        margin: 0; /* Verwijdert extra marges van het formulier */
+        padding: 0;
+    }
+
+    .burger-menu {
+        display: none; /* Verbergt standaard */
+    }
+
+    @media (max-width: 1024px) {
+        .burger-menu {
+            display: flex; /* Toont op schermen kleiner dan 1024px */
+        }
+    }
+
+    .desktop-only {
+        display: flex; /* Toont standaard */
+    }
+
+    @media (max-width: 1024px) {
+        .desktop-only {
+            display: none; /* Verbergt op schermen kleiner dan 1024px */
+        }
+    }
+
+
+</style>
+
 <header class="bg-dark-green text-white p-4">
     <!-- Navigation Bar -->
     <div class="flex justify-between items-center">
         <!-- Hamburger Menu -->
-        <div id="burgerMenu" class="flex flex-col justify-center items-center cursor-pointer" onclick="toggleOverlay()"
-             tabindex="0" role="button">
+
+        <div id="burgerMenu" class="burger-menu flex flex-col justify-center items-center cursor-pointer"
+             onclick="toggleOverlay()" tabindex="0" role="button">
             <span class="block w-10 h-1 bg-violet"></span>
             <span class="block w-10 text-center text-violet text-sm font-bold">Menu</span>
             <span class="block w-10 h-1 bg-violet"></span>
         </div>
+
+        <div class="ml-10 flex-container desktop-only">
+            <div class="w-10"></div>
+            <a href="{{ route('application.index') }}" class="text-lg text-dark-moss hover:text-violet">Vacatures</a>
+            <a href="{{ route('about-us') }}" class="text-lg text-dark-moss hover:text-violet">Over ons</a>
+            <a href="{{ route('companies') }}" class="text-lg text-dark-moss hover:text-violet">Werkgevers</a>
+
+            @if (Route::has('login'))
+                @auth
+                    @if (Auth::user()->admin === 1)
+                        <a href="{{ route('admin-overzicht.index') }}" class="text-lg text-dark-moss hover:text-violet">Admin overzicht</a>
+                    @else
+                        <a href="{{ route('dashboard') }}" class="text-lg text-dark-moss hover:text-violet">Vacature dashboard</a>
+                    @endif
+
+                    <form method="POST" action="{{ route('logout') }}" class="logout-form">
+                        @csrf
+                        <button type="submit" class="text-lg text-dark-moss hover:text-violet">
+                            Uitloggen
+                        </button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="block text-lg text-dark-moss hover:text-violet">Login/Registreer voor
+                        bedrijven</a>
+                @endauth
+            @endif
+        </div>
+
 
         <!-- Centered Logo -->
         <div class="" >
@@ -17,7 +83,7 @@
             </a>
         </div>
 
-        <div class="w-10"></div>
+        <div class="w-10 burger-menu"></div>
     </div>
 
     <!-- Overlay Menu -->
