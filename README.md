@@ -23,6 +23,17 @@ Deze commando moet uitgevoerd worden om breeze te installeren.
 composer require laravel/breeze --dev
 ```
 
+De volgende commando's moeten uitgevoerd worden binnen de IDE om een .env bestand aan te maken deze wordt gebruikt voor configuratie.:
+``cp .env.example .env``
+``php artisan key:generate``
+
+Voer de volgende commando uit om de databases aan te maken:
+``php artisan migrate``
+
+Werk in het .env bestand de DB configuraties bij met de juiste database gegevens, zet 'DB_CONNECTION' als 'sqlite'.
+
+
+
 ### Mailsysteem setup
 Dit project maakt ook gebruik van de composer library "phpmailer" om mails te kunnen versturen.
 Deze kan geïstalleerd worden door middel van dit commando:
