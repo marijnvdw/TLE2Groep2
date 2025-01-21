@@ -1,6 +1,10 @@
 # Open Hiring Technisch overdrachtsdocument.
 
 ##Changelog 21/1
+TODO
+email setup aanpassen
+translate page naar engels
+
 
 ## Introductie
 
