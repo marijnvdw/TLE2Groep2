@@ -83,7 +83,7 @@ De project repository is als volgt gestructureerd:
 
 <br>
  
-- .env: In dit bestand staan de configuraties voor dit project (deze is handmatig aangemaakt en staat niet op de github)
+- .env: In dit bestand staan de configuraties voor dit project. Deze moet handmatig aangemaakt worden en wordt niet meegeleverd vanwege veiligheidsredenen. (
 
 - composer.json: Bevat de afhankelijkheden en metadata van het project.
 
