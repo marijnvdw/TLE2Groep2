@@ -8,23 +8,30 @@ Welkom bij het "Open Hiring" project.
 Deze documentatie bevat een technische overdracht van het project. 
 Hierin staat waar je wat kunt vinden binnen het project en hoe de database werkt.
 
+
+### Setup
 Dit project maakt gebruik van Laravel. Ook hangt het project af van Breeze en Composer.
 
-Hier staat de documentatie om Composer te installeren.
+Volg de volgende installatie om Composer te installeren in uw besturingssysteem.
 [Composer Documentatie](https://getcomposer.org/doc/00-intro.md)
+
+Voer de volgende commando uit in de terminal van je IDE om composer te installeren in het systeem
+``composer install``
 
 Deze commando moet uitgevoerd worden om breeze te installeren.
 ```bash
 composer require laravel/breeze --dev
 ```
 
-Dit project maakt ook gebruik van de composer library phpmailer om mails te kunnen versturen.
+### Mailsysteem setup
+Dit project maakt ook gebruik van de composer library "phpmailer" om mails te kunnen versturen.
 Deze kan geïstalleerd worden door middel van dit commando:
 
 ```bash
 composer require phpmailer/phpmailer
 ```
 
+### Lokale development 
 Om de website lokaal te testen moet je gebruik maken van de volgende commando's, 
 deze moeten worden uitgevoerd in de terminal van de IDE:
 
@@ -35,6 +42,8 @@ En deze moet in een aparte terminal van de IDE uitgevoerd worden:
 ```bash
 php artisan serve
 ```
+
+
 Je hebt nu een werkend project in je lokale omgeving.
 
 ## Projectstructuur
