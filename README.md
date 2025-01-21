@@ -12,15 +12,16 @@ Hierin staat waar je wat kunt vinden binnen het project en hoe de database werkt
 ### Setup
 Dit project maakt gebruik van Laravel. Ook hangt het project af van Breeze en Composer.
 
-Volg de volgende installatie om Composer te installeren.
+Volg de volgende installatie om Composer te installeren in uw besturingssysteem.
 [Composer Documentatie](https://getcomposer.org/doc/00-intro.md)
+
+Voer de volgende commando uit in de terminal van je IDE om composer te installeren in het systeem
+``composer install``
 
 Deze commando moet uitgevoerd worden om breeze te installeren.
 ```bash
 composer require laravel/breeze --dev
 ```
-
-
 
 ### Mailsysteem setup
 Dit project maakt ook gebruik van de composer library "phpmailer" om mails te kunnen versturen.
@@ -41,6 +42,8 @@ En deze moet in een aparte terminal van de IDE uitgevoerd worden:
 ```bash
 php artisan serve
 ```
+
+
 Je hebt nu een werkend project in je lokale omgeving.
 
 ## Projectstructuur
