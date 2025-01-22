@@ -1,6 +1,6 @@
 # Open Hiring Technisch overdrachtsdocument.
 
-##Changelog 21/1
+##Changelog 22/1
 
 toegevoegd:
 - Tekst meer leesbaar gemaakt
@@ -8,12 +8,7 @@ toegevoegd:
 - initial setup instructies verbeterd
    - .env bestand aanmaken en key generation instructies.
 - navbar aangepast voor desktop
-- terugknoppen aangepst zodat ze niet meer in de content staan.
-- 
-
-TODO
-translate page naar engels
-
+- terugknoppen aangepast zodat ze niet meer in de content staan.
 
 ## Introductie
 
