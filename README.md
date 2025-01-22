@@ -2,7 +2,7 @@
 
 ##Changelog 21/1
 TODO
-email setup aanpassen
+phpmailer config aangepast in .env
 translate page naar engels
 
 
