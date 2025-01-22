@@ -1,8 +1,17 @@
 # Open Hiring Technisch overdrachtsdocument.
 
 ##Changelog 21/1
+
+toegevoegd:
+- Tekst meer leesbaar gemaakt
+- PHPmailer setup instructies verbeterd
+- initial setup instructies verbeterd
+   - .env bestand aanmaken en key generation instructies.
+- navbar aangepast voor desktop
+- terugknoppen aangepst zodat ze niet meer in de content staan.
+- 
+
 TODO
-phpmailer config aangepast in .env
 translate page naar engels
 
 
