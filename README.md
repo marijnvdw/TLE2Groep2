@@ -1,10 +1,14 @@
 # Open Hiring Technisch overdrachtsdocument.
 
-##Changelog 21/1
-TODO
-phpmailer config aangepast in .env
-translate page naar engels
+##Changelog 22/1
 
+toegevoegd:
+- Tekst meer leesbaar gemaakt
+- PHPmailer setup instructies verbeterd
+- initial setup instructies verbeterd
+   - .env bestand aanmaken en key generation instructies.
+- navbar aangepast voor desktop
+- terugknoppen aangepast zodat ze niet meer in de content staan.
 
 ## Introductie
 
@@ -124,7 +128,7 @@ De project repository is als volgt gestructureerd:
 
 <br>
  
-- .env: In dit bestand staan de configuraties voor dit project. Deze moet handmatig aangemaakt worden en wordt niet meegeleverd vanwege veiligheidsredenen. (
+- .env: In dit bestand staan de configuraties voor dit project. Deze moet handmatig aangemaakt worden en wordt niet meegeleverd vanwege veiligheidsredenen. 
 
 - composer.json: Bevat de afhankelijkheden en metadata van het project.
 
